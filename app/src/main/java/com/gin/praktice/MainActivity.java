@@ -1,13 +1,43 @@
 package com.gin.praktice;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.gin.praktice.activities.Main;
+
+public class MainActivity extends Activity {
+    private Intent mainIntent;
+
+    private EditText idEditText;
+    private EditText pwdEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mainIntent = new Intent(this, Main.class);
+
+        idEditText = (EditText)findViewById(R.id.idEditText);
+        pwdEditText = (EditText)findViewById(R.id.pwdEditText);
+
+
+    }
+
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.loginButton : idEditText.setText("IDIDIDIDIDID"); break;
+            case R.id.toastButton : Toast.makeText(this, "This is Toast msg from gin", Toast.LENGTH_LONG).show(); break;
+            case R.id.buzzButton : pwdEditText.setText("PWDDPWDPWDP");
+                            ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(4000); break;
+            case R.id.nextButton : startActivity(mainIntent); finish(); break;
+            default: break;
+        }
     }
 }
