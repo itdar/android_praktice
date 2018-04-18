@@ -7,22 +7,21 @@ import android.view.View;
 
 import com.gin.praktice.R;
 
-public class Main extends Activity {
-    private Intent dDayIntent;
+public class Acty_DDay extends Activity {
+    private Intent locationIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activities_main);
+        setContentView(R.layout.activities_dday);
 
-        dDayIntent = new Intent(this, DDay.class);
+        locationIntent = new Intent(this, Acty_Location.class);
     }
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.nextButton : startActivity(dDayIntent); finish(); break;
+            case R.id.nextButton : startActivity(locationIntent); break;
             default: break;
         }
     }
-
 }

@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.gin.praktice.activities.Main;
+import com.gin.praktice.activities.Acty_Main;
 
 public class MainActivity extends Activity {
     private Intent mainIntent;
@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainIntent = new Intent(this, Main.class);
+        mainIntent = new Intent(this, Acty_Main.class);
 
         idEditText = (EditText)findViewById(R.id.idEditText);
         pwdEditText = (EditText)findViewById(R.id.pwdEditText);
@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
             case R.id.toastButton : Toast.makeText(this, "This is Toast msg from gin", Toast.LENGTH_LONG).show(); break;
             case R.id.buzzButton : pwdEditText.setText("PWDDPWDPWDP");
                             ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(4000); break;
-            case R.id.nextButton : startActivity(mainIntent); finish(); break;
+            case R.id.nextButton : startActivity(mainIntent); break;
             default: break;
         }
     }

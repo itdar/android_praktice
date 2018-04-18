@@ -1,24 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:layout_editor_absoluteY="81dp">
 
     <TextView
+        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is activities dday"
-        android:textSize="30sp" />
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="16dp"
+        android:text="DDay"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/nameEditText"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/nextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClick"
         android:layout_gravity="center"
-        android:layout_marginTop="100sp"
-        android:text="Next" />
+        android:layout_marginBottom="31dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="onClick"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</LinearLayout>
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="31dp"
+        android:layout_marginTop="89dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/dateEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="@+id/nameEditText"
+        app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="0dp"
+        android:layout_height="33dp"
+        android:layout_marginBottom="83dp"
+        android:layout_marginTop="83dp"
+        android:text="날 이름"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/dayMembersView"
+        app:layout_constraintEnd_toEndOf="@+id/textView8"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="60dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="38dp"
+        android:text="날짜"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dateEditText"
+        app:layout_constraintEnd_toStartOf="@+id/dateEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/dateEditText" />
+
+    <ScrollView
+        android:id="@+id/dayMembersView"
+        android:layout_width="0dp"
+        android:layout_height="139dp"
+        android:layout_marginBottom="126dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="126dp"
+        app:layout_constraintBottom_toBottomOf="@+id/nextButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nameEditText">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/addFromPhoneButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:text="주소록에서 추가"
+        app:layout_constraintBaseline_toBaselineOf="@+id/addFromKKOButton"
+        app:layout_constraintEnd_toStartOf="@+id/addFromKKOButton" />
+
+    <Button
+        android:id="@+id/addFromKKOButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="8dp"
+        android:text="카톡에서 추가"
+        app:layout_constraintEnd_toStartOf="@+id/addMemberButton"
+        app:layout_constraintTop_toBottomOf="@+id/dayMembersView" />
+
+    <Button
+        android:id="@+id/addMemberButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="39dp"
+        android:text="그냥 추가"
+        app:layout_constraintBaseline_toBaselineOf="@+id/addFromKKOButton"
+        app:layout_constraintEnd_toEndOf="@+id/dayMembersView" />
+
+</android.support.constraint.ConstraintLayout>

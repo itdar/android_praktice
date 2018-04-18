@@ -19,10 +19,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.Main" />
-        <activity android:name=".activities.DDay" />
-        <activity android:name=".activities.Location" />
-        <activity android:name=".activities.Result" />
+        <activity android:name=".activities.Acty_Main" />
+        <activity android:name=".activities.Acty_DDay" />
+        <activity android:name=".activities.Acty_Location" />
+        <activity android:name=".activities.Acty_Result" />
 
 
     </application>
