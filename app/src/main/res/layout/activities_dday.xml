@@ -106,12 +106,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="32dp"
         android:onClick="onClick"
         android:text="그냥 추가"
         app:layout_constraintBottom_toBottomOf="@+id/contactAddButton"
         app:layout_constraintStart_toEndOf="@+id/contactAddButton"
-        app:layout_constraintTop_toTopOf="@+id/contactAddButton" />
+        app:layout_constraintTop_toTopOf="@+id/contactAddButton"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ListView
         android:id="@+id/dayMembersView"
@@ -128,6 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
+        android:onClick="onClick"
         android:text="선택삭제"
         app:layout_constraintBottom_toBottomOf="@+id/addMemberButton"
         app:layout_constraintEnd_toEndOf="parent"

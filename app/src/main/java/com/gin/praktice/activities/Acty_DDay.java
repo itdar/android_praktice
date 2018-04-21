@@ -79,16 +79,15 @@ public class Acty_DDay extends Activity {
     private void nextButtonAction() {
         Editable name = nameEditText.getText();
         Editable date = dateEditText.getText();
+        // TODO 값 비어있는거 확인해서 넘어가야함
         if (!name.equals("") && !date.equals("") && dayMembersList.size() > 1) {
             dDay.setName(name.toString());
             dDay.setDate(date.toString());
             for (int i = 0; i < dayMembersList.size(); i++) {
                 dDay.members.add(new Member(dayMembersList.get(i).toString()));
             }
-
             startActivity(locationIntent);
         }
-
     }
 
     @Override
