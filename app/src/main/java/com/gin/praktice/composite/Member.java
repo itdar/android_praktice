@@ -10,6 +10,7 @@ public class Member extends Component {
 	}
 	public Member(String name) {
 		this.name = name;
+		this.money = 0;
 	}
 	public Member(String name, int money) {
 		this.name = name;

@@ -3,24 +3,33 @@ package com.gin.praktice.composite;
 import com.gin.praktice.visitor.Visitor;
 
 public class DDay extends Composite {
+	public static DDay instance;
+
 	public DayMembers members;
 	private String date;
 	
-	public DDay() {
+	private DDay() {
 		this.members = new DayMembers();
 		this.date = null;
 	}
-	public DDay(String name, String date) {
-		this.members = new DayMembers();
-		this.name = name;
-		this.date = date;
-	}
+//	public DDay(String name, String date) {
+//		this.members = new DayMembers();
+//		this.name = name;
+//		this.date = date;
+//	}
 	public DDay(DDay source) {
 		for (int i = 0; i < source.list.size(); i++) {
 			this.list.add(source.list.get(i).clone());
 		}
 		this.name = source.name;
 		this.date = source.date;
+	}
+
+	public static DDay getInstance() {
+		if (instance == null) {
+			instance = new DDay();
+		}
+		return instance;
 	}
 	
 	public void distribution() {
