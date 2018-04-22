@@ -12,6 +12,8 @@ import com.gin.praktice.composite.DDay;
 import com.gin.praktice.composite.Location;
 
 public class Acty_Location extends Activity {
+    private static final int ADD_MEMBER = 1;
+
     private Intent resultIntent;
     private Intent locationIntent;
 
@@ -60,7 +62,24 @@ public class Acty_Location extends Activity {
     }
 
     private void addMemberButtonAction() {
-        // TODO member add activity
+        Intent intent = new Intent(this, Acty_AddMember2Location.class);
+        startActivityForResult(intent, ADD_MEMBER);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case ADD_MEMBER : requestContact(intent); break;
+//                case REQUEST_KAKAO : ; break;
+            }
+        }
+    }
+
+    // TODO Need to make request interface
+    private void requestContact(Intent intent) {
 
 
     }

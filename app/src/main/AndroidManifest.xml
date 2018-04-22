@@ -23,6 +23,7 @@
         <activity android:name=".activities.Acty_DDay" />
         <activity android:name=".activities.Acty_Location" />
         <activity android:name=".activities.Acty_Result" />
+        <activity android:name=".activities.Acty_AddMember2Location" />
 
 
     </application>

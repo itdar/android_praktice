@@ -23,6 +23,7 @@ public class Acty_DDay extends Activity {
     private static final int REQUEST_CONTACT = 1;
     private static final int REQUEST_KAKAO = 2;
 
+
     private DDay dDay;
 
     private EditText nameEditText;
@@ -74,6 +75,8 @@ public class Acty_DDay extends Activity {
 
     private void deleteButtonAction() {
         Toast.makeText(this, "Delete Member button clicked.", Toast.LENGTH_LONG).show();
+
+
     }
 
     private void nextButtonAction() {
