@@ -28,8 +28,10 @@ public class Acty_AddMember2Location extends Activity {
         dDay = DDay.getInstance();
 
         locationMemberView = (ListView) findViewById(R.id.locationMemberView);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, locationMemberList);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, locationMemberList);
         locationMemberView.setAdapter(adapter);
+        locationMemberView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        locationMemberView.setItemsCanFocus(false);
 
         for (int i = 0; i < dDay.members.getLength(); i++) {
             adapter.add(dDay.members.get(i).getName());
@@ -46,7 +48,7 @@ public class Acty_AddMember2Location extends Activity {
     }
 
     private void addButtonAction() {
-
+        //TODO 선택된거 밖의 리스트로 추가되도록
     }
 
     private void cancelButtonAction() {

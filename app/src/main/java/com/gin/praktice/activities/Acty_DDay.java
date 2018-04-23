@@ -5,14 +5,15 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.gin.praktice.R;
+import com.gin.praktice.adapter.DDayRecyclerAdapter;
 import com.gin.praktice.composite.DDay;
 import com.gin.praktice.composite.Member;
 
@@ -29,9 +30,13 @@ public class Acty_DDay extends Activity {
     private EditText nameEditText;
     private EditText dateEditText;
 
-    private ListView dayMembersView;
-    private ArrayList<String> dayMembersList = new ArrayList<String>();
-    private ArrayAdapter<String> adapter;
+    private RecyclerView dayMembersView;
+//    private ArrayList<String> dayMembersList = new ArrayList<String>();
+    private ArrayList<Member> dayMembersList = new ArrayList<>();
+//    private ArrayAdapter<String> adapter;
+
+    private RecyclerView.Adapter adapter;
+
 
     private Intent locationIntent;
 
@@ -45,12 +50,32 @@ public class Acty_DDay extends Activity {
         nameEditText = (EditText) findViewById(R.id.nameEditText);
         dateEditText = (EditText) findViewById(R.id.dateEditText);
 
-        dayMembersView = (ListView) findViewById(R.id.dayMembersView);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dayMembersList);
-        dayMembersView.setAdapter(adapter);
+        dayMembersView = (RecyclerView) findViewById(R.id.dayMembersView);
+        setRecyclerView();
 
         locationIntent = new Intent(this, Acty_Location.class);
     }
+
+    private void setRecyclerView() {
+        dayMembersView.setHasFixedSize(true);
+
+        adapter = new DDayRecyclerAdapter(dayMembersList);
+        dayMembersView.setAdapter(adapter);
+
+                // 지그재그형의 그리드 형식
+                //mainBinding.recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+                // 그리드 형식
+                //mainBinding.recyclerView.setLayoutManager(new GridLayoutManager(this,4));
+                // 가로 또는 세로 스크롤 목록 형식
+        dayMembersView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void addData(String receiveName, String receivePhone) {
+        dayMembersList.add(new Member(receiveName, receivePhone));
+
+        adapter.notifyDataSetChanged();
+    }
+
 
     public void onClick(View view) {
         switch (view.getId()) {
@@ -76,7 +101,6 @@ public class Acty_DDay extends Activity {
     private void deleteButtonAction() {
         Toast.makeText(this, "Delete Member button clicked.", Toast.LENGTH_LONG).show();
 
-
     }
 
     private void nextButtonAction() {
@@ -87,7 +111,7 @@ public class Acty_DDay extends Activity {
             dDay.setName(name.toString());
             dDay.setDate(date.toString());
             for (int i = 0; i < dayMembersList.size(); i++) {
-                dDay.members.add(new Member(dayMembersList.get(i).toString()));
+                dDay.members.add(new Member(dayMembersList.get(i).getName(), dayMembersList.get(i).getPhoneNumber()));
             }
             startActivity(locationIntent);
         }
@@ -119,13 +143,14 @@ public class Acty_DDay extends Activity {
         Toast.makeText(this, "연락처 이름 : " + receiveName + "\n연락처 전화번호 : " + receivePhone, Toast.LENGTH_LONG).show();
 
         // TODO Need to check ramda below function
-        addItems(receiveName);
+//        addItems(receiveName);
+        addData(receiveName, receivePhone);
     }
 
-    public void addItems(String receiveName) {
-        adapter.add(receiveName);
-        adapter.notifyDataSetChanged();
-    }
+//    public void addItems(String receiveName) {
+//        adapter.add(receiveName);
+//        adapter.notifyDataSetChanged();
+//    }
 
 
 }

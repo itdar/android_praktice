@@ -53,12 +53,14 @@
         android:id="@+id/dateEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="7dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginTop="135dp"
         android:ems="10"
         android:inputType="date"
         app:layout_constraintBottom_toTopOf="@+id/dayMembersView"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView7"
@@ -94,10 +96,11 @@
         android:id="@+id/contactAddButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="101dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:onClick="onClick"
         android:text="주소록에서 추가"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dayMembersView" />
 
@@ -114,15 +117,6 @@
         app:layout_constraintTop_toTopOf="@+id/contactAddButton"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ListView
-        android:id="@+id/dayMembersView"
-        android:layout_width="368dp"
-        android:layout_height="158dp"
-        android:layout_marginBottom="157dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
@@ -134,5 +128,17 @@
         app:layout_constraintBottom_toBottomOf="@+id/addMemberButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/addMemberButton" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/dayMembersView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/contactAddButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateEditText" />
 
 </android.support.constraint.ConstraintLayout>
