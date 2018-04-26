@@ -1,5 +1,6 @@
 package com.gin.praktice.composite;
 
+import com.gin.praktice.member.DayMembers;
 import com.gin.praktice.visitor.Visitor;
 
 public class DDay extends Composite {

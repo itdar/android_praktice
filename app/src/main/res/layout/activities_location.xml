@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="18dp"
         android:layout_marginEnd="25dp"
         android:onClick="onClick"
         android:text="Next"
@@ -44,15 +44,13 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="23dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="145dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginStart="52dp"
         android:text="쓴 돈"
         app:layout_constraintBottom_toTopOf="@+id/locationMemberView"
         app:layout_constraintEnd_toStartOf="@+id/moneyEditText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/storeNameEditText"
@@ -68,19 +66,18 @@
         android:id="@+id/moneyEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="18dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintStart_toStartOf="@+id/storeNameEditText"
         app:layout_constraintTop_toBottomOf="@+id/storeNameEditText" />
 
     <Button
         android:id="@+id/addMemberButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="31dp"
-        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="20dp"
         android:onClick="onClick"
         android:text="Add Member"
         app:layout_constraintBottom_toTopOf="@+id/addMoreLocationButton"
@@ -100,14 +97,13 @@
     <ListView
         android:id="@+id/locationMemberView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="153dp"
+        android:layout_height="169dp"
+        android:layout_marginBottom="60dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/addMemberButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -4,12 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.gin.praktice.R;
 import com.gin.praktice.composite.DDay;
 import com.gin.praktice.composite.Location;
+
+import java.util.ArrayList;
 
 public class Acty_Location extends Activity {
     private static final int ADD_MEMBER = 1;
@@ -18,11 +22,14 @@ public class Acty_Location extends Activity {
     private Intent locationIntent;
 
     private DDay dDay;
+    private Location location;
 
     private EditText storeNameEditText;
     private EditText moneyEditText;
 
     private ListView locationMemberView;
+    private ArrayList<String> locationMemberList = new ArrayList<String>();
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +37,7 @@ public class Acty_Location extends Activity {
         setContentView(R.layout.activities_location);
 
         dDay = DDay.getInstance();
+        location = new Location();
 
         resultIntent = new Intent(this, Acty_Result.class);
         locationIntent = new Intent(this, Acty_Location.class);
@@ -38,8 +46,9 @@ public class Acty_Location extends Activity {
         moneyEditText = findViewById(R.id.moneyEditText);
 
         locationMemberView = (ListView) findViewById(R.id.locationMemberView);
-
-//        locationMemberView.add
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, locationMemberList);
+        locationMemberView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     public void onClick(View view) {
@@ -53,10 +62,16 @@ public class Acty_Location extends Activity {
     }
 
     private void nextButtonAction() {
-        if (dDay.getList().size() >= 0) {
-            // TODO need to check showing added memberList with listView or something.
+        if (locationMemberList.size() >= 1 && storeNameEditText.getText() != null && moneyEditText.getText() != null) {
+            location.setName(storeNameEditText.getText().toString());
+            location.setMoney(Integer.parseInt(moneyEditText.getText().toString()));
+
+            dDay.add(location.clone());
 
             startActivity(resultIntent);
+            finish();
+        } else {
+            //error toast
         }
 
     }
@@ -72,26 +87,34 @@ public class Acty_Location extends Activity {
 
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
-                case ADD_MEMBER : requestContact(intent); break;
+                case ADD_MEMBER : addMember(intent); break;
 //                case REQUEST_KAKAO : ; break;
             }
         }
     }
 
     // TODO Need to make request interface
-    private void requestContact(Intent intent) {
+    private void addMember(Intent intent) {
+        Toast.makeText(this, "Here I stand for you", Toast.LENGTH_SHORT).show();
 
+        Bundle bundle = intent.getExtras();
+        ArrayList<String> nameList = bundle.getStringArrayList("nameList");
 
+        for (int i = 0; i < nameList.size(); i++) {
+            adapter.add(nameList.get(i));
+        }
+        adapter.notifyDataSetChanged();
     }
 
     private void addMoreLocationButtonAction() {
-        Location location = new Location();
-        location.setName(storeNameEditText.getText().toString());
-        location.setMoney(Integer.parseInt(moneyEditText.getText().toString()));
+        if (locationMemberList.size() >= 1 && storeNameEditText.getText() != null && moneyEditText.getText() != null) {
+            location.setName(storeNameEditText.getText().toString());
+            location.setMoney(Integer.parseInt(moneyEditText.getText().toString()));
 
-        dDay.add(location.clone());
+            dDay.add(location.clone());
 
-        startActivity(locationIntent);
-        finish();
+            startActivity(locationIntent);
+            finish();
+        }
     }
 }

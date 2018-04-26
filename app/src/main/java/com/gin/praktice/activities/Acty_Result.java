@@ -21,4 +21,6 @@ public class Acty_Result extends Activity {
         }
     }
 
+    // 여기 레이아웃 잡고 기능 추가부터 시작
+
 }

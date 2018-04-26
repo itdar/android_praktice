@@ -1,7 +1,7 @@
 package com.gin.praktice.visitor;
 
 import com.gin.praktice.composite.DDay;
-import com.gin.praktice.composite.DayMembers;
+import com.gin.praktice.member.DayMembers;
 import com.gin.praktice.composite.Location;
 import com.gin.praktice.composite.Member;
 
