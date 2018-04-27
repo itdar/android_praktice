@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.gin.praktice.R;
 import com.gin.praktice.composite.DDay;
@@ -95,7 +94,7 @@ public class Acty_Location extends Activity {
 
     // TODO Need to make request interface
     private void addMember(Intent intent) {
-        Toast.makeText(this, "Here I stand for you", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Here I stand for you", Toast.LENGTH_SHORT).show();
 
         Bundle bundle = intent.getExtras();
         ArrayList<String> nameList = bundle.getStringArrayList("nameList");
