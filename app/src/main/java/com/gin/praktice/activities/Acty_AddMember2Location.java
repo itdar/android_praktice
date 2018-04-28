@@ -9,16 +9,18 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.gin.praktice.R;
-import com.gin.praktice.composite.DDay;
+import com.gin.praktice.component.Component;
+import com.gin.praktice.component.DDay;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Acty_AddMember2Location extends Activity {
     private static final int ADD_MEMBER = 1;
 
     private ListView locationMemberView;
-    private ArrayList<String> allMemberList = new ArrayList<String>();
-    private ArrayAdapter<String> adapter;
+    private List<Component> allMemberList;
+    private ArrayAdapter<Component> adapter;
 
     private DDay dDay;
 
@@ -29,15 +31,16 @@ public class Acty_AddMember2Location extends Activity {
 
         dDay = DDay.getInstance();
 
+        allMemberList = dDay.members.clone().getList();
+        adapter = new ArrayAdapter<Component>(this, android.R.layout.simple_list_item_multiple_choice, allMemberList);
         locationMemberView = (ListView) findViewById(R.id.locationMemberView);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, allMemberList);
         locationMemberView.setAdapter(adapter);
         locationMemberView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         locationMemberView.setItemsCanFocus(false);
 
-        for (int i = 0; i < dDay.members.getLength(); i++) {
-            adapter.add(dDay.members.get(i).getName());
-        }
+//        for (int i = 0; i < dDay.members.getLength(); i++) {
+//            adapter.add(dDay.members.get(i));
+//        }
         adapter.notifyDataSetChanged();
 
 
@@ -52,14 +55,12 @@ public class Acty_AddMember2Location extends Activity {
     }
 
     private void addButtonAction() {
-        //TODO 선택된거 밖의 리스트로 추가되도
         ArrayList<String> nameList = new ArrayList<String>();
 
         SparseBooleanArray checked = locationMemberView.getCheckedItemPositions();
         for (int i = 0; i < locationMemberView.getCount(); i++) {
             if (checked.get(i)) {
-                String name = allMemberList.get(i);
-                nameList.add(name);
+                nameList.add(allMemberList.get(i).getName());
             }
         }
         Bundle bundle = new Bundle();
@@ -74,11 +75,12 @@ public class Acty_AddMember2Location extends Activity {
 
     private void cancelButtonAction() {
 
+        finish();
     }
 
-    public void addItems(String receiveName) {
-        adapter.add(receiveName);
-        adapter.notifyDataSetChanged();
-    }
+//    public void addItems(String receiveName) {
+//        adapter.add(receiveName);
+//        adapter.notifyDataSetChanged();
+//    }
 
 }

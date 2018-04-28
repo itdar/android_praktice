@@ -1,4 +1,4 @@
-package com.gin.praktice.composite;
+package com.gin.praktice.component;
 
 import com.gin.praktice.visitor.Visitor;
 

@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.gin.praktice.R;
-import com.gin.praktice.composite.DDay;
-import com.gin.praktice.composite.Location;
+import com.gin.praktice.component.DDay;
+import com.gin.praktice.component.Location;
 
 import java.util.ArrayList;
 
@@ -47,6 +47,8 @@ public class Acty_Location extends Activity {
         locationMemberView = (ListView) findViewById(R.id.locationMemberView);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, locationMemberList);
         locationMemberView.setAdapter(adapter);
+        locationMemberView.setItemsCanFocus(true);
+
         adapter.notifyDataSetChanged();
     }
 

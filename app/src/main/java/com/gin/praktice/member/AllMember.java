@@ -1,6 +1,6 @@
 package com.gin.praktice.member;
 
-import com.gin.praktice.composite.Member;
+import com.gin.praktice.component.Member;
 
 import java.util.ArrayList;
 

@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 import com.gin.praktice.R;
 import com.gin.praktice.adapter.DDayRecyclerAdapter;
-import com.gin.praktice.composite.DDay;
-import com.gin.praktice.composite.Member;
+import com.gin.praktice.component.DDay;
+import com.gin.praktice.component.Member;
 
 import java.util.ArrayList;
 

@@ -1,12 +1,13 @@
 package com.gin.praktice.member;
 
-import com.gin.praktice.composite.Member;
+import com.gin.praktice.component.Component;
+import com.gin.praktice.component.Member;
 import com.gin.praktice.visitor.Visitor;
 
 import java.util.ArrayList;
 
 public class DayMembers {
-	private ArrayList<Member> list = new ArrayList<Member>();
+	private ArrayList<Component> list = new ArrayList<Component>();
 	private int length;
 	
 	public DayMembers() {
@@ -27,7 +28,7 @@ public class DayMembers {
 		this.list.remove(index);
 	}
 	
-	public Member get(int index) {
+	public Component get(int index) {
 		return this.list.get(index);
 	}
 	
@@ -37,7 +38,10 @@ public class DayMembers {
 	public void accept(Visitor visitor) {
 		visitor.visit(this);		
 	}
-	
+
+	public ArrayList<Component> getList() {
+		return this.list;
+	}
 	public int getLength() {
 		return this.length;
 	}

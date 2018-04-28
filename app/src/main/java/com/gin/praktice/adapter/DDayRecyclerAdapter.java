@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gin.praktice.R;
-import com.gin.praktice.composite.Member;
+import com.gin.praktice.component.Member;
 
 import java.util.ArrayList;
 

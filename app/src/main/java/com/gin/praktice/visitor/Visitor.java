@@ -1,9 +1,9 @@
 package com.gin.praktice.visitor;
 
-import com.gin.praktice.composite.DDay;
+import com.gin.praktice.component.DDay;
 import com.gin.praktice.member.DayMembers;
-import com.gin.praktice.composite.Location;
-import com.gin.praktice.composite.Member;
+import com.gin.praktice.component.Location;
+import com.gin.praktice.component.Member;
 
 public interface Visitor {
 	
