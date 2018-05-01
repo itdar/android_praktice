@@ -47,7 +47,7 @@ public class Acty_Location extends Activity {
         locationMemberView = (ListView) findViewById(R.id.locationMemberView);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, locationMemberList);
         locationMemberView.setAdapter(adapter);
-        locationMemberView.setItemsCanFocus(true);
+//        locationMemberView.setItemsCanFocus(true);
 
         adapter.notifyDataSetChanged();
     }

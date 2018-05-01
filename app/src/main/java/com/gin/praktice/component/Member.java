@@ -41,14 +41,7 @@ public class Member extends Component {
 		this.money -= money;
 	}
 	
-	
-	public int getMoney() {
-		return this.money;
-	}
+
 	public String getPhoneNumber() { return this.phoneNumber; }
-	
-	public void setMoney(int money) {
-		this.money = money;
-	}
 	public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 }

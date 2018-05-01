@@ -4,13 +4,13 @@ import com.gin.praktice.member.DayMembers;
 import com.gin.praktice.visitor.Visitor;
 
 public class DDay extends Composite {
-	public static DDay instance;
+	private static DDay instance;
 
-	public DayMembers members;
+	public DayMembers dayMembers;
 	private String date;
 	
-	private DDay() {
-		this.members = new DayMembers();
+	public DDay() {
+		this.dayMembers = new DayMembers();
 		this.date = null;
 	}
 //	public DDay(String name, String date) {
@@ -31,16 +31,6 @@ public class DDay extends Composite {
 			instance = new DDay();
 		}
 		return instance;
-	}
-	
-	public void distribution() {
-		
-		for (int i = 0; i < this.list.size(); i++) {
-			Location location = (Location)this.list.get(i);
-			for (int j = 0; j < location.list.size(); j++) {
-				Member member = (Member)location.list.get(j);
-			}
-		}
 	}
 	
 	@Override

@@ -29,9 +29,6 @@ abstract class Composite extends Component {
 //		return null;
 //	}
 	
-	public abstract Component clone();
-	
-	
 	public void setList(List<Component> list) {
 		this.list = list;
 	}
