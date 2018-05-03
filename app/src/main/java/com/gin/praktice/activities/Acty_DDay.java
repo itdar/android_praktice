@@ -111,7 +111,7 @@ public class Acty_DDay extends Activity {
             dDay.setName(name.toString());
             dDay.setDate(date.toString());
             for (int i = 0; i < dayMembersList.size(); i++) {
-                dDay.members.add(new Member(dayMembersList.get(i).getName(), dayMembersList.get(i).getPhoneNumber()));
+                dDay.dayMembers.add(new Member(dayMembersList.get(i).getName(), dayMembersList.get(i).getPhoneNumber()));
             }
             startActivity(locationIntent);
         }

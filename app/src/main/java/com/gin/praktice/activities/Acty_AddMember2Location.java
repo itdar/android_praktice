@@ -9,8 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.gin.praktice.R;
-import com.gin.praktice.component.Component;
 import com.gin.praktice.component.DDay;
+import com.gin.praktice.component.Member;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +19,8 @@ public class Acty_AddMember2Location extends Activity {
     private static final int ADD_MEMBER = 1;
 
     private ListView locationMemberView;
-    private List<Component> allMemberList;
-    private ArrayAdapter<Component> adapter;
+    private List<Member> allMemberList;
+    private ArrayAdapter<Member> adapter;
 
     private DDay dDay;
 
@@ -31,8 +31,8 @@ public class Acty_AddMember2Location extends Activity {
 
         dDay = DDay.getInstance();
 
-        allMemberList = dDay.members.clone().getList();
-        adapter = new ArrayAdapter<Component>(this, android.R.layout.simple_list_item_multiple_choice, allMemberList);
+        allMemberList = dDay.dayMembers.clone().getList();
+        adapter = new ArrayAdapter<Member>(this, android.R.layout.simple_list_item_multiple_choice, allMemberList);
         locationMemberView = (ListView) findViewById(R.id.locationMemberView);
         locationMemberView.setAdapter(adapter);
         locationMemberView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
