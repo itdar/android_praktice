@@ -1,5 +1,7 @@
 package com.gin.praktice.component;
 
+import android.widget.EditText;
+
 import com.gin.praktice.member.DayMembers;
 import com.gin.praktice.visitor.Visitor;
 
@@ -37,6 +39,11 @@ public class DDay extends Composite {
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}
+	@Override
+	public void accept(Visitor visitor, EditText editText) {
+		visitor.visit(this, editText);
+	}
+
 	@Override
 	public Component clone() {
 		return new DDay(this);

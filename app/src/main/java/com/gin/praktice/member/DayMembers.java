@@ -1,12 +1,16 @@
 package com.gin.praktice.member;
 
+import android.widget.EditText;
+
+import com.gin.praktice.component.Component;
 import com.gin.praktice.component.Member;
+import com.gin.praktice.visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DayMembers {
-	private List<Member> list = new ArrayList<Member>();
+	private List<Component> list = new ArrayList<Component>();
 	
 	public DayMembers() {
 
@@ -16,7 +20,7 @@ public class DayMembers {
 			this.list.add(source.list.get(i).clone());
 		}
 	}
-	
+
 	public void add(Member member) {
 		this.list.add(member);
 	}
@@ -25,21 +29,22 @@ public class DayMembers {
 		this.list.remove(index);
 	}
 	
-	public Member get(int index) {
+	public Component get(int index) {
 		return this.list.get(index);
 	}
 	
 	public DayMembers clone() {
 		return new DayMembers(this);
 	}
-//	public void accept(Visitor visitor) {
-//		visitor.visit(this);
-//	}
 
-	public void setList(List<Member> list) {
+	public void accept(Visitor visitor, EditText editText) {
+		visitor.visit(this, editText);
+	}
+
+	public void setList(List<Component> list) {
 		this.list = list;
 	}
-	public List<Member> getList() {
+	public List<Component> getList() {
 		return this.list;
 	}
 	public int getLength() {

@@ -7,16 +7,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gin.praktice.R;
-import com.gin.praktice.component.Member;
+import com.gin.praktice.component.Component;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
-public class DDayRecyclerAdapter extends RecyclerView.Adapter<DDayRecyclerAdapter.ItemViewHolder> {
-    ArrayList<Member> mItems;
+public class ComponentRecyclerAdapter extends RecyclerView.Adapter<ComponentRecyclerAdapter.ItemViewHolder> {
+    List<Component> items;
 
-    public DDayRecyclerAdapter(ArrayList<Member> items) {
-        mItems = items;
+    public ComponentRecyclerAdapter(List<Component> items) {
+        this.items = items;
     }
 
 
@@ -30,14 +30,14 @@ public class DDayRecyclerAdapter extends RecyclerView.Adapter<DDayRecyclerAdapte
 
     // View 의 내용을 해당 포지션의 데이터로 바꿉니다.
     @Override
-    public void onBindViewHolder(ItemViewHolder holder, int position) {
-        holder.mNameTv.setText(mItems.get(position).getName());
+    public void onBindViewHolder(ItemViewHolder holder, int index) {
+        holder.mNameTv.setText(items.get(index).getName());
     }
 
     // 데이터 셋의 크기를 리턴해줍니다.
     @Override
     public int getItemCount() {
-        return mItems.size();
+        return items.size();
     }
 
     // 커스텀 뷰홀더

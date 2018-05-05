@@ -13,11 +13,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.gin.praktice.R;
-import com.gin.praktice.adapter.DDayRecyclerAdapter;
+import com.gin.praktice.adapter.ComponentRecyclerAdapter;
+import com.gin.praktice.component.Component;
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Member;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Acty_DDay extends Activity {
 
@@ -31,9 +32,7 @@ public class Acty_DDay extends Activity {
     private EditText dateEditText;
 
     private RecyclerView dayMembersView;
-//    private ArrayList<String> dayMembersList = new ArrayList<String>();
-    private ArrayList<Member> dayMembersList = new ArrayList<>();
-//    private ArrayAdapter<String> adapter;
+    private List<Component> dayMembersList;
 
     private RecyclerView.Adapter adapter;
 
@@ -46,7 +45,7 @@ public class Acty_DDay extends Activity {
         setContentView(R.layout.activities_dday);
 
         dDay = DDay.getInstance();
-
+        dayMembersList = dDay.dayMembers.getList();
         nameEditText = (EditText) findViewById(R.id.nameEditText);
         dateEditText = (EditText) findViewById(R.id.dateEditText);
 
@@ -59,7 +58,7 @@ public class Acty_DDay extends Activity {
     private void setRecyclerView() {
         dayMembersView.setHasFixedSize(true);
 
-        adapter = new DDayRecyclerAdapter(dayMembersList);
+        adapter = new ComponentRecyclerAdapter(dayMembersList);
         dayMembersView.setAdapter(adapter);
 
                 // 지그재그형의 그리드 형식
@@ -71,7 +70,8 @@ public class Acty_DDay extends Activity {
     }
 
     private void addData(String receiveName, String receivePhone) {
-        dayMembersList.add(new Member(receiveName, receivePhone));
+//        dayMembersList.add
+        dDay.dayMembers.add(new Member(receiveName, receivePhone));
 
         adapter.notifyDataSetChanged();
     }
@@ -110,9 +110,9 @@ public class Acty_DDay extends Activity {
         if (!name.equals("") && !date.equals("") && dayMembersList.size() > 1) {
             dDay.setName(name.toString());
             dDay.setDate(date.toString());
-            for (int i = 0; i < dayMembersList.size(); i++) {
-                dDay.dayMembers.add(new Member(dayMembersList.get(i).getName(), dayMembersList.get(i).getPhoneNumber()));
-            }
+//            for (int i = 0; i < dayMembersList.size(); i++) {
+//                dDay.dayMembers.add(new Member(dayMembersList.get(i).getName(), dayMembersList.get(i).getPhoneNumber()));
+//            }
             startActivity(locationIntent);
         }
     }

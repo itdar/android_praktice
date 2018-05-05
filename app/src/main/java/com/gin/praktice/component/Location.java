@@ -1,5 +1,7 @@
 package com.gin.praktice.component;
 
+import android.widget.EditText;
+
 import com.gin.praktice.visitor.Visitor;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class Location extends Composite {
 	/**
 	 *  AllMember 와 연결된 멤버를 tempList에 새로 만들어두고
 	 *  해당 Location에서의 Money를 1/n 해서 temp에 넣어주고 (Location에 남을 거)
-	 *  1/n 한 돈을 AllMember와 연결된 것에 더해준다 (AllMember에 각각 전체 돈)
+	 *  1/n 한 돈을 AllMember와 연결된 것에 더해준다 (DayMembers(DDay안에) 에 각각 전체 돈)
 	 */
 	public void distribution() {
 		List<Component> tempList = new ArrayList<Component>();
@@ -45,6 +47,10 @@ public class Location extends Composite {
 	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
+	}
+	@Override
+	public void accept(Visitor visitor, EditText editText) {
+		visitor.visit(this, editText);
 	}
 	@Override
 	public Location clone() {

@@ -1,6 +1,8 @@
 package com.gin.praktice.component;
 
 
+import android.widget.EditText;
+
 import com.gin.praktice.visitor.Visitor;
 
 public abstract class Component {
@@ -8,6 +10,7 @@ public abstract class Component {
 	protected int money = 0;
 	
 	public abstract void accept(Visitor visitor);
+	public abstract void accept(Visitor visitor, EditText editText);
 	public abstract Component clone();
 	
 	public String getName() {

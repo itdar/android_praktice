@@ -1,5 +1,7 @@
 package com.gin.praktice.component;
 
+import android.widget.EditText;
+
 import com.gin.praktice.visitor.Visitor;
 
 public class Member extends Component {
@@ -8,6 +10,11 @@ public class Member extends Component {
 
 	private Member() {
 		
+	}
+	public Member(String name) {
+		this.name = name;
+		this.phoneNumber = "N/A";
+		this.money = 0;
 	}
 	public Member(String name, String phoneNumber) {
 		this.name = name;
@@ -29,6 +36,11 @@ public class Member extends Component {
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}
+	@Override
+	public void accept(Visitor visitor, EditText editText) {
+		visitor.visit(this, editText);
+	}
+
 	@Override
 	public Member clone() {
 		return new Member(this);

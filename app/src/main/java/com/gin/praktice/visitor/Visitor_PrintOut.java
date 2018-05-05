@@ -1,5 +1,7 @@
 package com.gin.praktice.visitor;
 
+import android.widget.EditText;
+
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.member.DayMembers;
 import com.gin.praktice.component.Location;
@@ -36,5 +38,13 @@ public class Visitor_PrintOut implements Visitor {
 		System.out.println("		" + member.getName() + " " + member.getMoney());
 	}
 
+	@Override
+	public void visit(DDay dDay, EditText editText) {}
+	@Override
+	public void visit(Location location, EditText editText) {}
+	@Override
+	public void visit(DayMembers dayMembers, EditText editText) {}
+	@Override
+	public void visit(Member member, EditText editText) {}
 
 }

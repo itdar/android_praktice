@@ -3,12 +3,13 @@ package com.gin.praktice.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import com.gin.praktice.R;
+import com.gin.praktice.adapter.ComponentRecyclerAdapter;
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Location;
 
@@ -26,9 +27,9 @@ public class Acty_Location extends Activity {
     private EditText storeNameEditText;
     private EditText moneyEditText;
 
-    private ListView locationMemberView;
-    private ArrayList<String> locationMemberList = new ArrayList<String>();
-    private ArrayAdapter<String> adapter;
+    private RecyclerView locationMemberView;
+//    private List<Component> locationMemberList;
+    private RecyclerView.Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class Acty_Location extends Activity {
 
         dDay = DDay.getInstance();
         location = new Location();
+//        locationMemberList = location.getList();
 
         resultIntent = new Intent(this, Acty_Result.class);
         locationIntent = new Intent(this, Acty_Location.class);
@@ -44,12 +46,22 @@ public class Acty_Location extends Activity {
         storeNameEditText = findViewById(R.id.storeNameEditText);
         moneyEditText = findViewById(R.id.moneyEditText);
 
-        locationMemberView = (ListView) findViewById(R.id.locationMemberView);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, locationMemberList);
-        locationMemberView.setAdapter(adapter);
-//        locationMemberView.setItemsCanFocus(true);
+        locationMemberView = (RecyclerView) findViewById(R.id.locationMemberView);
+        setRecyclerView();
+    }
 
-        adapter.notifyDataSetChanged();
+    private void setRecyclerView() {
+        locationMemberView.setHasFixedSize(true);
+
+        adapter = new ComponentRecyclerAdapter(location.getList());
+        locationMemberView.setAdapter(adapter);
+
+        // 지그재그형의 그리드 형식
+        //mainBinding.recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        // 그리드 형식
+        //mainBinding.recyclerView.setLayoutManager(new GridLayoutManager(this,4));
+        // 가로 또는 세로 스크롤 목록 형식
+        locationMemberView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void onClick(View view) {
@@ -60,21 +72,6 @@ public class Acty_Location extends Activity {
             case R.id.addMoreLocationButton : addMoreLocationButtonAction(); break;
             default: break;
         }
-    }
-
-    private void nextButtonAction() {
-        if (locationMemberList.size() >= 1 && storeNameEditText.getText() != null && moneyEditText.getText() != null) {
-            location.setName(storeNameEditText.getText().toString());
-            location.setMoney(Integer.parseInt(moneyEditText.getText().toString()));
-
-            dDay.add(location.clone());
-
-            startActivity(resultIntent);
-            finish();
-        } else {
-            //error toast
-        }
-
     }
 
     private void addMemberButtonAction() {
@@ -96,26 +93,49 @@ public class Acty_Location extends Activity {
 
     // TODO Need to make request interface
     private void addMember(Intent intent) {
-//        Toast.makeText(this, "Here I stand for you", Toast.LENGTH_SHORT).show();
 
         Bundle bundle = intent.getExtras();
         ArrayList<String> nameList = bundle.getStringArrayList("nameList");
 
         for (int i = 0; i < nameList.size(); i++) {
-            adapter.add(nameList.get(i));
+//            adapter.add(nameList.get(i));
+            for (int j = 0; j < dDay.dayMembers.getLength(); j++) {
+                if (nameList.get(i).equals(dDay.dayMembers.get(j).getName())) {
+                    location.add(dDay.dayMembers.get(j));
+                }
+            }
         }
         adapter.notifyDataSetChanged();
     }
 
     private void addMoreLocationButtonAction() {
-        if (locationMemberList.size() >= 1 && storeNameEditText.getText() != null && moneyEditText.getText() != null) {
+        if (location.getLength() >= 1 && storeNameEditText.getText() != null && moneyEditText.getText() != null) {
             location.setName(storeNameEditText.getText().toString());
             location.setMoney(Integer.parseInt(moneyEditText.getText().toString()));
 
+            location.distribution();
             dDay.add(location.clone());
 
             startActivity(locationIntent);
             finish();
+        } else {
+            //need to show fill in blank toast
         }
+    }
+
+    private void nextButtonAction() {
+        if (location.getLength() >= 1 && storeNameEditText.getText() != null && moneyEditText.getText() != null) {
+            location.setName(storeNameEditText.getText().toString());
+            location.setMoney(Integer.parseInt(moneyEditText.getText().toString()));
+
+            location.distribution();
+            dDay.add(location.clone());
+
+            startActivity(resultIntent);
+            finish();
+        } else {
+            //error toast
+        }
+
     }
 }
