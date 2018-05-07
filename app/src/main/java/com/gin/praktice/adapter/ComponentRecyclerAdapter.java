@@ -43,11 +43,9 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<ComponentRecy
         holder.mNameTv.setText(items.get(index).getName());
 
         if (!selected.contains(index)){
-            // view not selected
             holder.itemView.setBackgroundColor(Color.LTGRAY);
         }
         else {
-            // view is selected
             holder.itemView.setBackgroundColor(Color.CYAN);
         }
 

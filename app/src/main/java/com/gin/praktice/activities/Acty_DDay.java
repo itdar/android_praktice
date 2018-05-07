@@ -18,13 +18,13 @@ import com.gin.praktice.component.Component;
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Member;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Acty_DDay extends Activity {
 
     private static final int REQUEST_CONTACT = 1;
-    private static final int REQUEST_KAKAO = 2;
+    private static final int REQUEST_ADD_MEMBER = 2;
+    private static final int REQUEST_KAKAO = 3;
 
 
     private DDay dDay;
@@ -80,6 +80,7 @@ public class Acty_DDay extends Activity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.contactAddButton : contactAddButtonAction(); break;
+            case R.id.addMemberButton : addMemberButtonAction(); break;
             case R.id.deleteButton : deleteButtonAction(); break;
             case R.id.nextButton : nextButtonAction(); break;
             default: break;
@@ -92,6 +93,11 @@ public class Acty_DDay extends Activity {
         startActivityForResult(intent, REQUEST_CONTACT);
     }
 
+    private void addMemberButtonAction() {
+        Intent intent = new Intent(this, Acty_AddNewMember.class);
+        startActivityForResult(intent, REQUEST_ADD_MEMBER);
+    }
+
     private void openKakao() {
         Toast.makeText(this, "Open KakaoTalk friend list.", Toast.LENGTH_LONG).show();
 
@@ -100,15 +106,18 @@ public class Acty_DDay extends Activity {
     private void deleteButtonAction() {
         Toast.makeText(this, "Delete Member button clicked. " + adapter.getSelectedList().size(), Toast.LENGTH_LONG).show();
 
-        ArrayList<Integer> tempList = (ArrayList<Integer>)adapter.getSelectedList();
+        if (adapter.getSelectedList().size() > 0) {
+            dDay.dayMembers.remove(adapter.getSelectedList().get(0));
+            adapter.getSelectedList().clear();
+        }
 
         //tempList는 숫자고, dayMembers list 는 멤버임.
-        for (int i = 0; i < tempList.size(); i++) {
-            if (dDay.dayMembers.getList().contains(tempList.get(i))) {
-                dDay.dayMembers.remove(i);
-                //tempList랑 selectedList 비워야함
-            }
-        }
+//        for (int i = 0; i < tempList.size(); i++) {
+//            if (dDay.dayMembers.getList().contains(tempList.get(i))) {
+//                dDay.dayMembers.remove(i);
+//                //tempList랑 selectedList 비워야함
+//            }
+//        }
         adapter.notifyDataSetChanged();
     }
 
@@ -133,6 +142,7 @@ public class Acty_DDay extends Activity {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_CONTACT : requestContact(intent); break;
+                case REQUEST_ADD_MEMBER : addMember(intent); break;
                 case REQUEST_KAKAO : ; break;
             }
         }
@@ -152,8 +162,14 @@ public class Acty_DDay extends Activity {
         Toast.makeText(this, "연락처 이름 : " + receiveName + "\n연락처 전화번호 : " + receivePhone, Toast.LENGTH_LONG).show();
 
         // Need to check ramda below function
-        
+
         addData(receiveName, receivePhone);
+    }
+
+    private void addMember(Intent intent) {
+
+
+
     }
 
 //    public void addItems(String receiveName) {
