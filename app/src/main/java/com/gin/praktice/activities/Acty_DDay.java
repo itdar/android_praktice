@@ -18,6 +18,7 @@ import com.gin.praktice.component.Component;
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Member;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Acty_DDay extends Activity {
@@ -34,7 +35,7 @@ public class Acty_DDay extends Activity {
     private RecyclerView dayMembersView;
     private List<Component> dayMembersList;
 
-    private RecyclerView.Adapter adapter;
+    private ComponentRecyclerAdapter adapter;
 
 
     private Intent locationIntent;
@@ -76,7 +77,6 @@ public class Acty_DDay extends Activity {
         adapter.notifyDataSetChanged();
     }
 
-
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.contactAddButton : contactAddButtonAction(); break;
@@ -95,12 +95,21 @@ public class Acty_DDay extends Activity {
     private void openKakao() {
         Toast.makeText(this, "Open KakaoTalk friend list.", Toast.LENGTH_LONG).show();
 
-
     }
 
     private void deleteButtonAction() {
-        Toast.makeText(this, "Delete Member button clicked.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Delete Member button clicked. " + adapter.getSelectedList().size(), Toast.LENGTH_LONG).show();
 
+        ArrayList<Integer> tempList = (ArrayList<Integer>)adapter.getSelectedList();
+
+        //tempList는 숫자고, dayMembers list 는 멤버임.
+        for (int i = 0; i < tempList.size(); i++) {
+            if (dDay.dayMembers.getList().contains(tempList.get(i))) {
+                dDay.dayMembers.remove(i);
+                //tempList랑 selectedList 비워야함
+            }
+        }
+        adapter.notifyDataSetChanged();
     }
 
     private void nextButtonAction() {
@@ -142,8 +151,8 @@ public class Acty_DDay extends Activity {
 
         Toast.makeText(this, "연락처 이름 : " + receiveName + "\n연락처 전화번호 : " + receivePhone, Toast.LENGTH_LONG).show();
 
-        // TODO Need to check ramda below function
-//        addItems(receiveName);
+        // Need to check ramda below function
+        
         addData(receiveName, receivePhone);
     }
 

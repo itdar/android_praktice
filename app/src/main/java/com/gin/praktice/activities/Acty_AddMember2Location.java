@@ -10,7 +10,6 @@ import android.widget.ListView;
 
 import com.gin.praktice.R;
 import com.gin.praktice.component.DDay;
-import com.gin.praktice.component.Member;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +18,8 @@ public class Acty_AddMember2Location extends Activity {
     private static final int ADD_MEMBER = 1;
 
     private ListView locationMemberView;
-    private List<Member> dayMembersList = new ArrayList<Member>();
-    private ArrayAdapter<Member> adapter;
+    private List<String> dayMembersList = new ArrayList<String>();
+    private ArrayAdapter<String> adapter;
 
     private DDay dDay;
 
@@ -32,12 +31,12 @@ public class Acty_AddMember2Location extends Activity {
         dDay = DDay.getInstance();
 
         for (int i = 0; i < dDay.dayMembers.getLength(); i++) {
-            dayMembersList.add((Member)dDay.dayMembers.get(i).clone());
+            dayMembersList.add(dDay.dayMembers.get(i).getName());
         }
 //        dayMembersList = dDay.dayMembers.clone().getList();
 
 
-        adapter = new ArrayAdapter<Member>(this, android.R.layout.simple_list_item_multiple_choice, dayMembersList);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, dayMembersList);
         locationMemberView = (ListView) findViewById(R.id.locationMemberView);
         locationMemberView.setAdapter(adapter);
         locationMemberView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
@@ -65,7 +64,7 @@ public class Acty_AddMember2Location extends Activity {
         SparseBooleanArray checked = locationMemberView.getCheckedItemPositions();
         for (int i = 0; i < locationMemberView.getCount(); i++) {
             if (checked.get(i)) {
-                nameList.add(dayMembersList.get(i).getName());
+                nameList.add(dayMembersList.get(i));
             }
         }
         Bundle bundle = new Bundle();

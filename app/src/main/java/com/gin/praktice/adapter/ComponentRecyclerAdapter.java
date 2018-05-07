@@ -1,29 +1,37 @@
 package com.gin.praktice.adapter;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gin.praktice.R;
 import com.gin.praktice.component.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class ComponentRecyclerAdapter extends RecyclerView.Adapter<ComponentRecyclerAdapter.ItemViewHolder> {
-    List<Component> items;
+
+    private List<Component> items;
+    private final ArrayList<Integer> selected = new ArrayList<>();
 
     public ComponentRecyclerAdapter(List<Component> items) {
+
         this.items = items;
     }
 
 
     // 새로운 뷰 홀더 생성
     @Override
-    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_recyclerview, parent, false);
+    public ItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.content_recyclerview, viewGroup, false);
+
         return new ItemViewHolder(view);
     }
 
@@ -31,7 +39,18 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<ComponentRecy
     // View 의 내용을 해당 포지션의 데이터로 바꿉니다.
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int index) {
+
         holder.mNameTv.setText(items.get(index).getName());
+
+        if (!selected.contains(index)){
+            // view not selected
+            holder.itemView.setBackgroundColor(Color.LTGRAY);
+        }
+        else {
+            // view is selected
+            holder.itemView.setBackgroundColor(Color.CYAN);
+        }
+
     }
 
     // 데이터 셋의 크기를 리턴해줍니다.
@@ -42,12 +61,37 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<ComponentRecy
 
     // 커스텀 뷰홀더
     // item layout 에 존재하는 위젯들을 바인딩합니다.
-    class ItemViewHolder extends RecyclerView.ViewHolder {
+    class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mNameTv;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
+
             mNameTv = (TextView) itemView.findViewById(R.id.contentName);
+            itemView.setOnClickListener(this);
+//            itemView.setOnFocusChangeListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(view.getContext(), "position = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+
+            for(int i = 0; i < items.size(); i++){
+                if (i == getAdapterPosition()) {
+                    if (!selected.contains(i)) {
+                        selected.clear();
+                        selected.add(i);
+                    } else {
+                        selected.clear();
+                    }
+                }
+            }
+            notifyDataSetChanged();
+        }
+
+    }
+
+    public List<Integer> getSelectedList() {
+        return this.selected;
     }
 }

@@ -28,6 +28,13 @@ public class DayMembers {
 	public void remove(int index) {
 		this.list.remove(index);
 	}
+	public void remove(Component component) {
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getName().equals(component.getName())) {
+				this.list.remove(i);
+			}
+		}
+	}
 	
 	public Component get(int index) {
 		return this.list.get(index);
