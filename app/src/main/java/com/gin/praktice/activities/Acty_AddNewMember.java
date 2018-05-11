@@ -8,8 +8,6 @@ import android.widget.EditText;
 
 import com.gin.praktice.R;
 
-import java.util.ArrayList;
-
 public class Acty_AddNewMember extends Activity {
 
     private EditText nameEditText;
@@ -37,18 +35,19 @@ public class Acty_AddNewMember extends Activity {
     }
 
     private void addButtonAction() {
-        //TODO 여기부터 시작 0507
+        //TODO 여기부터 시작 0510
 
-        ArrayList<String> nameList = new ArrayList<String>();
+        String name = nameEditText.getText().toString();
+        if (name != null && !name.equals("")) {
+            Bundle bundle = new Bundle();
+            bundle.putString("name", name);
 
-        Bundle bundle = new Bundle();
-//        bundle.put
+            Intent returnIntent = new Intent();
+            returnIntent.putExtras(bundle);
 
-        Intent returnIntent = new Intent();
-        returnIntent.putExtras(bundle);
-
-        setResult(RESULT_OK, returnIntent);
-        finish();
+            setResult(RESULT_OK, returnIntent);
+            finish();
+        }
     }
 
     private void cancelButtonAction() {

@@ -167,9 +167,12 @@ public class Acty_DDay extends Activity {
     }
 
     private void addMember(Intent intent) {
+        Bundle bundle = intent.getExtras();
 
+        String receiveName = bundle.getString("name");
 
-
+        addData(receiveName, "");
+//        Toast.makeText(this, "추가된 이름 : " + name, Toast.LENGTH_LONG).show();
     }
 
 //    public void addItems(String receiveName) {
