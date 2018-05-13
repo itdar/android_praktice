@@ -15,6 +15,7 @@ public class Acty_Result extends Activity {
 
     private EditText multiText1;
 
+    // activity 정리하고 꾸며야함
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

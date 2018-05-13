@@ -104,7 +104,7 @@ public class Acty_DDay extends Activity {
     }
 
     private void deleteButtonAction() {
-        Toast.makeText(this, "Delete Member button clicked. " + adapter.getSelectedList().size(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Delete Member button clicked. ", Toast.LENGTH_LONG).show();
 
         if (adapter.getSelectedList().size() > 0) {
             dDay.dayMembers.remove(adapter.getSelectedList().get(0));
@@ -170,9 +170,13 @@ public class Acty_DDay extends Activity {
         Bundle bundle = intent.getExtras();
 
         String receiveName = bundle.getString("name");
+        String receiveBank = bundle.getString("bank");
+        String receiveAccount = bundle.getString("account");
 
         addData(receiveName, "");
-//        Toast.makeText(this, "추가된 이름 : " + name, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "추가된 이름 : " + receiveName +
+                                        "\n추가된 은행 : " + receiveBank +
+                                        "\n추가된 계좌 : " + receiveAccount, Toast.LENGTH_LONG).show();
     }
 
 //    public void addItems(String receiveName) {

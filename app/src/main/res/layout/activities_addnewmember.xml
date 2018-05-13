@@ -5,15 +5,17 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <EditText
+    <TextView
         android:id="@+id/editText"
         android:layout_width="match_parent"
-        android:layout_height="77dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="직접 멤버 추가"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textSize="36sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -63,7 +65,7 @@
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/bankEditText"
             android:layout_width="258dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -91,7 +93,7 @@
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/accountEditText"
             android:layout_width="262dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

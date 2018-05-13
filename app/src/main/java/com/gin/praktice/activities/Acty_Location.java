@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.gin.praktice.R;
 import com.gin.praktice.adapter.ComponentRecyclerAdapter;
@@ -29,7 +30,7 @@ public class Acty_Location extends Activity {
 
     private RecyclerView locationMemberView;
 //    private List<Component> locationMemberList;
-    private RecyclerView.Adapter adapter;
+    private ComponentRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class Acty_Location extends Activity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.nextButton : nextButtonAction(); break;
+            case R.id.deleteButton : deleteButtonAction(); break;
             case R.id.addMemberButton : addMemberButtonAction(); break;
             //Save n Add
             case R.id.addMoreLocationButton : addMoreLocationButtonAction(); break;
@@ -74,6 +76,16 @@ public class Acty_Location extends Activity {
         }
     }
 
+    private void deleteButtonAction() {
+        Toast.makeText(this, "DeleteButton. " + "\nadapter length : " + adapter.getSelectedList().size(), Toast.LENGTH_LONG).show();
+        if (adapter.getSelectedList().size() > 0) {
+            location.remove(adapter.getSelectedList().get(0));
+            adapter.getSelectedList().clear();
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+    // 중복추가 안되게 해야함
     private void addMemberButtonAction() {
         Intent intent = new Intent(this, Acty_AddMember2Location.class);
         startActivityForResult(intent, ADD_MEMBER);
@@ -93,7 +105,7 @@ public class Acty_Location extends Activity {
 
     // TODO Need to make request interface
     private void addMember(Intent intent) {
-
+        // 중복추가 안되게 막아야함
         Bundle bundle = intent.getExtras();
         ArrayList<String> nameList = bundle.getStringArrayList("nameList");
 

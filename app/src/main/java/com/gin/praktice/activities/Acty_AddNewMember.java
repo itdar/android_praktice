@@ -11,6 +11,8 @@ import com.gin.praktice.R;
 public class Acty_AddNewMember extends Activity {
 
     private EditText nameEditText;
+    private EditText bankEditText;
+    private EditText accountEditText;
 //    private Button addButton;
 //    private Button cancelButton;
 
@@ -20,6 +22,8 @@ public class Acty_AddNewMember extends Activity {
         setContentView(R.layout.activities_addnewmember);
 
         nameEditText = findViewById(R.id.nameEditText);
+        bankEditText = findViewById(R.id.bankEditText);
+        accountEditText = findViewById(R.id.accountEditText);
 //        addButton = findViewById(R.id.addButton);
 //        cancelButton = findViewById(R.id.cancelButton);
 
@@ -38,9 +42,13 @@ public class Acty_AddNewMember extends Activity {
         //TODO 여기부터 시작 0510
 
         String name = nameEditText.getText().toString();
+        String bank = bankEditText.getText().toString();
+        String account = accountEditText.getText().toString();
         if (name != null && !name.equals("")) {
             Bundle bundle = new Bundle();
             bundle.putString("name", name);
+            bundle.putString("bank", bank);
+            bundle.putString("account", account);
 
             Intent returnIntent = new Intent();
             returnIntent.putExtras(bundle);
