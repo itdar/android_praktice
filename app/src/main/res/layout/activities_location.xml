@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
-        android:text="가게 추가"
+        android:text="장소 추가"
         android:textAlignment="center"
         android:textSize="30sp" />
 
@@ -32,7 +32,7 @@
 
         <EditText
             android:id="@+id/storeNameEditText"
-            android:layout_width="wrap_content"
+            android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
@@ -55,7 +55,7 @@
 
         <EditText
             android:id="@+id/moneyEditText"
-            android:layout_width="wrap_content"
+            android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
@@ -65,7 +65,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/locationMemberView"
         android:layout_width="match_parent"
-        android:layout_height="217dp"
+        android:layout_height="170dp"
         android:layout_marginBottom="10dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -76,6 +76,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <Button
@@ -101,7 +103,7 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:onClick="onClick"
         android:text="다른 장소 추가" />
