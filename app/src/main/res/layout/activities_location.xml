@@ -3,22 +3,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
-        android:text="Location"
+        android:text="가게 추가"
         android:textAlignment="center"
         android:textSize="30sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -41,7 +41,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_weight="1"
-            android:text="쓴 돈"
+            android:text="총 금액"
             android:textAlignment="center" />
 
         <EditText
@@ -65,8 +65,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/locationMemberView"
         android:layout_width="match_parent"
-        android:layout_height="221dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="217dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp">
@@ -75,24 +75,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClick"
-            android:text="선택멤버제거" />
-
-        <Button
-            android:id="@+id/addMoreLocationButton"
-            android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:text="다른장소추가" />
+            android:text="선택멤버제거" />
 
         <Button
             android:id="@+id/addMemberButton"
@@ -105,12 +97,22 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/addMoreLocationButton"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:onClick="onClick"
+        android:text="다른 장소 추가" />
+
+    <Button
         android:id="@+id/nextButton"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:onClick="onClick"
         android:text="Next" />
 

@@ -1,120 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/newDayButton"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout_editor_absoluteY="81dp">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="77dp"
-        android:layout_marginTop="53dp"
+        android:layout_height="27dp"
         android:text="프로토 타입"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="158dp"
+        tools:layout_editor_absoluteY="53dp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="149dp"
         android:text="모임 선택"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="149dp" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="199dp"
+        android:layout_height="54dp"
         android:text="선택된 모임 정보"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="157dp" />
 
     <Button
         android:id="@+id/newDDayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:onClick="onClick"
         android:text="새로운 날"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="423dp" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="86dp"
+        android:layout_height="18dp"
         android:text="모임 등록"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="192dp" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="53dp"
-        android:layout_marginStart="64dp"
         android:text="모임 수정"
-        app:layout_constraintBottom_toTopOf="@+id/textView15"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        tools:layout_editor_absoluteX="212dp"
+        tools:layout_editor_absoluteY="235dp" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="155dp"
         android:text="친구목록수정"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="338dp" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginStart="45dp"
+        android:layout_height="18dp"
         android:text="친구목록추가"
-        app:layout_constraintBottom_toTopOf="@+id/textView12"
-        app:layout_constraintEnd_toStartOf="@+id/textView15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="295dp" />
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="64dp"
-        android:layout_marginEnd="31dp"
+        android:layout_width="205dp"
+        android:layout_height="53dp"
         android:text="등록된 친구목록"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/newDDayButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="306dp" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

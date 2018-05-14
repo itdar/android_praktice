@@ -1,6 +1,6 @@
 package com.gin.praktice.member;
 
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.gin.praktice.component.Component;
 import com.gin.praktice.component.Member;
@@ -44,8 +44,8 @@ public class DayMembers {
 		return new DayMembers(this);
 	}
 
-	public void accept(Visitor visitor, EditText editText) {
-		visitor.visit(this, editText);
+	public void accept(Visitor visitor, TextView textView) {
+		visitor.visit(this, textView);
 	}
 
 	public void setList(List<Component> list) {

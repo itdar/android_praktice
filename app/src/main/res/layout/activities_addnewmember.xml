@@ -2,35 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="직접 멤버 추가"
+        android:text="당일멤버 직접 추가"
         android:textAlignment="center"
         android:textSize="36sp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="28dp"
-        android:layout_weight="1" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/nameTextView"
-            android:layout_width="14dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="이름 (필수입력)"
@@ -38,27 +36,24 @@
 
         <EditText
             android:id="@+id/nameEditText"
-            android:layout_width="150dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName" />
     </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="28dp"
-        android:layout_weight="1" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="119dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="은행명?"
@@ -66,27 +61,24 @@
 
         <EditText
             android:id="@+id/bankEditText"
-            android:layout_width="258dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName" />
     </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="28dp"
-        android:layout_weight="1" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="119dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="계좌번호?"
@@ -94,21 +86,18 @@
 
         <EditText
             android:id="@+id/accountEditText"
-            android:layout_width="262dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName" />
     </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="28dp"
-        android:layout_weight="1" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -122,36 +111,33 @@
 
         <EditText
             android:id="@+id/editText3"
-            android:layout_width="260dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName" />
     </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_weight="1" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="71dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/cancelButton"
             android:layout_width="45dp"
-            android:layout_height="71dp"
+            android:layout_height="72dp"
             android:layout_weight="1"
             android:onClick="onClick"
             android:text="취소" />
 
         <Button
             android:id="@+id/addButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="110dp"
+            android:layout_height="72dp"
             android:layout_weight="1"
             android:onClick="onClick"
             android:text="추가" />

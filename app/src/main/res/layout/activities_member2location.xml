@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
@@ -18,7 +18,7 @@
     <ListView
         android:id="@+id/locationMemberView"
         android:layout_width="match_parent"
-        android:layout_height="411dp"
+        android:layout_height="489dp"
         android:layout_marginBottom="20dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="16dp" />
@@ -31,7 +31,7 @@
         <Button
             android:id="@+id/cancelButton"
             android:layout_width="31dp"
-            android:layout_height="69dp"
+            android:layout_height="72dp"
             android:layout_weight="1"
             android:onClick="onClick"
             android:text="Cancel"
@@ -41,7 +41,7 @@
         <Button
             android:id="@+id/addButton"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="72dp"
             android:layout_weight="1"
             android:onClick="onClick"
             android:text="Add"

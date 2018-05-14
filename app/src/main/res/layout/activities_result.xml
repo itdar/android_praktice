@@ -8,18 +8,29 @@
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="This is activities result"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Result Activity"
+        android:textAlignment="center"
         android:textSize="30sp" />
 
-    <EditText
-        android:id="@+id/multiText1"
-        android:layout_width="match_parent"
-        android:layout_height="331dp"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:inputType="textMultiLine" />
+    <ScrollView
+        android:id="@+id/SCROLLER_ID"
+        android:layout_width="fill_parent"
+        android:layout_height="330dp"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+        <TextView
+            android:id="@+id/resultTextView"
+            android:layout_width="match_parent"
+            android:layout_height="363dp"
+            android:clickable="false"
+            android:text="TextView" />
+    </ScrollView>
+
 
     <Button
         android:id="@+id/doneButton"

@@ -1,6 +1,6 @@
 package com.gin.praktice.component;
 
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.gin.praktice.visitor.Visitor;
 
@@ -49,8 +49,8 @@ public class Location extends Composite {
 		visitor.visit(this);
 	}
 	@Override
-	public void accept(Visitor visitor, EditText editText) {
-		visitor.visit(this, editText);
+	public void accept(Visitor visitor, TextView textView) {
+		visitor.visit(this, textView);
 	}
 	@Override
 	public Location clone() {

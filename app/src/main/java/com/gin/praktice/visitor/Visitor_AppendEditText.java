@@ -1,6 +1,6 @@
 package com.gin.praktice.visitor;
 
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Location;
@@ -19,31 +19,31 @@ public class Visitor_AppendEditText implements Visitor {
     public void visit(Member member){}
 
     @Override
-    public void visit(DDay dDay, EditText editText) {
-        editText.append("\n	" + dDay.getName() + " " + dDay.getDate());
+    public void visit(DDay dDay, TextView textView) {
+        textView.append("\n	" + dDay.getName() + " " + dDay.getDate());
         for (int i = 0; i < dDay.getList().size(); i++) {
-            dDay.get(i).accept(this, editText);
+            dDay.get(i).accept(this, textView);
         }
     }
 
     @Override
-    public void visit(Location location, EditText editText) {
-        editText.append("\n     " + location.getName() + " " + location.getMoney());
+    public void visit(Location location, TextView textView) {
+        textView.append("\n     " + location.getName() + " " + location.getMoney());
         for (int i = 0; i < location.getList().size(); i++) {
-            location.get(i).accept(this, editText);
+            location.get(i).accept(this, textView);
         }
     }
 
     @Override
-    public void visit(DayMembers dayMembers, EditText editText) {
-        editText.append("\n\n	    " + "DayMembers" + " >> " + dayMembers.getLength());
+    public void visit(DayMembers dayMembers, TextView textView) {
+        textView.append("\n\n	    " + "DayMembers" + " >> " + dayMembers.getLength());
         for (int i = 0; i < dayMembers.getLength(); i++) {
-            dayMembers.get(i).accept(this, editText);
+            dayMembers.get(i).accept(this, textView);
         }
     }
 
     @Override
-    public void visit(Member member, EditText editText) {
-        editText.append("\n	        " + member.getName() + " " + member.getMoney());
+    public void visit(Member member, TextView textView) {
+        textView.append("\n	        " + member.getName() + " " + member.getMoney());
     }
 }

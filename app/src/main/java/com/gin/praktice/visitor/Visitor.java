@@ -1,11 +1,11 @@
 package com.gin.praktice.visitor;
 
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.gin.praktice.component.DDay;
-import com.gin.praktice.member.DayMembers;
 import com.gin.praktice.component.Location;
 import com.gin.praktice.component.Member;
+import com.gin.praktice.member.DayMembers;
 
 public interface Visitor {
 	
@@ -14,8 +14,8 @@ public interface Visitor {
 	abstract void visit(DayMembers dayMembers);
 	abstract void visit(Member member);
 
-	abstract void visit(DDay dDay, EditText editText);
-	abstract void visit(Location location, EditText editText);
-	abstract void visit(DayMembers dayMembers, EditText editText);
-	abstract void visit(Member member, EditText editText);
+	abstract void visit(DDay dDay, TextView textView);
+	abstract void visit(Location location, TextView textView);
+	abstract void visit(DayMembers dayMembers, TextView textView);
+	abstract void visit(Member member, TextView textView);
 }
