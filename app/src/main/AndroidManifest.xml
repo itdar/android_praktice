@@ -20,6 +20,8 @@
         </activity>
 
         <!--<activity android:name=".activities.Acty_Main" />-->
+        <activity android:name=".activities.Acty_AddNewGroup" />
+
         <activity android:name=".activities.Acty_DDay" />
         <activity android:name=".activities.Acty_Location" />
         <activity android:name=".activities.Acty_Result" />

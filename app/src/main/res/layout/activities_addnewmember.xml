@@ -129,7 +129,7 @@
         <Button
             android:id="@+id/cancelButton"
             android:layout_width="45dp"
-            android:layout_height="72dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="onClick"
             android:text="취소" />
@@ -137,7 +137,7 @@
         <Button
             android:id="@+id/addButton"
             android:layout_width="110dp"
-            android:layout_height="72dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="onClick"
             android:text="추가" />

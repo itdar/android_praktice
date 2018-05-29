@@ -22,8 +22,16 @@ public class Acty_Main extends Activity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.newDDayButton : newDDayButtonAction(); break;
+            case R.id.newGroupButton : newGroupButtonAction(); break;
             default: break;
         }
+    }
+
+    public void newGroupButtonAction() {
+        Toast.makeText(this, "newGroupButtonAction", Toast.LENGTH_LONG).show();
+
+        Intent addNewGroupIntent = new Intent(this, Acty_AddNewGroup.class);
+        startActivity(addNewGroupIntent);
     }
 
     public void newDDayButtonAction() {

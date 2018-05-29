@@ -65,7 +65,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/locationMemberView"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="147dp"
         android:layout_marginBottom="10dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -111,7 +111,7 @@
     <Button
         android:id="@+id/nextButton"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"

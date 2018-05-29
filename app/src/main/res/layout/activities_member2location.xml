@@ -18,7 +18,7 @@
     <ListView
         android:id="@+id/locationMemberView"
         android:layout_width="match_parent"
-        android:layout_height="489dp"
+        android:layout_height="415dp"
         android:layout_marginBottom="20dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="16dp" />
