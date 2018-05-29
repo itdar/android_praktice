@@ -37,7 +37,7 @@
 
                 <EditText
                     android:id="@+id/nameEditText"
-                    android:layout_width="260dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
@@ -65,7 +65,7 @@
 
                 <EditText
                     android:id="@+id/dateEditText"
-                    android:layout_width="260dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
@@ -76,7 +76,7 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/dayMembersView"
-            android:layout_width="384dp"
+            android:layout_width="match_parent"
             android:layout_height="201dp"
             tools:layout_editor_absoluteX="10dp"
             tools:layout_editor_absoluteY="218dp">

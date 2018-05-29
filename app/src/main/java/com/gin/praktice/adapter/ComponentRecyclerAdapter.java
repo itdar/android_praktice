@@ -36,7 +36,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<ComponentRecy
     }
 
 
-    // View 의 내용을 해당 포지션의 데이터로 바꿉니다.
+    // View 의 내용을 해당 포지션의 데이터
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int index) {
 
@@ -51,14 +51,14 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<ComponentRecy
 
     }
 
-    // 데이터 셋의 크기를 리턴해줍니다.
+    // 데이터 셋의 크기를 리턴
     @Override
     public int getItemCount() {
         return items.size();
     }
 
     // 커스텀 뷰홀더
-    // item layout 에 존재하는 위젯들을 바인딩합니다.
+    // item layout 에 존재하는 위젯들을 바인딩
     class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mNameTv;
 

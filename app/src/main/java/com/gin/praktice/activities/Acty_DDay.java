@@ -111,13 +111,6 @@ public class Acty_DDay extends Activity {
             adapter.getSelectedList().clear();
         }
 
-        //tempList는 숫자고, dayMembers list 는 멤버임.
-//        for (int i = 0; i < tempList.size(); i++) {
-//            if (dDay.dayMembers.getList().contains(tempList.get(i))) {
-//                dDay.dayMembers.remove(i);
-//                //tempList랑 selectedList 비워야함
-//            }
-//        }
         adapter.notifyDataSetChanged();
     }
 
