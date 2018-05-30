@@ -36,7 +36,7 @@ public class Acty_AddNewGroup extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activities_addnewgroup);
 
-        newGroupMembersList = new ArrayList<Component>();
+        newGroupMembersList = new ArrayList<>();
 
         squadNameEditText = (EditText) findViewById(R.id.squadNameEditText);
 
@@ -72,14 +72,14 @@ public class Acty_AddNewGroup extends Activity {
 
     private void addMemberButtonAction() {
         Intent intent = new Intent(this, Acty_AddNewMember.class);
-//        startActivityForResult(intent, REQUEST_ADD_MEMBER);
+        startActivityForResult(intent, REQUEST_ADD_MEMBER);
     }
 
     private void deleteButtonAction() {
-        Toast.makeText(this, "Delete Member button clicked. ", Toast.LENGTH_LONG).show();
 
+        Toast.makeText(this, "Delete Member button clicked. ", Toast.LENGTH_LONG).show();
         if (adapter.getSelectedList().size() > 0) {
-            newGroupMembersList.remove(adapter.getSelectedList().get(0));
+            newGroupMembersList.remove(adapter.getSelectedList().get(0).intValue());
             adapter.getSelectedList().clear();
         }
         adapter.notifyDataSetChanged();
@@ -105,7 +105,7 @@ public class Acty_AddNewGroup extends Activity {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_CONTACT : requestContact(intent); break;
-//                case REQUEST_ADD_MEMBER : addMember(intent); break;
+                case REQUEST_ADD_MEMBER : addMember(intent); break;
             }
         }
     }
@@ -131,7 +131,21 @@ public class Acty_AddNewGroup extends Activity {
     private void addData(String receiveName, String receivePhone) {
 
         newGroupMembersList.add(new Member(receiveName, receivePhone));
+        Toast.makeText(this, Integer.toString(newGroupMembersList.size()), Toast.LENGTH_LONG).show();
 
         adapter.notifyDataSetChanged();
+    }
+
+    private void addMember(Intent intent) {
+        Bundle bundle = intent.getExtras();
+
+        String receiveName = bundle.getString("name");
+        String receiveBank = bundle.getString("bank");
+        String receiveAccount = bundle.getString("account");
+
+        addData(receiveName, "");
+        Toast.makeText(this, "추가된 이름 : " + receiveName +
+                "\n추가된 은행 : " + receiveBank +
+                "\n추가된 계좌 : " + receiveAccount, Toast.LENGTH_LONG).show();
     }
 }

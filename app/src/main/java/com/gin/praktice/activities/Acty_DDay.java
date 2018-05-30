@@ -107,7 +107,7 @@ public class Acty_DDay extends Activity {
         Toast.makeText(this, "Delete Member button clicked. ", Toast.LENGTH_LONG).show();
 
         if (adapter.getSelectedList().size() > 0) {
-            dDay.dayMembers.remove(adapter.getSelectedList().get(0));
+            dDay.dayMembers.remove(adapter.getSelectedList().get(0).intValue());
             adapter.getSelectedList().clear();
         }
 
