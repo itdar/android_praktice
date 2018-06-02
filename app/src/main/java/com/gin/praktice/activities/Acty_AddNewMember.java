@@ -39,7 +39,6 @@ public class Acty_AddNewMember extends Activity {
     }
 
     private void addButtonAction() {
-        //TODO 여기부터 시작 0510
 
         String name = nameEditText.getText().toString();
         String bank = bankEditText.getText().toString();

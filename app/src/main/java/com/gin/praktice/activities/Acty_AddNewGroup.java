@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -86,16 +85,26 @@ public class Acty_AddNewGroup extends Activity {
     }
 
     private void newSquadButtonAction() {
-        Editable name = squadNameEditText.getText();
-//        // TODO 값 비어있는거 확인해서 넘어가야함
-//        if (!name.equals("") && !date.equals("") && dayMembersList.size() > 1) {
-//            dDay.setName(name.toString());
-//            dDay.setDate(date.toString());
-////            for (int i = 0; i < dayMembersList.size(); i++) {
-////                dDay.dayMembers.add(new Member(dayMembersList.get(i).getName(), dayMembersList.get(i).getPhoneNumber()));
-////            }
-//            startActivity(locationIntent);
-//        }
+
+        String squadName = squadNameEditText.getText().toString();
+        if (squadName != null && !squadName.equals("")) {
+//            Bundle bundle = new Bundle();
+//            bundle.putString("squadName", squadName);
+
+            Intent returnIntent = new Intent();
+//            returnIntent.putExtras(bundle);
+            returnIntent.putExtra("squadName", squadName);
+
+            // TODO 0602 여기부터 시작
+            // Serializable 상속받은 Squad 객체를
+            // 버튼 누르면 그때 만들어서 intetn랑 같이 리턴해줘서
+            // Main에서 만들어진거 리스트에 올리고
+            // 선택된 Squad member들 아래 리스트에 또 올리고
+            returnIntent.putExtra("memberList", newGroupMembersList.get(0));
+
+            setResult(RESULT_OK, returnIntent);
+            finish();
+        }
     }
 
     @Override

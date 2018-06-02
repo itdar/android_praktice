@@ -2,13 +2,18 @@ package com.gin.praktice.squad;
 
 import com.gin.praktice.component.Member;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Squad {
+public class Squad implements Serializable {
     private String name;
     private List<Member> members;
 
+    public Squad() {
+        this.name = null;
+        this.members = new ArrayList<>();
+    }
     public Squad(String name) {
         this.name = name;
         this.members = new ArrayList<Member>();
