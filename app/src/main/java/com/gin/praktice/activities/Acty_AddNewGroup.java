@@ -15,6 +15,7 @@ import com.gin.praktice.R;
 import com.gin.praktice.adapter.ComponentRecyclerAdapter;
 import com.gin.praktice.component.Component;
 import com.gin.praktice.component.Member;
+import com.gin.praktice.component.Squad;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +67,7 @@ public class Acty_AddNewGroup extends Activity {
     private void contactAddButtonAction() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+
         startActivityForResult(intent, REQUEST_CONTACT);
     }
 
@@ -88,19 +90,13 @@ public class Acty_AddNewGroup extends Activity {
 
         String squadName = squadNameEditText.getText().toString();
         if (squadName != null && !squadName.equals("")) {
-//            Bundle bundle = new Bundle();
-//            bundle.putString("squadName", squadName);
 
             Intent returnIntent = new Intent();
-//            returnIntent.putExtras(bundle);
-            returnIntent.putExtra("squadName", squadName);
 
-            // TODO 0602 여기부터 시작
-            // Serializable 상속받은 Squad 객체를
-            // 버튼 누르면 그때 만들어서 intetn랑 같이 리턴해줘서
-            // Main에서 만들어진거 리스트에 올리고
-            // 선택된 Squad member들 아래 리스트에 또 올리고
-            returnIntent.putExtra("memberList", newGroupMembersList.get(0));
+            Squad newSquad = new Squad(squadName);
+            newSquad.setMembers(newGroupMembersList);
+
+            returnIntent.putExtra("newSquad", new Squad(squadName));
 
             setResult(RESULT_OK, returnIntent);
             finish();

@@ -3,13 +3,18 @@ package com.gin.praktice.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
 import com.gin.praktice.R;
+import com.gin.praktice.component.Squad;
 
 public class Acty_Main extends Activity {
     private Intent dDayIntent;
+
+    private RecyclerView memberListView;
+    private RecyclerView squadListView;
 
     private static final int ADD_NEW_SQUAD = 1;
 
@@ -66,7 +71,11 @@ public class Acty_Main extends Activity {
     }
 
     private void addNewSquad(Intent intent) {
+        Bundle bundle = intent.getExtras();
 
+        Squad squad = (Squad)bundle.get("newSquad");
+
+        Toast.makeText(this, squad.getName(), Toast.LENGTH_LONG).show();
     }
 
 }
