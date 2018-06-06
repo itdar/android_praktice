@@ -3,18 +3,30 @@ package com.gin.praktice.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
 import com.gin.praktice.R;
+import com.gin.praktice.adapter.ComponentRecyclerAdapter;
+import com.gin.praktice.adapter.SquadRecyclerAdapter;
+import com.gin.praktice.component.Component;
 import com.gin.praktice.component.Squad;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Acty_Main extends Activity {
     private Intent dDayIntent;
 
     private RecyclerView memberListView;
+    private List<Component> memberList;
+    private ComponentRecyclerAdapter memberListAdapter;
+
     private RecyclerView squadListView;
+    private List<Component> squadList;
+    private SquadRecyclerAdapter squadListAdapter;
 
     private static final int ADD_NEW_SQUAD = 1;
 
@@ -24,6 +36,28 @@ public class Acty_Main extends Activity {
         setContentView(R.layout.activities_main);
 
         dDayIntent = new Intent(this, Acty_DDay.class);
+
+        memberListView = (RecyclerView) findViewById(R.id.memberListView);
+        memberList = new ArrayList<>();
+
+        squadListView = (RecyclerView) findViewById(R.id.squadListView);
+        squadList = new ArrayList<>();
+
+        setRecyclerView();
+    }
+
+    private void setRecyclerView() {
+        memberListView.setHasFixedSize(true);
+        squadListView.setHasFixedSize(true);
+
+        memberListAdapter = new ComponentRecyclerAdapter(memberList);
+        squadListAdapter = new SquadRecyclerAdapter(squadList, memberList, memberListAdapter);
+
+        memberListView.setAdapter(memberListAdapter);
+        squadListView.setAdapter(squadListAdapter);
+
+        memberListView.setLayoutManager(new LinearLayoutManager(this));
+        squadListView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void onClick(View view) {
@@ -39,11 +73,15 @@ public class Acty_Main extends Activity {
     private void newSquadButtonAction() {
         Toast.makeText(this, "newSquadButtonAction", Toast.LENGTH_LONG).show();
 
-        Intent addNewGroupIntent = new Intent(this, Acty_AddNewGroup.class);
+        Intent addNewGroupIntent = new Intent(this, Acty_AddNewSquad.class);
 
         startActivityForResult(addNewGroupIntent, ADD_NEW_SQUAD);
     }
 
+    /**
+     * TODO 20180606
+     * If there is selected Squad, then need to tranfer squad object with members from main to newDDayActy
+     */
     private void newDDayButtonAction() {
         Toast.makeText(this, "newDDayButtonAction", Toast.LENGTH_LONG).show();
 
@@ -51,11 +89,13 @@ public class Acty_Main extends Activity {
     }
 
     private void deleteSquadButtonAction() {
-
+//        memberList.clear();
+//        memberListAdapter.notifyDataSetChanged();
     }
 
     private void modifySquadButtonAction() {
-
+//        memberList.add(new Member("newMember"));
+//        memberListAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -74,8 +114,10 @@ public class Acty_Main extends Activity {
         Bundle bundle = intent.getExtras();
 
         Squad squad = (Squad)bundle.get("newSquad");
+        squadList.add(squad);
+        squadListAdapter.notifyDataSetChanged();
 
-        Toast.makeText(this, squad.getName(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "squad name >> " + squad.getName(), Toast.LENGTH_LONG).show();
     }
 
 }

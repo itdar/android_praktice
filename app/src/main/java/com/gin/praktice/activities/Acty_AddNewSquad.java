@@ -20,7 +20,7 @@ import com.gin.praktice.component.Squad;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Acty_AddNewGroup extends Activity {
+public class Acty_AddNewSquad extends Activity {
     private EditText squadNameEditText;
 
     private static final int REQUEST_CONTACT = 1;
@@ -94,9 +94,10 @@ public class Acty_AddNewGroup extends Activity {
             Intent returnIntent = new Intent();
 
             Squad newSquad = new Squad(squadName);
-            newSquad.setMembers(newGroupMembersList);
+            newSquad.setList(newGroupMembersList);
 
-            returnIntent.putExtra("newSquad", new Squad(squadName));
+            returnIntent.putExtra("newSquad", newSquad);
+            Toast.makeText(this, "squad name >> " + newSquad.getList().size(), Toast.LENGTH_LONG).show();
 
             setResult(RESULT_OK, returnIntent);
             finish();

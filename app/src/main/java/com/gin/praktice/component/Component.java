@@ -5,7 +5,9 @@ import android.widget.TextView;
 
 import com.gin.praktice.visitor.Visitor;
 
-public abstract class Component {
+import java.io.Serializable;
+
+public abstract class Component implements Serializable {
 	protected String name = "";
 	protected int money = 0;
 	

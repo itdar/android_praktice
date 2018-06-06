@@ -16,6 +16,8 @@ abstract class Composite extends Component {
 	public void remove(int index) {
 		this.list.remove(index);
 	}
+
+	public void clear() { this.list.clear(); }
 	
 	public Component get(int index) {
 		return this.list.get(index);

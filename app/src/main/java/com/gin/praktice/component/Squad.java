@@ -4,13 +4,10 @@ import android.widget.TextView;
 
 import com.gin.praktice.visitor.Visitor;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-public class Squad extends Composite implements Serializable {
-    private String name;
-    private List<Component> members;
+public class Squad extends Composite {
+//    private String name = "";
+//    private int money = 0;
+//    private List<Component> list = new ArrayList<>();
 
     // TODO 0604
     // Squad 를 Composite 상속받는걸로 바꿔서
@@ -18,52 +15,44 @@ public class Squad extends Composite implements Serializable {
     // RecyclerView 에다가 올려줘야함
     // 코드정리하면서~
 
-    public Squad() {
-        this.name = null;
-        this.members = new ArrayList<>();
-    }
     public Squad(String name) {
         this.name = name;
-        this.members = new ArrayList<Component>();
     }
-
-    public void addMember(Member member) {
-        this.members.add(member);
-    }
-    public void removeMember(String name) {
-        boolean isDone = false;
-        for (int i = 0; !isDone && i < members.size(); i++) {
-            if (members.get(i).getName().equals(name)) {
-                members.remove(i);
-                isDone = true;
-            }
+    public Squad(Squad source) {
+        this.name = source.name;
+        this.money = source.money;
+        for (Component val : source.list)
+        {
+            this.list.add(val.clone());
         }
     }
-    public void clearMembers() {
-        this.members.clear();
-    }
 
-    public void setMembers(List<Component> memberList) {
-        this.members = memberList;
-    }
-    public List<Component> getMembers() {
-        return this.members;
-    }
+
+//    public void setList(List<Component> list) { this.list = list; }
+//    public String getName() { return this.name; }
+
+
+
+//    public void removeMember(String name) {
+//        boolean isDone = false;
+//        for (int i = 0; !isDone && i < members.size(); i++) {
+//            if (members.get(i).getName().equals(name)) {
+//                members.remove(i);
+//                isDone = true;
+//            }
+//        }
+//    }
 
     @Override
     public void accept(Visitor visitor) {
-
+//        visitor.visit(this);
     }
 
     @Override
     public void accept(Visitor visitor, TextView textView) {
-
+//        visitor.visit(this, textView);
     }
 
     @Override
-    public Component clone() {
-        return null;
-    }
-
-    public String getName() { return this.name; }
+    public Component clone() { return new Squad(this); }
 }

@@ -18,8 +18,8 @@ public class Location extends Composite {
 		this.money = money;
 	}
 	public Location(Location source) {
-		for (int i = 0; i < source.list.size(); i++) {
-			this.list.add(source.list.get(i).clone());
+		for (Component val : source.list) {
+			this.list.add(val.clone());
 		}
 		this.name = source.name;
 		this.money = source.money;

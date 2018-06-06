@@ -10,19 +10,24 @@ import android.widget.Toast;
 
 import com.gin.praktice.R;
 import com.gin.praktice.component.Component;
+import com.gin.praktice.component.Squad;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class ComponentRecyclerAdapter extends RecyclerView.Adapter<ComponentRecyclerAdapter.ItemViewHolder> {
+public class SquadRecyclerAdapter extends RecyclerView.Adapter<SquadRecyclerAdapter.ItemViewHolder> {
 
-    private List<Component> items;
+    private List<Component> squadItems;
+    private List<Component> memberItems;
+    private ComponentRecyclerAdapter memberListAdapter;
+
     private final ArrayList<Integer> selected = new ArrayList<>();
 
-    public ComponentRecyclerAdapter(List<Component> items) {
-
-        this.items = items;
+    public SquadRecyclerAdapter(List<Component> squadItems, List<Component> memberItems, ComponentRecyclerAdapter memberListAdapter) {
+        this.squadItems = squadItems;
+        this.memberItems = memberItems;
+        this.memberListAdapter = memberListAdapter;
     }
 
 
@@ -36,11 +41,16 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<ComponentRecy
     }
 
 
-    // View 의 내용을 해당 포지션의 데이터
+    /**
+     * ViewList 에서 각 index 별로 들어가서 보여질 객체의 내용물과 배경컬러값 수정 가능
+     *
+     * @param holder
+     * @param index
+     */
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int index) {
 
-        holder.mNameTv.setText(items.get(index).getName());
+        holder.mNameTv.setText(squadItems.get(index).getName());
 
         if (!selected.contains(index)){
             holder.itemView.setBackgroundColor(Color.LTGRAY);
@@ -54,7 +64,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<ComponentRecy
     // 데이터 셋의 크기를 리턴
     @Override
     public int getItemCount() {
-        return items.size();
+        return squadItems.size();
     }
 
     // 커스텀 뷰홀더
@@ -70,25 +80,34 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<ComponentRecy
 //            itemView.setOnFocusChangeListener(this);
         }
 
+        /**
+         * If selected list already has same index, clear / if not -> select and coloring
+         * Show the members of the selected Squad on the another recyclerView
+         * @param view
+         */
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(), "position = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(view.getContext(), "position = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
 
             if (!selected.contains(getAdapterPosition())) {
                 selected.clear();
+
+                memberListAdapter.setItems(((Squad)squadItems.get(getAdapterPosition()).clone()).getList());
                 selected.add(getAdapterPosition());
             } else {
+                memberListAdapter.clearItems();
                 selected.clear();
             }
+            Toast.makeText(view.getContext(), memberItems.toString(), Toast.LENGTH_LONG).show();
+
+            memberListAdapter.notifyDataSetChanged();
             notifyDataSetChanged();
         }
 
     }
 
-    public List<Integer> getSelectedList() {
-        return this.selected;
-    }
+    public List<Integer> getSelectedList() { return this.selected; }
 
-    public void setItems(List<Component> items) { this.items = items; }
-    public void clearItems() { this.items.clear(); }
+//    public void setItems(List<Component> items) { this.items = items; }
+//    public void clearItems() { this.items.clear(); }
 }
