@@ -70,17 +70,6 @@
                     tools:layout_editor_absoluteY="235dp" />
 
                 <Button
-                    android:id="@+id/newSquadButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:layout_marginBottom="10dp"
-                    android:onClick="onClick"
-                    android:text="새 모임 생성"
-                    android:textAlignment="center"
-                    tools:layout_editor_absoluteX="55dp"
-                    tools:layout_editor_absoluteY="192dp" />
-
-                <Button
                     android:id="@+id/modifySquadButton"
                     android:layout_width="match_parent"
                     android:layout_height="72dp"
@@ -90,6 +79,17 @@
                     android:textAlignment="center"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="149dp" />
+
+                <Button
+                    android:id="@+id/newSquadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="onClick"
+                    android:text="새 모임 생성"
+                    android:textAlignment="center"
+                    tools:layout_editor_absoluteX="55dp"
+                    tools:layout_editor_absoluteY="192dp" />
 
             </LinearLayout>
 

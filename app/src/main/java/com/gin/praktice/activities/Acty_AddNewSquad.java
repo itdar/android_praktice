@@ -1,6 +1,7 @@
 package com.gin.praktice.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -8,7 +9,9 @@ import android.provider.ContactsContract;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gin.praktice.R;
@@ -34,7 +37,7 @@ public class Acty_AddNewSquad extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activities_addnewgroup);
+        setContentView(R.layout.activities_addnewsquad);
 
         newGroupMembersList = new ArrayList<>();
 
@@ -42,6 +45,17 @@ public class Acty_AddNewSquad extends Activity {
 
         newGroupMembersView = (RecyclerView) findViewById(R.id.newGroupMembersView);
         setRecyclerView();
+
+
+        squadNameEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    InputMethodManager imm = (InputMethodManager) squadNameEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(squadNameEditText.getWindowToken(), 0);
+                }
+            }
+        });
 
     }
 

@@ -31,7 +31,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="만들 모임 이름을 입력하세요" />
+                android:hint="만들 모임 이름을 입력하세요"
+                android:singleLine="true" />
 
         </LinearLayout>
 

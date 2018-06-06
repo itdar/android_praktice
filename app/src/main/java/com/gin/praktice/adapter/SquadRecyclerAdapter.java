@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gin.praktice.R;
 import com.gin.praktice.component.Component;
@@ -98,7 +97,7 @@ public class SquadRecyclerAdapter extends RecyclerView.Adapter<SquadRecyclerAdap
                 memberListAdapter.clearItems();
                 selected.clear();
             }
-            Toast.makeText(view.getContext(), memberItems.toString(), Toast.LENGTH_LONG).show();
+//            Toast.makeText(view.getContext(), memberItems.toString(), Toast.LENGTH_LONG).show();
 
             memberListAdapter.notifyDataSetChanged();
             notifyDataSetChanged();

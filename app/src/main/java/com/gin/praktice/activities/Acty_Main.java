@@ -2,6 +2,7 @@ package com.gin.praktice.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,13 +13,17 @@ import com.gin.praktice.R;
 import com.gin.praktice.adapter.ComponentRecyclerAdapter;
 import com.gin.praktice.adapter.SquadRecyclerAdapter;
 import com.gin.praktice.component.Component;
+import com.gin.praktice.component.Member;
 import com.gin.praktice.component.Squad;
+import com.gin.praktice.sqlite.SQLiteHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Acty_Main extends Activity {
     private Intent dDayIntent;
+
+    private SQLiteHelper sqLiteHelper;
 
     private RecyclerView memberListView;
     private List<Component> memberList;
@@ -35,6 +40,8 @@ public class Acty_Main extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activities_main);
 
+        sqLiteHelper = new SQLiteHelper(this.getApplicationContext());
+
         dDayIntent = new Intent(this, Acty_DDay.class);
 
         memberListView = (RecyclerView) findViewById(R.id.memberListView);
@@ -44,6 +51,18 @@ public class Acty_Main extends Activity {
         squadList = new ArrayList<>();
 
         setRecyclerView();
+
+        Cursor cursor = sqLiteHelper.getAllSquad();
+        if (cursor.getCount() > 0)
+        {
+            cursor.moveToFirst();
+            do {
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                squadList.add(new Member(name));
+            } while (cursor.moveToNext());
+            cursor.close();
+            squadListAdapter.notifyDataSetChanged();
+        }
     }
 
     private void setRecyclerView() {
@@ -88,9 +107,20 @@ public class Acty_Main extends Activity {
         startActivity(dDayIntent);
     }
 
+    /**
+     * Delete from SQLite too
+     *
+     */
     private void deleteSquadButtonAction() {
-//        memberList.clear();
-//        memberListAdapter.notifyDataSetChanged();
+        if (squadListAdapter.getSelectedList().size() > 0)
+        {
+            squadList.remove(squadListAdapter.getSelectedList().get(0).intValue());
+
+            memberListAdapter.clearItems();
+            squadListAdapter.getSelectedList().clear();
+        }
+        memberListAdapter.notifyDataSetChanged();
+        squadListAdapter.notifyDataSetChanged();
     }
 
     private void modifySquadButtonAction() {
@@ -102,7 +132,8 @@ public class Acty_Main extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
-        if (resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK)
+        {
             switch (requestCode) {
                 case ADD_NEW_SQUAD : addNewSquad(intent); break;
                 case 0 : ; break;
@@ -110,6 +141,11 @@ public class Acty_Main extends Activity {
         }
     }
 
+    /**
+     * Add to SQLite too
+     *
+     * @param intent
+     */
     private void addNewSquad(Intent intent) {
         Bundle bundle = intent.getExtras();
 
@@ -117,7 +153,10 @@ public class Acty_Main extends Activity {
         squadList.add(squad);
         squadListAdapter.notifyDataSetChanged();
 
-        Toast.makeText(this, "squad name >> " + squad.getName(), Toast.LENGTH_LONG).show();
+        sqLiteHelper.saveSquad(squad.getName());
+
+
+//        Toast.makeText(this, "squad name >> " + squad.getName(), Toast.LENGTH_LONG).show();
     }
 
 }
