@@ -13,7 +13,6 @@ import com.gin.praktice.R;
 import com.gin.praktice.adapter.ComponentRecyclerAdapter;
 import com.gin.praktice.adapter.SquadRecyclerAdapter;
 import com.gin.praktice.component.Component;
-import com.gin.praktice.component.Member;
 import com.gin.praktice.component.Squad;
 import com.gin.praktice.sqlite.SQLiteHelper;
 
@@ -58,7 +57,7 @@ public class Acty_Main extends Activity {
             cursor.moveToFirst();
             do {
                 String name = cursor.getString(cursor.getColumnIndex("name"));
-                squadList.add(new Member(name));
+                squadList.add(new Squad(name));
             } while (cursor.moveToNext());
             cursor.close();
             squadListAdapter.notifyDataSetChanged();
@@ -114,6 +113,7 @@ public class Acty_Main extends Activity {
     private void deleteSquadButtonAction() {
         if (squadListAdapter.getSelectedList().size() > 0)
         {
+            sqLiteHelper.deleteSquad(squadList.get(squadListAdapter.getSelectedList().get(0).intValue()).getName());
             squadList.remove(squadListAdapter.getSelectedList().get(0).intValue());
 
             memberListAdapter.clearItems();

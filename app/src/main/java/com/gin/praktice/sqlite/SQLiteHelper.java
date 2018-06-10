@@ -83,6 +83,11 @@ public class SQLiteHelper {
         database.insert(TABLE_NAME_SQUAD, null, contentValues);
     }
 
+    public void deleteSquad(String name)
+    {
+        database.delete(TABLE_NAME_SQUAD, SQUAD_COLUMN_NAME + "=" + "'" + name + "'", null);
+    }
+
 //     method that saves the users profile information
 //    public void saveUserProfile(String userName, String userGender,
 //                                String userAge) {
