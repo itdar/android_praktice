@@ -106,10 +106,6 @@ public class Acty_Main extends Activity {
         startActivity(dDayIntent);
     }
 
-    /**
-     * Delete from SQLite too
-     *
-     */
     private void deleteSquadButtonAction() {
         if (squadListAdapter.getSelectedList().size() > 0)
         {
@@ -141,11 +137,6 @@ public class Acty_Main extends Activity {
         }
     }
 
-    /**
-     * Add to SQLite too
-     *
-     * @param intent
-     */
     private void addNewSquad(Intent intent) {
         Bundle bundle = intent.getExtras();
 

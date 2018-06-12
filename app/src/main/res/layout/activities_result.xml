@@ -20,6 +20,7 @@
         android:id="@+id/SCROLLER_ID"
         android:layout_width="fill_parent"
         android:layout_height="330dp"
+        android:layout_marginBottom="10dp"
         android:fillViewport="true"
         android:scrollbars="vertical">
 
@@ -27,18 +28,28 @@
             android:id="@+id/resultTextView"
             android:layout_width="match_parent"
             android:layout_height="363dp"
-            android:clickable="false"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
             android:text="TextView" />
     </ScrollView>
 
+
+    <Button
+        android:id="@+id/copyResultButton"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:onClick="onClick"
+        android:text="Copy result" />
 
     <Button
         android:id="@+id/doneButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="30sp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:onClick="onClick"
         android:text="Done" />
 

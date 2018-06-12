@@ -1,12 +1,15 @@
 package com.gin.praktice.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gin.praktice.R;
@@ -49,6 +52,25 @@ public class Acty_Location extends Activity {
 
         locationMemberView = (RecyclerView) findViewById(R.id.locationMemberView);
         setRecyclerView();
+
+        storeNameEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    InputMethodManager imm = (InputMethodManager) storeNameEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(storeNameEditText.getWindowToken(), 0);
+                }
+            }
+        });
+        moneyEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    InputMethodManager imm = (InputMethodManager) moneyEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(moneyEditText.getWindowToken(), 0);
+                }
+            }
+        });
     }
 
     private void setRecyclerView() {

@@ -1,6 +1,7 @@
 package com.gin.praktice.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,7 +10,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gin.praktice.R;
@@ -54,6 +57,25 @@ public class Acty_DDay extends Activity {
         setRecyclerView();
 
         locationIntent = new Intent(this, Acty_Location.class);
+
+        nameEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    InputMethodManager imm = (InputMethodManager) nameEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(nameEditText.getWindowToken(), 0);
+                }
+            }
+        });
+        dateEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    InputMethodManager imm = (InputMethodManager) dateEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(dateEditText.getWindowToken(), 0);
+                }
+            }
+        });
     }
 
     private void setRecyclerView() {

@@ -1,10 +1,13 @@
 package com.gin.praktice.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.gin.praktice.R;
 
@@ -27,6 +30,17 @@ public class Acty_AddNewMember extends Activity {
 //        addButton = findViewById(R.id.addButton);
 //        cancelButton = findViewById(R.id.cancelButton);
 
+        nameEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    InputMethodManager imm = (InputMethodManager) nameEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(nameEditText.getWindowToken(), 0);
+                }
+            }
+        });
+
+
     }
 
     public void onClick(View view) {
@@ -38,6 +52,7 @@ public class Acty_AddNewMember extends Activity {
 
     }
 
+    //Component serialize 상속받아서 객체로 member를 전달할수 있음, 나중에 바꾸면 될듯
     private void addButtonAction() {
 
         String name = nameEditText.getText().toString();

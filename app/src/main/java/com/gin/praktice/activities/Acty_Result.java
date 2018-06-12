@@ -1,9 +1,11 @@
 package com.gin.praktice.activities;
 
 import android.app.Activity;
+import android.content.ClipData;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gin.praktice.R;
 import com.gin.praktice.component.DDay;
@@ -32,12 +34,23 @@ public class Acty_Result extends Activity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.doneButton : doneButtonClicked(); break;
+            case R.id.copyResultButton : copyResultButtonClicked(); break;
             default: break;
         }
     }
 
-    // 여기 레이아웃 잡고 기능 추가부터 시작
-
+    private void copyResultButtonClicked() {
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentapiVersion >= android.os.Build.VERSION_CODES.HONEYCOMB){
+            android.content.ClipboardManager clipboard =  (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("resultCopy", resultTextView.getText());
+            clipboard.setPrimaryClip(clip);
+        } else{
+            android.text.ClipboardManager clipboard = (android.text.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+            clipboard.setText(resultTextView.getText());
+        }
+        Toast.makeText(getApplicationContext(), "Text copied to clipboard", Toast.LENGTH_SHORT).show();
+    }
 
     private void doneButtonClicked() {
         dDay.getList().clear();

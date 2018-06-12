@@ -50,10 +50,10 @@ public class Acty_AddNewSquad extends Activity {
         squadNameEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    InputMethodManager imm = (InputMethodManager) squadNameEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(squadNameEditText.getWindowToken(), 0);
-                }
+            if (!hasFocus) {
+                InputMethodManager imm = (InputMethodManager) squadNameEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(squadNameEditText.getWindowToken(), 0);
+            }
             }
         });
 
