@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.gin.praktice.component.Squad;
+
 public class SQLiteHelper {
 
     // stored local variables for the OpenHelper and the database it opens
@@ -13,17 +15,23 @@ public class SQLiteHelper {
     public SQLiteDatabase database;
 
     // list of constants for referencing the db's internal values
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 4;
     public static final String DATABASE_NAME = "ms.db";
 
     public static final String TABLE_NAME_SQUAD = "TABLE_NAME_SQUAD";
+    public static final String TABLE_NAME_MEMBER = "TABLE_NAME_MEMBER";
+    public static final String TABLE_NAME_RESULT = "TABLE_NAME_RESULT";
 
-    public static final String SQUAD_COLUMN_ID = "id";
+    public static final String SQUAD_COLUMN_ID = "squadID";
     public static final String SQUAD_COLUMN_NAME = "name";
     public static final String SQUAD_COLUMN_CREATEDATETIME = "createDateTime";
 
-    public static final String TABLE_NAME_MEMBER = "TABLE_NAME_MEMBER";
-    public static final String TABLE_NAME_RESULT = "TABLE_NAME_RESULT";
+    public static final String MEMBER_COLUMN_ID = "memberID";
+    public static final String MEMBER_COLUMN_SQUAD_NAME = "squadName";
+    public static final String MEMBER_COLUMN_NAME = "name";
+    public static final String MEMBER_COLUMN_BANK = "bank";
+    public static final String MEMBER_COLUMN_ACCOUNT = "accountNumber";
+    public static final String MEMBER_COLUMN_PHONENUMBER = "phoneNumber";
 
 //    public static final String USER_TABLE_NAME = "user_profile";
 //    public static final String PROFILE_COLUMN_ID = "_id";
@@ -49,16 +57,7 @@ public class SQLiteHelper {
         public void onCreate(SQLiteDatabase database) {
             // execSQL actually creates the schema of the db we defined in the
             // method above
-            database.execSQL("CREATE TABLE " + TABLE_NAME_SQUAD + "( "
-                    + SQUAD_COLUMN_ID + " INTEGER PRIMARY KEY, "
-                    + SQUAD_COLUMN_NAME + " TEXT, "
-                    + SQUAD_COLUMN_CREATEDATETIME + " DATE)");
-
-//            database.execSQL("CREATE TABLE " + USER_TABLE_NAME + "( "
-//                    + PROFILE_COLUMN_ID + " INTEGER PRIMARY KEY, "
-//                    + PROFILE_COLUMN_USERNAME + " TEXT, "
-//                    + PROFILE_COLUMN_GENDER + " TEXT, " + PROFILE_COLUMN_AGE
-//                    + " TEXT )");
+            createTables(database);
         }
 
         // when the version number is changed, this method is called
@@ -66,26 +65,46 @@ public class SQLiteHelper {
                               int newVersion) {
             // drops table if exists, and then calls onCreate which implements
             // our new schema
-//            database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SQUAD);
-//            database.execSQL("DROP TABLE IF EXISTS " + USER_TABLE_NAME);
-//            onCreate(database);
+            database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SQUAD);
+            database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_MEMBER);
+            onCreate(database);
         }
     }
 
-    // method called by onActivityResult which actually saves user entered data
-    // into the db
-    public void saveSquad(String name)
+    // 1. 일단 Squad 추가할때 member table에도 각각 추가되도록 // 여기부터 시작
+    // 2. 마지막 Result 나온 후 저장하는 기능 추후에
+    public void saveSquad(Squad squad)
     {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(SQUAD_COLUMN_NAME, name);
-        contentValues.put(SQUAD_COLUMN_CREATEDATETIME, "");
+        contentValues.put(SQUAD_COLUMN_NAME, squad.getName());
 
         database.insert(TABLE_NAME_SQUAD, null, contentValues);
     }
 
-    public void deleteSquad(String name)
+    // 삭제할때 member table에서 같은 아이디값들 삭제해야함
+    public void deleteSquad(Squad squad)
     {
-        database.delete(TABLE_NAME_SQUAD, SQUAD_COLUMN_NAME + "=" + "'" + name + "'", null);
+        database.delete(TABLE_NAME_SQUAD, SQUAD_COLUMN_NAME + "=" + "'" + squad.getName() + "'", null);
+        database.delete(TABLE_NAME_MEMBER, MEMBER_COLUMN_SQUAD_NAME + "=" + "'" + squad.getName() + "'", null);
+    }
+
+    private void createTables(SQLiteDatabase database)
+    {
+        database.execSQL("CREATE TABLE " + TABLE_NAME_SQUAD
+                + "("
+                + SQUAD_COLUMN_ID + " INTEGER PRIMARY KEY, "
+                + SQUAD_COLUMN_NAME + " TEXT"
+                + ")" );
+
+        database.execSQL("CREATE TABLE " + TABLE_NAME_MEMBER
+                + "("
+                + MEMBER_COLUMN_ID + " INTEGER PRIMARY KEY, "
+                + MEMBER_COLUMN_SQUAD_NAME + " TEXT,"
+                + MEMBER_COLUMN_NAME + " TEXT,"
+                + MEMBER_COLUMN_BANK + " TEXT,"
+                + MEMBER_COLUMN_ACCOUNT + " INTEGER,"
+                + MEMBER_COLUMN_PHONENUMBER + " INTEGER"
+                + ")" );
     }
 
 //     method that saves the users profile information

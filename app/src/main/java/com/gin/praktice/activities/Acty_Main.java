@@ -109,7 +109,7 @@ public class Acty_Main extends Activity {
     private void deleteSquadButtonAction() {
         if (squadListAdapter.getSelectedList().size() > 0)
         {
-            sqLiteHelper.deleteSquad(squadList.get(squadListAdapter.getSelectedList().get(0).intValue()).getName());
+            sqLiteHelper.deleteSquad((Squad)squadList.get(squadListAdapter.getSelectedList().get(0)));
             squadList.remove(squadListAdapter.getSelectedList().get(0).intValue());
 
             memberListAdapter.clearItems();
@@ -144,7 +144,7 @@ public class Acty_Main extends Activity {
         squadList.add(squad);
         squadListAdapter.notifyDataSetChanged();
 
-        sqLiteHelper.saveSquad(squad.getName());
+        sqLiteHelper.saveSquad(squad);
 
 
 //        Toast.makeText(this, "squad name >> " + squad.getName(), Toast.LENGTH_LONG).show();
