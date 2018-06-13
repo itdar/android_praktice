@@ -6,7 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.gin.praktice.component.Component;
+import com.gin.praktice.component.Member;
 import com.gin.praktice.component.Squad;
+
+import java.util.List;
 
 public class SQLiteHelper {
 
@@ -75,10 +79,23 @@ public class SQLiteHelper {
     // 2. 마지막 Result 나온 후 저장하는 기능 추후에
     public void saveSquad(Squad squad)
     {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(SQUAD_COLUMN_NAME, squad.getName());
+        ContentValues squadTableValues = new ContentValues();
+        squadTableValues.put(SQUAD_COLUMN_NAME, squad.getName());
 
-        database.insert(TABLE_NAME_SQUAD, null, contentValues);
+        database.insert(TABLE_NAME_SQUAD, null, squadTableValues);
+
+        List<Component> memberList = squad.getList();
+        for (int i = 0; i < memberList.size(); ++i)
+        {
+            ContentValues memberTableValues = new ContentValues();
+            memberTableValues.put(MEMBER_COLUMN_SQUAD_NAME, squad.getName());
+            memberTableValues.put(MEMBER_COLUMN_NAME, ((Member)memberList.get(i)).getName());
+            memberTableValues.put(MEMBER_COLUMN_BANK, "");//((Member)memberList.get(i)).getName());
+            memberTableValues.put(MEMBER_COLUMN_ACCOUNT, "");//((Member)memberList.get(i)).getName());
+            memberTableValues.put(MEMBER_COLUMN_PHONENUMBER, "");//((Member)memberList.get(i)).getName());
+
+            database.insert(TABLE_NAME_MEMBER, null, memberTableValues);
+        }
     }
 
     // 삭제할때 member table에서 같은 아이디값들 삭제해야함
@@ -134,6 +151,9 @@ public class SQLiteHelper {
     public Cursor getAllSquad() {
         return database.rawQuery("SELECT * FROM " + TABLE_NAME_SQUAD + " ORDER BY "
                 + SQUAD_COLUMN_ID + " DESC", null);
+    }
+    public Cursor getAllMembers() {
+        return database.rawQuery("SELECT * FROM " + TABLE_NAME_MEMBER, null);
     }
 
     // null because there are no selection args since we are just selecting

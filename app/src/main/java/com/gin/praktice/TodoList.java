@@ -5,10 +5,10 @@ public class TodoList {
     /**
      * 전체 EditText를 Acty_AddNewSquad에서 line 1줄로 제한하고, focus 잃으면 keyboard 없어지는 기능 적용되도록 -> 얼추 다 적용함, 폰에서 확인해야함
      *
-     * SQLite 저장 및 로드 기능 -> 저장 로드시 squad table 과 member table join 해서 만들어줘야함
-     * Main에서 Squad와 Member 만든 후에 선택된 Squad 있으면 newDDay로 넘어갈 때 Squad Member들 가져가도록
+     * -SQLite 저장 및 로드 기능 -> 로드시 squad table 과 member table join 해서 만들어줘야함
+     * -MainActy 에서 Member 읽어서 Squad에서 memberList에 채워줘야함
      *
-     * MainActy 에서 Squad에 해당되는 Member 추가/삭제/ (이름수정) 기능 추가해야함
+     * -MainActy 에서 Squad에 해당되는 Member 추가/삭제/ (이름수정) 기능 추가해야함
      *
      * 마지막 ResultActy 에서 확인 후에 화면 끄면 어디로 갈지 정해야함
      *

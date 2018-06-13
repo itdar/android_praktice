@@ -90,5 +90,6 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<ComponentRecy
     }
 
     public void setItems(List<Component> items) { this.items = items; }
+    public List<Component> getItems() { return this.items; }
     public void clearItems() { this.items.clear(); }
 }

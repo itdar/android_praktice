@@ -13,6 +13,7 @@ import com.gin.praktice.R;
 import com.gin.praktice.adapter.ComponentRecyclerAdapter;
 import com.gin.praktice.adapter.SquadRecyclerAdapter;
 import com.gin.praktice.component.Component;
+import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Squad;
 import com.gin.praktice.sqlite.SQLiteHelper;
 
@@ -51,16 +52,35 @@ public class Acty_Main extends Activity {
 
         setRecyclerView();
 
-        Cursor cursor = sqLiteHelper.getAllSquad();
-        if (cursor.getCount() > 0)
+        loadSQLite();
+
+
+    }
+
+    private void loadSQLite() {
+        Cursor squadCursor = sqLiteHelper.getAllSquad();
+        if (squadCursor.getCount() > 0)
         {
-            cursor.moveToFirst();
+            squadCursor.moveToFirst();
             do {
-                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String name = squadCursor.getString(squadCursor.getColumnIndex("name"));
                 squadList.add(new Squad(name));
-            } while (cursor.moveToNext());
-            cursor.close();
+            } while (squadCursor.moveToNext());
+            squadCursor.close();
             squadListAdapter.notifyDataSetChanged();
+        }
+
+        // Member 읽어서 Squad에서 memberList에 채워줘야함
+        Cursor memberCursor = sqLiteHelper.getAllSquad();
+        if (memberCursor.getCount() > 0)
+        {
+            memberCursor.moveToFirst();
+            do {
+                String name = memberCursor.getString(memberCursor.getColumnIndex("name"));
+                squadList.add(new Squad(name));
+            } while (memberCursor.moveToNext());
+            memberCursor.close();
+//            squadListAdapter.notifyDataSetChanged();
         }
     }
 
@@ -97,11 +117,17 @@ public class Acty_Main extends Activity {
     }
 
     /**
-     * TODO 20180606
+     * TODO 20180613
      * If there is selected Squad, then need to tranfer squad object with members from main to newDDayActy
      */
     private void newDDayButtonAction() {
-        Toast.makeText(this, "newDDayButtonAction", Toast.LENGTH_LONG).show();
+
+        if (memberListAdapter != null && memberListAdapter.getItemCount() > 0)
+        {
+            Toast.makeText(this, "newDDayButtonAction", Toast.LENGTH_LONG).show();
+            DDay dDay = DDay.getInstance();
+            dDay.dayMembers.setList(memberListAdapter.getItems());
+        }
 
         startActivity(dDayIntent);
     }

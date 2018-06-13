@@ -81,7 +81,7 @@ public class SquadRecyclerAdapter extends RecyclerView.Adapter<SquadRecyclerAdap
 
         /**
          * If selected list already has same index, clear / if not -> select and coloring
-         * Show the members of the selected Squad on the another recyclerView
+         * Show the members of the selected Squad on the MemberRecyclerView
          * @param view
          */
         @Override
@@ -102,7 +102,6 @@ public class SquadRecyclerAdapter extends RecyclerView.Adapter<SquadRecyclerAdap
             memberListAdapter.notifyDataSetChanged();
             notifyDataSetChanged();
         }
-
     }
 
     public List<Integer> getSelectedList() { return this.selected; }
