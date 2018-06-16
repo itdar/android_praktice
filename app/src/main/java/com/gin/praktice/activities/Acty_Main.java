@@ -45,17 +45,9 @@ public class Acty_Main extends Activity {
 
         dDayIntent = new Intent(this, Acty_DDay.class);
 
-        memberListView = (RecyclerView) findViewById(R.id.memberListView);
-        memberList = new ArrayList<>();
-
-        squadListView = (RecyclerView) findViewById(R.id.squadListView);
-        squadList = new ArrayList<>();
-
         setRecyclerView();
 
         loadSQLite();
-
-
     }
 
     private void loadSQLite() {
@@ -98,7 +90,14 @@ public class Acty_Main extends Activity {
         }
     }
 
-    private void setRecyclerView() {
+    private void setRecyclerView()
+    {
+        memberListView = (RecyclerView) findViewById(R.id.memberListView);
+        memberList = new ArrayList<>();
+
+        squadListView = (RecyclerView) findViewById(R.id.squadListView);
+        squadList = new ArrayList<>();
+
         memberListView.setHasFixedSize(true);
         squadListView.setHasFixedSize(true);
 

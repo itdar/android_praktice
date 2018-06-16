@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gin.praktice.R;
 import com.gin.praktice.component.Component;
@@ -72,12 +71,15 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<ComponentRecy
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(), "position = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(view.getContext(), "position = " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
 
-            if (!selected.contains(getAdapterPosition())) {
+            if (!selected.contains(getAdapterPosition()))
+            {
                 selected.clear();
                 selected.add(getAdapterPosition());
-            } else {
+            }
+            else
+            {
                 selected.clear();
             }
             notifyDataSetChanged();

@@ -15,11 +15,7 @@ public class DDay extends Composite {
 		this.dayMembers = new DayMembers();
 		this.date = null;
 	}
-//	public DDay(String name, String date) {
-//		this.members = new DayMembers();
-//		this.name = name;
-//		this.date = date;
-//	}
+	
 	public DDay(DDay source) {
 		for (int i = 0; i < source.list.size(); i++) {
 			this.list.add(source.list.get(i).clone());

@@ -55,7 +55,7 @@ public class SquadRecyclerAdapter extends RecyclerView.Adapter<SquadRecyclerAdap
             holder.itemView.setBackgroundColor(Color.LTGRAY);
         }
         else {
-            holder.itemView.setBackgroundColor(Color.CYAN);
+            holder.itemView.setBackgroundColor(Color.GREEN);
         }
 
     }

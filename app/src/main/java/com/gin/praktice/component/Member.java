@@ -5,50 +5,62 @@ import android.widget.TextView;
 import com.gin.praktice.visitor.Visitor;
 
 public class Member extends Component {
-	// 계좌명 / 은행명 / 전화번호  // 옵션 - Builder pattern
+
 	private String bank;
 	private String accountNumber;
 	private String phoneNumber;
 
-	private Member() {
-		
-	}
+	private boolean isOneThird = false; // 2
+	private boolean isOneSecond = false; // 3 // normal = 6
+	private boolean isManager = false;
 
-	// Need to adjust builder pattern
-	public Member(String name) {
-		this.name = name;
-		this.bank = "N/A";
-		this.accountNumber = "N/A";
-		this.phoneNumber = "N/A";
-		this.money = 0;
-	}
-	public Member(String name, String bank, String accountNumber, String phoneNumber) {
-		this.name = name;
-		this.bank = bank;
-		this.accountNumber = accountNumber;
-		this.phoneNumber = phoneNumber;
-		this.money = 0;
-	}
-	public Member(String name, String phoneNumber) {
-		this.name = name;
-		this.bank = "N/A";
-		this.accountNumber = "N/A";
-		this.phoneNumber = phoneNumber;
-		this.money = 0;
-	}
-	public Member(String name, int money) {
-		this.name = name;
-		this.bank = "N/A";
-		this.accountNumber = "N/A";
-		this.phoneNumber = "N/A";
-		this.money = money;
+	public Member(Builder builder) {
+		this.name = builder.name;
+		this.money = builder.money;
+		this.bank = builder.bank;
+		this.accountNumber = builder.accountNumber;
+		this.phoneNumber = builder.phoneNumber;
 	}
 	public Member(Member source) {
 		this.name = source.name;
-		this.phoneNumber = source.phoneNumber;
 		this.money = source.money;
+		this.bank = source.bank;
+		this.accountNumber = source.accountNumber;
+		this.phoneNumber = source.phoneNumber;
 	}
-		
+
+	public static class Builder {
+		private String name = "N/A";
+		private int money = 0;
+		private String bank = "N/A";
+		private String accountNumber = "N/A";
+		private String phoneNumber = "N/A";
+
+		public Builder name(String name) {
+			this.name = name;
+			return this;
+		}
+		public Builder money(int money) {
+			this.money = money;
+			return this;
+		}
+		public Builder bank(String bank) {
+			this.bank = bank;
+			return this;
+		}
+		public Builder accountNumber(String accountNumber) {
+			this.accountNumber = accountNumber;
+			return this;
+		}
+		public Builder phoneNumber(String phoneNumber) {
+			this.phoneNumber = phoneNumber;
+			return this;
+		}
+		public Member build() {
+			return new Member(this);
+		}
+	}
+
 	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
@@ -74,6 +86,8 @@ public class Member extends Component {
 	public String getAccountNumber() { return this.accountNumber; }
 	public String getPhoneNumber() { return this.phoneNumber; }
 
+	public void setManager(boolean isManager) { this.isManager = isManager; }
+	public boolean getManager() { return this.isManager; }
 
 	public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 }

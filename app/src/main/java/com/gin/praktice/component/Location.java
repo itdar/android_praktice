@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Location extends Composite {
-	
+
+	private Member manager;
 	
 	public Location() {
 		
@@ -57,7 +58,20 @@ public class Location extends Composite {
 		return new Location(this);
 	}
 
-	public int getLength() {
-		return this.list.size();
+	public Component getManager() { return this.manager; }
+
+	/**
+	 * Manager value is linked with pointer
+	 * @param member
+	 */
+	public void setManager(Component member) { this.manager = (Member)member; }
+	public void setManager(String memberName) {
+		for (int i = 0; i < getLength(); ++i)
+		{
+			if (memberName.equals(list.get(i).getName()))
+			{
+				this.manager = (Member)list.get(i);
+			}
+		}
 	}
 }

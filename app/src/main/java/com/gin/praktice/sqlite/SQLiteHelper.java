@@ -24,11 +24,9 @@ public class SQLiteHelper {
 
     public static final String TABLE_NAME_SQUAD = "TABLE_NAME_SQUAD";
     public static final String TABLE_NAME_MEMBER = "TABLE_NAME_MEMBER";
-    public static final String TABLE_NAME_RESULT = "TABLE_NAME_RESULT";
 
     public static final String SQUAD_COLUMN_ID = "squadID";
     public static final String SQUAD_COLUMN_NAME = "name";
-    public static final String SQUAD_COLUMN_CREATEDATETIME = "createDateTime";
 
     public static final String MEMBER_COLUMN_ID = "memberID";
     public static final String MEMBER_COLUMN_SQUAD_NAME = "squadName";
@@ -36,12 +34,6 @@ public class SQLiteHelper {
     public static final String MEMBER_COLUMN_BANK = "bank";
     public static final String MEMBER_COLUMN_ACCOUNT = "accountNumber";
     public static final String MEMBER_COLUMN_PHONENUMBER = "phoneNumber";
-
-//    public static final String USER_TABLE_NAME = "user_profile";
-//    public static final String PROFILE_COLUMN_ID = "_id";
-//    public static final String PROFILE_COLUMN_USERNAME = "userName";
-//    public static final String PROFILE_COLUMN_GENDER = "gender";
-//    public static final String PROFILE_COLUMN_AGE = "age";
 
     public SQLiteHelper(Context context) {
         openHelper = new DatabaseOpenHelper(context);
@@ -75,7 +67,7 @@ public class SQLiteHelper {
         }
     }
 
-    // 2. 마지막 Result 나온 후 저장하는 기능 추후에
+    // 2. 마지막 Result 나온 후 저장하는 기능 추후에 (Table 추가하거나 column 추가 해얄듯)
     public void saveSquad(Squad squad)
     {
         ContentValues squadTableValues = new ContentValues();
@@ -123,28 +115,6 @@ public class SQLiteHelper {
                 + ")" );
     }
 
-//     method that saves the users profile information
-//    public void saveUserProfile(String userName, String userGender,
-//                                String userAge) {
-//
-//        // Clears the legacy profile information first
-////        database.execSQL("DELETE FROM user_profile;");
-////
-////        // Writes the new profile information
-////        ContentValues contentValues = new ContentValues();
-////        contentValues.put(PROFILE_COLUMN_USERNAME, userName);
-////        contentValues.put(PROFILE_COLUMN_GENDER, userGender);
-////        contentValues.put(PROFILE_COLUMN_AGE, userAge);
-////        database.insert(USER_TABLE_NAME, null, contentValues);
-//    }
-
-    // null because there are no selection args since we are just selecting
-    // everything
-//    public Cursor getUserProfileInfo() {
-//        return database.rawQuery("SELECT * FROM " + USER_TABLE_NAME, null);
-//    }
-
-
     // null because there are no selection args since we are just selecting
     // everything
     public Cursor getAllSquad() {
@@ -153,17 +123,5 @@ public class SQLiteHelper {
     }
     public Cursor getAllMembers() {
         return database.rawQuery("SELECT * FROM " + TABLE_NAME_MEMBER, null);
-    }
-
-    // null because there are no selection args since we are just selecting
-    // everything
-    public Cursor getSingleTimeRecord(String list_view_row_id) {
-        return database.rawQuery("SELECT * FROM pft_test_records WHERE _id = "
-                + list_view_row_id + ";", null);
-    }
-
-    public void deleteSingleRecord(String list_view_row_id) {
-        database.execSQL("DELETE FROM pft_test_records WHERE _id = "
-                + list_view_row_id + ";");
     }
 }
