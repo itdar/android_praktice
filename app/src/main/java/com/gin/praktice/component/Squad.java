@@ -5,9 +5,6 @@ import android.widget.TextView;
 import com.gin.praktice.visitor.Visitor;
 
 public class Squad extends Composite {
-//    private String name = "";
-//    private int money = 0;
-//    private List<Component> list = new ArrayList<>();
 
     // TODO 0604
     // Squad 를 Composite 상속받는걸로 바꿔서

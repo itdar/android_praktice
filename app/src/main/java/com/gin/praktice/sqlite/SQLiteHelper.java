@@ -75,7 +75,6 @@ public class SQLiteHelper {
         }
     }
 
-    // 1. 일단 Squad 추가할때 member table에도 각각 추가되도록 // 여기부터 시작
     // 2. 마지막 Result 나온 후 저장하는 기능 추후에
     public void saveSquad(Squad squad)
     {

@@ -14,6 +14,7 @@ import com.gin.praktice.adapter.ComponentRecyclerAdapter;
 import com.gin.praktice.adapter.SquadRecyclerAdapter;
 import com.gin.praktice.component.Component;
 import com.gin.praktice.component.DDay;
+import com.gin.praktice.component.Member;
 import com.gin.praktice.component.Squad;
 import com.gin.praktice.sqlite.SQLiteHelper;
 
@@ -70,17 +71,30 @@ public class Acty_Main extends Activity {
             squadListAdapter.notifyDataSetChanged();
         }
 
-        // Member 읽어서 Squad에서 memberList에 채워줘야함
-        Cursor memberCursor = sqLiteHelper.getAllSquad();
+        Cursor memberCursor = sqLiteHelper.getAllMembers();
         if (memberCursor.getCount() > 0)
         {
             memberCursor.moveToFirst();
             do {
-                String name = memberCursor.getString(memberCursor.getColumnIndex("name"));
-                squadList.add(new Squad(name));
+                insertInSquad(memberCursor);
             } while (memberCursor.moveToNext());
             memberCursor.close();
-//            squadListAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void insertInSquad(Cursor memberCursor)
+    {
+        String squadName = memberCursor.getString(memberCursor.getColumnIndex("squadName"));
+        for (int i = 0; i < squadList.size(); ++i)
+        {
+            if (squadList.get(i).getName().equals(squadName))
+            {
+                String name = memberCursor.getString(memberCursor.getColumnIndex("name"));;
+                String bank = memberCursor.getString(memberCursor.getColumnIndex("bank"));;
+                String accountNumber = memberCursor.getString(memberCursor.getColumnIndex("accountNumber"));;
+                String phoneNumber = memberCursor.getString(memberCursor.getColumnIndex("phoneNumber"));;
+                ((Squad)squadList.get(i)).add(new Member(name, bank, accountNumber, phoneNumber));
+            }
         }
     }
 
@@ -116,15 +130,11 @@ public class Acty_Main extends Activity {
         startActivityForResult(addNewGroupIntent, ADD_NEW_SQUAD);
     }
 
-    /**
-     * TODO 20180613
-     * If there is selected Squad, then need to tranfer squad object with members from main to newDDayActy
-     */
     private void newDDayButtonAction() {
 
         if (memberListAdapter != null && memberListAdapter.getItemCount() > 0)
         {
-            Toast.makeText(this, "newDDayButtonAction", Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, "newDDayButtonAction", Toast.LENGTH_LONG).show();
             DDay dDay = DDay.getInstance();
             dDay.dayMembers.setList(memberListAdapter.getItems());
         }

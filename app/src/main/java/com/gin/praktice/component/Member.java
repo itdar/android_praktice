@@ -6,23 +6,40 @@ import com.gin.praktice.visitor.Visitor;
 
 public class Member extends Component {
 	// 계좌명 / 은행명 / 전화번호  // 옵션 - Builder pattern
+	private String bank;
+	private String accountNumber;
 	private String phoneNumber;
 
 	private Member() {
 		
 	}
+
+	// Need to adjust builder pattern
 	public Member(String name) {
 		this.name = name;
+		this.bank = "N/A";
+		this.accountNumber = "N/A";
 		this.phoneNumber = "N/A";
+		this.money = 0;
+	}
+	public Member(String name, String bank, String accountNumber, String phoneNumber) {
+		this.name = name;
+		this.bank = bank;
+		this.accountNumber = accountNumber;
+		this.phoneNumber = phoneNumber;
 		this.money = 0;
 	}
 	public Member(String name, String phoneNumber) {
 		this.name = name;
+		this.bank = "N/A";
+		this.accountNumber = "N/A";
 		this.phoneNumber = phoneNumber;
 		this.money = 0;
 	}
 	public Member(String name, int money) {
 		this.name = name;
+		this.bank = "N/A";
+		this.accountNumber = "N/A";
 		this.phoneNumber = "N/A";
 		this.money = money;
 	}
@@ -52,8 +69,11 @@ public class Member extends Component {
 	public void minusMoney(int money) {
 		this.money -= money;
 	}
-	
 
+	public String getBank() { return this.bank; }
+	public String getAccountNumber() { return this.accountNumber; }
 	public String getPhoneNumber() { return this.phoneNumber; }
+
+
 	public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 }
