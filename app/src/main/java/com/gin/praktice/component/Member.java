@@ -10,8 +10,8 @@ public class Member extends Component {
 	private String accountNumber;
 	private String phoneNumber;
 
-	private boolean isOneThird = false; // 2
-	private boolean isOneSecond = false; // 3 // normal = 6
+	public boolean isOneThird = false; // 2
+	public boolean isOneSecond = false; // 3 // normal = 6
 	private boolean isManager = false;
 
 	public Member(Builder builder) {

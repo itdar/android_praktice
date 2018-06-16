@@ -33,14 +33,46 @@ public class Location extends Composite {
 	 */
 	public void distribution() {
 		List<Component> tempList = new ArrayList<Component>();
-		for (int i = 0; i < this.getLength(); i++) {
+		Member member;
+		int divider = 0;
+		for (int i = 0; i < this.getLength(); ++i)
+		{
+			member = ((Member)this.get(i));
+			if (member.isOneSecond)
+			{
+				divider += 3;
+			}
+			else if (member.isOneThird)
+			{
+				divider += 2;
+			}
+			else
+			{
+				divider += 6;
+			}
 			tempList.add(((Member)this.list.get(i).clone()));
 		}
-		int share = money / this.getLength();
-		for (int i = 0; i < this.getLength(); i++) {
-			// Accumulation -> plusMoney / Each round money -> setMoney
-			((Member)tempList.get(i)).setMoney(share);
-			((Member) this.get(i)).plusMoney(share);
+
+		int dividedShare = money / divider;
+
+		// Accumulation -> plusMoney / Each round money -> setMoney
+		for (int i = 0; i < this.getLength(); ++i) {
+			member = ((Member)this.get(i));
+			if (member.isOneSecond)
+			{
+				((Member)tempList.get(i)).setMoney(dividedShare * 3);
+				((Member) this.get(i)).plusMoney(dividedShare * 3);
+			}
+			else if (member.isOneThird)
+			{
+				((Member)tempList.get(i)).setMoney(dividedShare * 2);
+				((Member) this.get(i)).plusMoney(dividedShare * 2);
+			}
+			else
+			{
+				((Member)tempList.get(i)).setMoney(dividedShare * 6);
+				((Member) this.get(i)).plusMoney(dividedShare * 6);
+			}
 		}
 		this.setList(tempList);
 	}
@@ -59,11 +91,6 @@ public class Location extends Composite {
 	}
 
 	public Component getManager() { return this.manager; }
-
-	/**
-	 * Manager value is linked with pointer
-	 * @param member
-	 */
 	public void setManager(Component member) { this.manager = (Member)member; }
 	public void setManager(String memberName) {
 		for (int i = 0; i < getLength(); ++i)

@@ -94,7 +94,7 @@ public class Acty_DDay extends Activity {
 
     private void addData(String receiveName, String receivePhone) {
 //        dayMembersList.add
-        dDay.dayMembers.add(new Member(receiveName, receivePhone));
+        dDay.dayMembers.add(new Member.Builder().name(receiveName).phoneNumber(receivePhone).build());
 
         adapter.notifyDataSetChanged();
     }

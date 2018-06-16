@@ -85,7 +85,7 @@ public class Acty_Main extends Activity {
                 String bank = memberCursor.getString(memberCursor.getColumnIndex("bank"));;
                 String accountNumber = memberCursor.getString(memberCursor.getColumnIndex("accountNumber"));;
                 String phoneNumber = memberCursor.getString(memberCursor.getColumnIndex("phoneNumber"));;
-                ((Squad)squadList.get(i)).add(new Member(name, bank, accountNumber, phoneNumber));
+                ((Squad)squadList.get(i)).add(new Member.Builder().name(name).bank(bank).accountNumber(accountNumber).phoneNumber(phoneNumber).build());
             }
         }
     }

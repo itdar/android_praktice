@@ -150,7 +150,7 @@ public class Acty_AddNewSquad extends Activity {
 
     private void addData(String receiveName, String receivePhone) {
 
-        newGroupMembersList.add(new Member(receiveName, receivePhone));
+        newGroupMembersList.add(new Member.Builder().name(receiveName).phoneNumber(receivePhone).build());
         Toast.makeText(this, Integer.toString(newGroupMembersList.size()), Toast.LENGTH_LONG).show();
 
         adapter.notifyDataSetChanged();
