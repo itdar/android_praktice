@@ -10,12 +10,13 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gin.praktice.R;
-import com.gin.praktice.adapter.ComponentRecyclerAdapter;
+import com.gin.praktice.adapter.LocationRecyclerAdapter;
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Location;
+import com.gin.praktice.component.Member;
+import com.gin.praktice.member.DayMembers;
 
 import java.util.ArrayList;
 
@@ -32,8 +33,7 @@ public class Acty_Location extends Activity {
     private EditText moneyEditText;
 
     private RecyclerView locationMemberView;
-//    private List<Component> locationMemberList;
-    private ComponentRecyclerAdapter adapter;
+    private LocationRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public class Acty_Location extends Activity {
     private void setRecyclerView() {
         locationMemberView.setHasFixedSize(true);
 
-        adapter = new ComponentRecyclerAdapter(location.getList());
+        adapter = new LocationRecyclerAdapter(location.getList());
         locationMemberView.setAdapter(adapter);
 
         // 지그재그형의 그리드 형식
@@ -92,15 +92,58 @@ public class Acty_Location extends Activity {
             case R.id.nextButton : nextButtonAction(); break;
             case R.id.deleteButton : deleteButtonAction(); break;
             case R.id.addMemberButton : addMemberButtonAction(); break;
+            case R.id.cancelLateButton : cancelLateButtonAction(); break;
+            case R.id.littleLateButton : littleLateButtonAction(); break;
+            case R.id.superLateButton : superLateButtonAction(); break;
             //Save n Add
             case R.id.addMoreLocationButton : addMoreLocationButtonAction(); break;
             default: break;
         }
     }
 
+    private void cancelLateButtonAction() {
+        if (adapter.getSelectedList().size() > 0)
+        {
+            ((Member)location.get(adapter.getSelectedList().get(0))).isOneSecond = false;
+            ((Member)location.get(adapter.getSelectedList().get(0))).isOneThird = false;
+
+            adapter.getSelectedList().clear();
+            adapter.notifyDataSetChanged();
+        } else {
+
+        }
+    }
+
+    private void littleLateButtonAction() {
+        if (adapter.getSelectedList().size() > 0)
+        {
+            ((Member)location.get(adapter.getSelectedList().get(0))).isOneThird = false;
+            ((Member)location.get(adapter.getSelectedList().get(0))).isOneSecond = true;
+
+            adapter.getSelectedList().clear();
+            adapter.notifyDataSetChanged();
+        } else {
+
+        }
+    }
+
+    private void superLateButtonAction() {
+        if (adapter.getSelectedList().size() > 0)
+        {
+            ((Member)location.get(adapter.getSelectedList().get(0))).isOneSecond = false;
+            ((Member)location.get(adapter.getSelectedList().get(0))).isOneThird = true;
+
+            adapter.getSelectedList().clear();
+            adapter.notifyDataSetChanged();
+        } else {
+
+        }
+    }
+
     private void deleteButtonAction() {
-        Toast.makeText(this, "DeleteButton. " + "\nadapter length : " + adapter.getSelectedList().size(), Toast.LENGTH_LONG).show();
-        if (adapter.getSelectedList().size() > 0) {
+//        Toast.makeText(this, "DeleteButton. " + "\nadapter length : " + adapter.getSelectedList().size(), Toast.LENGTH_LONG).show();
+        if (adapter.getSelectedList().size() > 0)
+        {
             location.remove(adapter.getSelectedList().get(0));
             adapter.getSelectedList().clear();
         }
@@ -117,7 +160,8 @@ public class Acty_Location extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
-        if (resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK)
+        {
             switch (requestCode) {
                 case ADD_MEMBER : addMember(intent); break;
 //                case REQUEST_KAKAO : ; break;
@@ -131,10 +175,13 @@ public class Acty_Location extends Activity {
         Bundle bundle = intent.getExtras();
         ArrayList<String> nameList = bundle.getStringArrayList("nameList");
 
-        for (int i = 0; i < nameList.size(); i++) {
+        for (int i = 0; i < nameList.size(); ++i)
+        {
 //            adapter.add(nameList.get(i));
-            for (int j = 0; j < dDay.dayMembers.getLength(); j++) {
-                if (nameList.get(i).equals(dDay.dayMembers.get(j).getName())) {
+            for (int j = 0; j < dDay.dayMembers.getLength(); ++j)
+            {
+                if (nameList.get(i).equals(dDay.dayMembers.get(j).getName()))
+                {
                     location.add(dDay.dayMembers.get(j));
                 }
             }
@@ -143,12 +190,14 @@ public class Acty_Location extends Activity {
     }
 
     private void addMoreLocationButtonAction() {
-        if (location.getLength() >= 1 && storeNameEditText.getText() != null && moneyEditText.getText() != null) {
+        if (location.getLength() >= 1 && !storeNameEditText.getText().toString().equals("") && !moneyEditText.getText().toString().equals(""))
+        {
             location.setName(storeNameEditText.getText().toString());
             location.setMoney(Integer.parseInt(moneyEditText.getText().toString()));
 
             location.distribution();
-            dDay.add(location.clone());
+            initLate();
+            dDay.add(location);
 
             startActivity(locationIntent);
             finish();
@@ -157,13 +206,16 @@ public class Acty_Location extends Activity {
         }
     }
 
-    private void nextButtonAction() {
-        if (location.getLength() >= 1 && storeNameEditText.getText() != null && moneyEditText.getText() != null) {
+    private void nextButtonAction()
+    {
+        if (location.getLength() >= 1 && storeNameEditText.getText() != null && moneyEditText.getText() != null)
+        {
             location.setName(storeNameEditText.getText().toString());
             location.setMoney(Integer.parseInt(moneyEditText.getText().toString()));
 
             location.distribution();
-            dDay.add(location.clone());
+            initLate();
+            dDay.add(location);
 
             startActivity(resultIntent);
             finish();
@@ -171,5 +223,16 @@ public class Acty_Location extends Activity {
             //error toast
         }
 
+    }
+
+    private void initLate()
+    {
+        DayMembers dayMembers = dDay.dayMembers;
+        for (int i = 0; i < dayMembers.getLength(); ++i)
+        {
+            ((Member)dayMembers.get(i)).isOneSecond = false;
+            ((Member)dayMembers.get(i)).isOneThird = false;
+            ((Member)dayMembers.get(i)).setManager(false);
+        }
     }
 }

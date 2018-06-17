@@ -51,18 +51,4 @@ public class DDay extends Composite {
 	public String getDate() {
 		return this.date;
 	}
-	
-	
-//	public static void main(String args[]) {
-//		Acty_DDay dDay1 = new Acty_DDay("dDay1", "2018-08-29");
-//		Acty_DDay dDay2 = new Acty_DDay(dDay1);
-//		
-//		System.out.println(dDay1.getName());
-//		System.out.println(dDay2.getName());
-//		
-//		dDay1.setName("dDay3");
-//		System.out.println(dDay1.getName());
-//		System.out.println(dDay2.getName());
-//	}
-	
 }

@@ -27,6 +27,9 @@ public class Member extends Component {
 		this.bank = source.bank;
 		this.accountNumber = source.accountNumber;
 		this.phoneNumber = source.phoneNumber;
+		this.isOneSecond = source.isOneSecond;
+		this.isOneThird = source.isOneThird;
+		this.isManager = source.isManager;
 	}
 
 	public static class Builder {

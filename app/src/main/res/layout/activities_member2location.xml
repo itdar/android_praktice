@@ -1,52 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:text="모임날 인원 중 선택"
-        android:textAlignment="center"
-        android:textSize="30sp" />
-
-    <ListView
-        android:id="@+id/locationMemberView"
-        android:layout_width="match_parent"
-        android:layout_height="415dp"
-        android:layout_marginBottom="20dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="16dp" />
-
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/cancelButton"
-            android:layout_width="31dp"
-            android:layout_height="72dp"
-            android:layout_weight="1"
-            android:onClick="onClick"
-            android:text="Cancel"
-            tools:layout_editor_absoluteX="32dp"
-            tools:layout_editor_absoluteY="447dp" />
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:text="모임날 인원 중 선택"
+            android:textAlignment="center"
+            android:textSize="30sp" />
 
-        <Button
-            android:id="@+id/addButton"
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_weight="1"
-            android:onClick="onClick"
-            android:text="Add"
-            tools:layout_editor_absoluteX="264dp"
-            tools:layout_editor_absoluteY="447dp" />
+        <ListView
+            android:id="@+id/locationMemberView"
+            android:layout_width="match_parent"
+            android:layout_height="415dp"
+            android:layout_marginBottom="20dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="31dp"
+                android:layout_height="72dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:text="Cancel"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="447dp" />
+
+            <Button
+                android:id="@+id/addButton"
+                android:layout_width="wrap_content"
+                android:layout_height="72dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:text="Add"
+                tools:layout_editor_absoluteX="264dp"
+                tools:layout_editor_absoluteY="447dp" />
+        </LinearLayout>
+
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
