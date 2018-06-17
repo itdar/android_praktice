@@ -70,6 +70,8 @@
             android:id="@+id/locationMemberView"
             android:layout_width="match_parent"
             android:layout_height="147dp"
+            android:scrollbars="vertical"
+            android:fadeScrollbars="false"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"

@@ -82,6 +82,8 @@
                     android:id="@+id/dayMembersView"
                     android:layout_width="match_parent"
                     android:layout_height="161dp"
+                    android:scrollbars="vertical"
+                    android:fadeScrollbars="false"
                     tools:layout_editor_absoluteX="10dp"
                     tools:layout_editor_absoluteY="218dp">
 

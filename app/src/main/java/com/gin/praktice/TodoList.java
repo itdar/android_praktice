@@ -8,15 +8,15 @@ public class TodoList {
      * 전체 EditText를 Acty_AddNewSquad에서 line 1줄로 제한하고, focus 잃으면 keyboard 없어지는 기능 적용되도록 -> 얼추 다 적용함, 폰에서 확인해야함
      * SQLite 저장 및 로드 기능 -> 로드시 squad table 과 member 채워주는 것 최적화 생각해봐야함
      *
-     * - MainActy 에서 Squad에 해당되는 Member 추가/삭제/ (이름수정) 기능 추가해야함
+     * -** MainActy 에서 Squad에 해당되는 Member 추가/삭제/ (이름수정) 기능 추가해야함
      *
      * - Location 에서 앞 Location에 있었던 멤버는 자동으로 다음 Location 때 추가되어 있도록 해야함
      *
-     * - 이름 중복되지 않도록 해야함
+     * -** 이름 중복되지 않도록 해야함
      *
      * - DDay Acty에서 날짜 형식 -> regex 사용?
      *
-     * - 그냥멤버추가 지금 안쓰는 칸들은 막아버리거나 지워놓기
+     * -** 그냥멤버추가 지금 안쓰는 칸들은 막아버리거나 지워놓기
      *
      * Activity 꺼질때 호출되는 메소드 찾아서 override 해서 필요내용 -> e.g. reverse location to dday
      *
@@ -27,9 +27,7 @@ public class TodoList {
      *
      * === 엔빵기능에서..
      *
-     * 엔빵에서 각 차 장소에서 계산한 사람 선택기능 -> ResultActy에서 계산한사람마다 나눠서 출력되도록
-     *
-     * 화면 RecyclerView 스크롤 눈에 보이도록?? 어떻게 하는지 확인해야함
+     * -* 엔빵에서 각 차 장소에서 계산한 사람 선택기능 -> ResultActy에서 계산한사람마다 나눠서 출력되도록
      *
      *
      *
