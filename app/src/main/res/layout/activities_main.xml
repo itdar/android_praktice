@@ -13,9 +13,9 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="15dp"
             android:layout_marginTop="20dp"
-            android:text="프로토 타입"
+            android:text="정신차려 이 각박한 세상 어플"
             android:textAlignment="center"
             android:textSize="30sp"
             tools:layout_editor_absoluteX="158dp"
@@ -30,32 +30,6 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="선택된 모임 멤버들"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/memberListView"
-                    android:layout_width="match_parent"
-                    android:scrollbars="vertical"
-                    android:fadeScrollbars="false"
-                    android:layout_height="174dp"
-                    android:layout_weight="1">
-
-                </android.support.v7.widget.RecyclerView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -66,21 +40,33 @@
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:onClick="onClick"
-                    android:text="선택 모임 삭제"
+                    android:text="선택한 모임을 삭제"
                     android:textAlignment="center"
                     tools:layout_editor_absoluteX="212dp"
                     tools:layout_editor_absoluteY="235dp" />
 
-                <Button
-                    android:id="@+id/modifySquadButton"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:layout_marginBottom="10dp"
-                    android:onClick="onClick"
-                    android:text="선택 모임 수정"
-                    android:textAlignment="center"
-                    tools:layout_editor_absoluteX="55dp"
-                    tools:layout_editor_absoluteY="149dp" />
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/deleteMemberButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="선택한모임에서\n선택멤버 삭제" />
+
+                    <Button
+                        android:id="@+id/addMemberButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="onClick"
+                        android:text="선택한모임에서\n선택멤버 추가" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/newSquadButton"
@@ -88,7 +74,7 @@
                     android:layout_height="72dp"
                     android:layout_marginBottom="10dp"
                     android:onClick="onClick"
-                    android:text="새 모임 생성"
+                    android:text="새로운 모임을 생성"
                     android:textAlignment="center"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="192dp" />
@@ -100,27 +86,60 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView14"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="모임 리스트"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/squadListView"
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="선택된 모임의 멤버들"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/memberListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp"
+                    android:layout_weight="1"
+                    android:fadeScrollbars="false"
+                    android:scrollbars="vertical">
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="152dp"
-                android:scrollbars="vertical"
-                android:fadeScrollbars="false"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            </android.support.v7.widget.RecyclerView>
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="전체 모임 리스트"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/squadListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp"
+                    android:fadeScrollbars="false"
+                    android:scrollbars="vertical">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <Button

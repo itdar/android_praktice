@@ -189,6 +189,8 @@ public class Acty_Location extends Activity {
         adapter.notifyDataSetChanged();
     }
 
+
+    //아래 두개메소드 중복내용 정리해야함
     private void addMoreLocationButtonAction() {
         if (location.getLength() >= 1 && !storeNameEditText.getText().toString().equals("") && !moneyEditText.getText().toString().equals(""))
         {

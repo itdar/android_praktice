@@ -91,6 +91,7 @@ public class SquadRecyclerAdapter extends RecyclerView.Adapter<SquadRecyclerAdap
             if (!selected.contains(getAdapterPosition())) {
                 selected.clear();
 
+                memberListAdapter.clearItems();
                 memberListAdapter.setItems(((Squad)squadItems.get(getAdapterPosition()).clone()).getList());
                 selected.add(getAdapterPosition());
             } else {

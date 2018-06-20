@@ -81,21 +81,22 @@ public class Acty_Main extends Activity {
         {
             if (squadList.get(i).getName().equals(squadName))
             {
-                String name = memberCursor.getString(memberCursor.getColumnIndex("name"));;
-                String bank = memberCursor.getString(memberCursor.getColumnIndex("bank"));;
-                String accountNumber = memberCursor.getString(memberCursor.getColumnIndex("accountNumber"));;
-                String phoneNumber = memberCursor.getString(memberCursor.getColumnIndex("phoneNumber"));;
-                ((Squad)squadList.get(i)).add(new Member.Builder().name(name).bank(bank).accountNumber(accountNumber).phoneNumber(phoneNumber).build());
+                String name = memberCursor.getString(memberCursor.getColumnIndex("name"));
+                String bank = memberCursor.getString(memberCursor.getColumnIndex("bank"));
+                String accountNumber = memberCursor.getString(memberCursor.getColumnIndex("accountNumber"));
+                String phoneNumber = memberCursor.getString(memberCursor.getColumnIndex("phoneNumber"));
+                ((Squad)squadList.get(i)).add(
+                        new Member.Builder().name(name).bank(bank).accountNumber(accountNumber).phoneNumber(phoneNumber).build());
             }
         }
     }
 
     private void setRecyclerView()
     {
-        memberListView = (RecyclerView) findViewById(R.id.memberListView);
+        memberListView = findViewById(R.id.memberListView);
         memberList = new ArrayList<>();
 
-        squadListView = (RecyclerView) findViewById(R.id.squadListView);
+        squadListView = findViewById(R.id.squadListView);
         squadList = new ArrayList<>();
 
         memberListView.setHasFixedSize(true);
@@ -116,8 +117,26 @@ public class Acty_Main extends Activity {
             case R.id.newDDayButton : newDDayButtonAction(); break;
             case R.id.newSquadButton : newSquadButtonAction(); break;
             case R.id.deleteSquadButton : deleteSquadButtonAction(); break;
-            case R.id.modifySquadButton : modifySquadButtonAction(); break;
+            case R.id.addMemberButton : addMemberButtonAction(); break;
+            case R.id.deleteMemberButton : deleteMemberButtonAction(); break;
             default: break;
+        }
+    }
+
+    private void addMemberButtonAction() {
+
+    }
+
+    private void deleteMemberButtonAction() {
+        if (memberListAdapter.getItemCount() > 0 &&
+                memberListAdapter.getSelectedList().size() > 0 && squadListAdapter.getSelectedList().size() > 0)
+        {
+            String memberName = ((Member)memberListAdapter.getItems().get(memberListAdapter.getSelectedList().get(0).intValue())).getName();
+            String squadName = ((Squad)squadList.get(squadListAdapter.getSelectedList().get(0).intValue())).getName();
+
+            sqLiteHelper.deleteMember(memberName, squadName);
+            memberListAdapter.getItems().remove(memberListAdapter.getSelectedList().get(0).intValue());
+            memberListAdapter.notifyDataSetChanged();
         }
     }
 
@@ -154,11 +173,6 @@ public class Acty_Main extends Activity {
         squadListAdapter.notifyDataSetChanged();
     }
 
-    private void modifySquadButtonAction() {
-//        memberList.add(new Member("newMember"));
-//        memberListAdapter.notifyDataSetChanged();
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -180,7 +194,6 @@ public class Acty_Main extends Activity {
         squadListAdapter.notifyDataSetChanged();
 
         sqLiteHelper.saveSquad(squad);
-
 
 //        Toast.makeText(this, "squad name >> " + squad.getName(), Toast.LENGTH_LONG).show();
     }

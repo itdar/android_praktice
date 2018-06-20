@@ -142,7 +142,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="15dp"
             android:onClick="onClick"
-            android:text="다른 장소 추가" />
+            android:text="다음 장소 추가하기" />
 
         <Button
             android:id="@+id/nextButton"
@@ -152,7 +152,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="5dp"
             android:onClick="onClick"
-            android:text="Next" />
+            android:text="여기가 마지막!!  결과보기" />
 
     </LinearLayout>
 </ScrollView>

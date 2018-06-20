@@ -96,6 +96,12 @@ public class SQLiteHelper {
         database.delete(TABLE_NAME_MEMBER, MEMBER_COLUMN_SQUAD_NAME + "=" + "'" + squad.getName() + "'", null);
     }
 
+    public void deleteMember(String memberName, String squadName)
+    {
+        database.delete(TABLE_NAME_MEMBER, MEMBER_COLUMN_SQUAD_NAME + "=" + "'" + squadName + "'"
+                                    + " AND " + MEMBER_COLUMN_NAME + "=" + "'" + memberName + "'", null);
+    }
+
     private void createTables(SQLiteDatabase database)
     {
         database.execSQL("CREATE TABLE " + TABLE_NAME_SQUAD
