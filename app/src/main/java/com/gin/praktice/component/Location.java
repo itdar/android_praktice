@@ -92,13 +92,13 @@ public class Location extends Composite {
 
 	public Component getManager() { return this.manager; }
 	public void setManager(Component member) { this.manager = (Member)member; }
-	public void setManager(String memberName) {
-		for (int i = 0; i < getLength(); ++i)
-		{
-			if (memberName.equals(list.get(i).getName()))
-			{
-				this.manager = (Member)list.get(i);
-			}
-		}
-	}
+//	public void setManager(String memberName) {
+//		for (int i = 0; i < getLength(); ++i)
+//		{
+//			if (memberName.equals(list.get(i).getName()))
+//			{
+//				this.manager = (Member)list.get(i);
+//			}
+//		}
+//	}
 }

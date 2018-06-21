@@ -6,6 +6,7 @@ import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Location;
 import com.gin.praktice.component.Member;
 import com.gin.praktice.member.DayMembers;
+import com.gin.praktice.member.ManagerMembers;
 
 public class Visitor_AppendEditText implements Visitor {
 
@@ -28,7 +29,10 @@ public class Visitor_AppendEditText implements Visitor {
 
     @Override
     public void visit(Location location, TextView textView) {
-        textView.append("\n\n     " + "가게 이름 >> " + location.getName() + "\n     " + "금액 >> " + location.getMoney());
+        textView.append("\n\n     " + "가게 이름 >> " + location.getName()
+                        + "\n     " + "금액 >> " + location.getMoney()
+                        + "\n     " + "총무 >> " + location.getManager().getName());
+
         for (int i = 0; i < location.getList().size(); i++) {
             location.get(i).accept(this, textView);
         }
@@ -45,5 +49,10 @@ public class Visitor_AppendEditText implements Visitor {
     @Override
     public void visit(Member member, TextView textView) {
         textView.append("\n	        " + member.getName() + " " + member.getMoney());
+    }
+
+    @Override
+    public void visit(ManagerMembers managerMembers, TextView textView) {
+
     }
 }

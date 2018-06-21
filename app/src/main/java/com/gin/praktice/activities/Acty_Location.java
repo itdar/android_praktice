@@ -135,7 +135,9 @@ public class Acty_Location extends Activity {
 
             adapter.getSelectedList().clear();
             adapter.notifyDataSetChanged();
-        } else {
+        }
+        else
+        {
 
         }
     }

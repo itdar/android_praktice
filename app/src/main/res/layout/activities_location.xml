@@ -92,7 +92,14 @@
                 android:layout_height="72dp"
                 android:layout_weight="1"
                 android:onClick="onClick"
-                android:text="선택멤버제거" />
+                android:text="위에 선택된\n멤버 제거" />
+
+            <Button
+                android:id="@+id/setManagerButton"
+                android:layout_width="78dp"
+                android:layout_height="72dp"
+                android:layout_weight="1"
+                android:text="선택된 멤버가\n이 장소의 총무" />
 
             <Button
                 android:id="@+id/addMemberButton"
@@ -100,7 +107,7 @@
                 android:layout_height="72dp"
                 android:layout_weight="1"
                 android:onClick="onClick"
-                android:text="있던멤버추가" />
+                android:text="여기에 있던\n멤버 추가" />
 
         </LinearLayout>
 
@@ -142,7 +149,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="15dp"
             android:onClick="onClick"
-            android:text="다음 장소 추가하기" />
+            android:text="여기 저장하고\n다음 장소 더 추가하기" />
 
         <Button
             android:id="@+id/nextButton"
@@ -152,7 +159,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="5dp"
             android:onClick="onClick"
-            android:text="여기가 마지막!!  결과보기" />
+            android:text="이제 그만\n여기가 마지막!!  결과보기" />
 
     </LinearLayout>
 </ScrollView>

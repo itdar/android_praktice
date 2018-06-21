@@ -6,6 +6,7 @@ import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Location;
 import com.gin.praktice.component.Member;
 import com.gin.praktice.member.DayMembers;
+import com.gin.praktice.member.ManagerMembers;
 
 public class Visitor_PrintOut implements Visitor {
 
@@ -46,5 +47,7 @@ public class Visitor_PrintOut implements Visitor {
 	public void visit(DayMembers dayMembers, TextView textView) {}
 	@Override
 	public void visit(Member member, TextView textView) {}
+	@Override
+	public void visit(ManagerMembers managerMembers, TextView textView) {}
 
 }

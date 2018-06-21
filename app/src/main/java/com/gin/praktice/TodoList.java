@@ -8,7 +8,7 @@ public class TodoList {
      * 전체 EditText를 Acty_AddNewSquad에서 line 1줄로 제한하고, focus 잃으면 keyboard 없어지는 기능 적용되도록 -> 얼추 다 적용함, 폰에서 확인해야함
      * SQLite 저장 및 로드 기능 -> 로드시 squad table 과 member 채워주는 것 최적화 생각해봐야함
      *
-     * [진행중] -****** MainActy 에서 Squad에 해당되는 Member 추가/삭제/ (이름수정) 기능 추가해야함
+     * [진행중] -****** MainActy 에서 Squad에 해당되는 Member **추가/ (이름수정) 기능 추가해야함
      *
      * - Location 에서 앞 Location에 있었던 멤버는 자동으로 다음 Location 때 추가되어 있도록 해야함
      *
