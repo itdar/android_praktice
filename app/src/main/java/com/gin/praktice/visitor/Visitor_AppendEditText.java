@@ -30,8 +30,11 @@ public class Visitor_AppendEditText implements Visitor {
     @Override
     public void visit(Location location, TextView textView) {
         textView.append("\n\n     " + "가게 이름 >> " + location.getName()
-                        + "\n     " + "금액 >> " + location.getMoney()
-                        + "\n     " + "총무 >> " + location.getManager().getName());
+                        + "\n     " + "금액 >> " + location.getMoney());
+        if (location.getManager() != null)
+        {
+            textView.append("\n     " + "총무 >> " + location.getManager().getName());
+        }
 
         for (int i = 0; i < location.getList().size(); i++) {
             location.get(i).accept(this, textView);

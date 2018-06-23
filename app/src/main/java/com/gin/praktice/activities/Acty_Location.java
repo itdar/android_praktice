@@ -95,10 +95,14 @@ public class Acty_Location extends Activity {
             case R.id.cancelLateButton : cancelLateButtonAction(); break;
             case R.id.littleLateButton : littleLateButtonAction(); break;
             case R.id.superLateButton : superLateButtonAction(); break;
-            //Save n Add
+            case R.id.setManagerButton : setManagerButtonAction(); break;
             case R.id.addMoreLocationButton : addMoreLocationButtonAction(); break;
             default: break;
         }
+    }
+
+    private void setManagerButtonAction() {
+        location.setManager(location.get(adapter.getSelectedList().get(0)));
     }
 
     private void cancelLateButtonAction() {

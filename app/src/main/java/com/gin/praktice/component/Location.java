@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Location extends Composite {
 
-	private Member manager;
+	private Member manager = null;
 	
 	public Location() {
 		

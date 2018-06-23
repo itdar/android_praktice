@@ -12,7 +12,13 @@ public class TodoList {
      *
      * - Location 에서 앞 Location에 있었던 멤버는 자동으로 다음 Location 때 추가되어 있도록 해야함
      *
+     * -** DDay 지워버리고 Location 자체적으로 쭉 진행되도록
+     * -** Location에서 dayMember 외에도 멤버 더 추가 할 수 있도록
+     *
+     * -** Mananger 설정하면 설정된거 확인할 수 있도록 해야함
+     *
      * -** 이름 중복되지 않도록 해야함
+     * -** 장소에 추가할 때 멤버 중복으로 안올라가게, 설정하는 창에서 아예 안보이게 해도 될듯
      *
      * -** 디데이 이름/날짜 기본값 e.g. 날짜는 당일 날짜
      *
@@ -25,6 +31,8 @@ public class TodoList {
      * 각각 Acty 넘어갈 때 뒤의 Acty 쌓아둘지 지울지 확인해야함 - 마지막에 done 하면 dday에서 location만 싹 날리면 될듯
      *
      * AddNewMember 에서 전달해주는 intent를 member 넣어서 해주면 됨
+     *
+     * ResultActy 에서 결과를 TextView별로 분리해서 출력하고 복사할 수 있도록해서 용도별로 복붙할 수 있도록
      *
      * 민감한 기능(삭제 등)에 대해서는 재확인 메시지 출력 후 기능으로 넘어가도록 해야함
      *
