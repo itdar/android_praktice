@@ -2,6 +2,7 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -16,41 +17,100 @@
         android:textAlignment="center"
         android:textSize="30sp" />
 
-    <ScrollView
-        android:id="@+id/SCROLLER_ID"
-        android:layout_width="fill_parent"
-        android:layout_height="373dp"
-        android:layout_marginBottom="10dp"
-        android:fillViewport="true"
-        android:scrollbars="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="193dp"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/resultTextView"
+        <ScrollView
+            android:id="@+id/scroller1"
+            android:layout_width="312dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
+
+            <TextView
+                android:id="@+id/resultTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:text="모임날 전체 결과와 각 장소별 멤버별 정산 세부내역" />
+        </ScrollView>
+
+        <Button
+            android:id="@+id/copyResultButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusableInTouchMode="true"
-            android:text="각 금액" />
-    </ScrollView>
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            tools:text="이 결과를\n복사합니다" />
 
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/copyResultButton"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="61dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:onClick="onClick"
-        android:text="Copy result" />
+        android:layout_height="215dp"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/doneButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:onClick="onClick"
-        android:text="Done" />
+        <ScrollView
+            android:id="@+id/scroller2"
+            android:layout_width="312dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
+
+            <TextView
+                android:id="@+id/resultTextView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:text="각 장소 총무들 정보 및 부칠 액수" />
+        </ScrollView>
+
+        <Button
+            android:id="@+id/copyResultButton2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            tools:text="이 결과를\n복사합니다" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="277dp"
+            android:layout_height="67dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="결과 저장(준비 중)" />
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="종료합니다." />
+    </LinearLayout>
+
 
 </LinearLayout>
