@@ -33,6 +33,7 @@ public class Acty_Result extends Activity {
         dDay.dayMembers.accept(editTextVisitor, resultTextView);
 
         //만들때 visitor 새로 만들어야함
+        tempManagerFunction();
     }
 
     public void onClick(View view) {
@@ -49,13 +50,13 @@ public class Acty_Result extends Activity {
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
         if (currentapiVersion >= android.os.Build.VERSION_CODES.HONEYCOMB){
             android.content.ClipboardManager clipboard =  (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("resultCopy", resultTextView.getText());
+            ClipData clip = ClipData.newPlainText("resultCopy1", resultTextView.getText());
             clipboard.setPrimaryClip(clip);
         } else{
             android.text.ClipboardManager clipboard = (android.text.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
             clipboard.setText(resultTextView.getText());
         }
-        Toast.makeText(getApplicationContext(), "Text copied to clipboard", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "정산 세부내역을 복사", Toast.LENGTH_SHORT).show();
     }
 
     private void doneButtonClicked() {
@@ -69,6 +70,19 @@ public class Acty_Result extends Activity {
     }
 
     private void copyResultButton2Clicked() {
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentapiVersion >= android.os.Build.VERSION_CODES.HONEYCOMB){
+            android.content.ClipboardManager clipboard =  (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("resultCopy2", resultTextView2.getText());
+            clipboard.setPrimaryClip(clip);
+        } else{
+            android.text.ClipboardManager clipboard = (android.text.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+            clipboard.setText(resultTextView2.getText());
+        }
+        Toast.makeText(getApplicationContext(), "멤버별 부칠 내역을 복사", Toast.LENGTH_SHORT).show();
+    }
+
+    private void tempManagerFunction() {
 
     }
 

@@ -3,7 +3,7 @@ package com.gin.praktice.component;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class Composite extends Component {
+public abstract class Composite extends Component {
 	protected List<Component> list = new ArrayList<Component>();
 
 	public void add(Component component) {
