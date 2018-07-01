@@ -9,8 +9,11 @@ import android.widget.Toast;
 
 import com.gin.praktice.R;
 import com.gin.praktice.component.DDay;
+import com.gin.praktice.component.Member;
 import com.gin.praktice.visitor.Visitor;
 import com.gin.praktice.visitor.Visitor_AppendEditText;
+
+import java.util.Map;
 
 public class Acty_Result extends Activity {
     private DDay dDay;
@@ -26,7 +29,7 @@ public class Acty_Result extends Activity {
 
         dDay = DDay.getInstance();
         resultTextView = (TextView) findViewById(R.id.resultTextView);
-        resultTextView2 = (TextView) findViewById(R.id.resultTextView);
+        resultTextView2 = (TextView) findViewById(R.id.resultTextView2);
 
         Visitor editTextVisitor = new Visitor_AppendEditText();
         dDay.accept(editTextVisitor, resultTextView);
@@ -83,14 +86,23 @@ public class Acty_Result extends Activity {
     }
 
     private void tempManagerFunction() {
-
+        resultTextView2.append("tempManagerFunction");
+        for (int i = 0; i < dDay.dayMembers.getLength(); ++i)
+        {
+            resultTextView2.append("\n" + dDay.dayMembers.get(i).getName() + " 정산결과는 \n");
+            for (Map.Entry<Member, Integer> entry : ((Member)dDay.dayMembers.get(i)).managerCalcMap.entrySet())
+            {
+                resultTextView2.append("\n " + entry.getKey().getName() + " 에게 " + entry.getValue() + "원을 부쳐야합니다");
+            }
+            resultTextView2.append("\n\n");
+        }
     }
 
     /**
      * 마지막에 DDay->Location 돌면서
      *  각 차마다 Manager따로 빼두고(Member), 나중에 계좌번호 등 필요해서 멤버객체로
      *  각 Location의 멤버들을 빼둔 Manager 에다가 이름하고 각 금액 더해준다
-     * 다 돌고 나면 -> ManagerMembers 에서 ManagerMember 객체들에 돈 받아낼 이름, 금액 적인거 갖고 있음
+     * 다 돌고 나면 -> ManagerCalculator 에서 ManagerCalculator 객체들에 돈 받아낼 이름, 금액 적인거 갖고 있음
      * 출력한다
      */
 

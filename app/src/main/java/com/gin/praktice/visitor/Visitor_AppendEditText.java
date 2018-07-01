@@ -6,7 +6,7 @@ import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Location;
 import com.gin.praktice.component.Member;
 import com.gin.praktice.member.DayMembers;
-import com.gin.praktice.member.ManagerMembers;
+import com.gin.praktice.member.ManagerCalculator;
 
 public class Visitor_AppendEditText implements Visitor {
 
@@ -55,7 +55,7 @@ public class Visitor_AppendEditText implements Visitor {
     }
 
     @Override
-    public void visit(ManagerMembers managerMembers, TextView textView) {
+    public void visit(ManagerCalculator managerCalculator, TextView textView) {
 
     }
 }

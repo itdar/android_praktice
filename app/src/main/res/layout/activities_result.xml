@@ -41,13 +41,13 @@
 
         <Button
             android:id="@+id/copyResultButton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:onClick="onClick"
-            tools:text="이 결과를\n복사합니다" />
+            android:text="이 결과를\n복사합니다" />
 
     </LinearLayout>
 
@@ -75,13 +75,13 @@
 
         <Button
             android:id="@+id/copyResultButton2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:onClick="onClick"
-            tools:text="이 결과를\n복사합니다" />
+            android:text="이 결과를\n복사합니다" />
     </LinearLayout>
 
     <LinearLayout

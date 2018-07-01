@@ -35,6 +35,8 @@ public class Location extends Composite {
 		List<Component> tempList = new ArrayList<Component>();
 		Member member;
 		int divider = 0;
+
+		// 늦은사람 있는지 확인해서 없으면 그냥 보통대로 깔끔하게 계산하는 식으로 가야 오차 안생김 **
 		for (int i = 0; i < this.getLength(); ++i)
 		{
 			member = ((Member)this.get(i));
@@ -61,17 +63,20 @@ public class Location extends Composite {
 			if (member.isOneSecond)
 			{
 				((Member)tempList.get(i)).setMoney(dividedShare * 3);
-				((Member) this.get(i)).plusMoney(dividedShare * 3);
+				member.plusMoney(dividedShare * 3);
+				member.addManagerCalc(this.manager, dividedShare * 3);
 			}
 			else if (member.isOneThird)
 			{
 				((Member)tempList.get(i)).setMoney(dividedShare * 2);
-				((Member) this.get(i)).plusMoney(dividedShare * 2);
+				member.plusMoney(dividedShare * 2);
+				member.addManagerCalc(this.manager, dividedShare * 2);
 			}
 			else
 			{
 				((Member)tempList.get(i)).setMoney(dividedShare * 6);
-				((Member) this.get(i)).plusMoney(dividedShare * 6);
+				member.plusMoney(dividedShare * 6);
+				member.addManagerCalc(this.manager, dividedShare * 6);
 			}
 		}
 		this.setList(tempList);
@@ -92,13 +97,5 @@ public class Location extends Composite {
 
 	public Component getManager() { return this.manager; }
 	public void setManager(Component member) { this.manager = (Member)member; }
-//	public void setManager(String memberName) {
-//		for (int i = 0; i < getLength(); ++i)
-//		{
-//			if (memberName.equals(list.get(i).getName()))
-//			{
-//				this.manager = (Member)list.get(i);
-//			}
-//		}
-//	}
+
 }

@@ -4,11 +4,16 @@ import android.widget.TextView;
 
 import com.gin.praktice.visitor.Visitor;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Member extends Component {
 
 	private String bank;
 	private String accountNumber;
 	private String phoneNumber;
+
+	public Map<Member, Integer> managerCalcMap = new HashMap<>();
 
 	public boolean isOneThird = false; // 2
 	public boolean isOneSecond = false; // 3 // normal = 6
@@ -65,6 +70,24 @@ public class Member extends Component {
 	}
 
 	@Override
+	public boolean equals(Object o) {
+		Member member = (Member)o;
+		boolean result = false;
+		if (this.name == member.name
+				&& this.money == member.money
+				&& this.bank == member.bank
+				&& this.accountNumber == member.accountNumber
+				&& this.managerCalcMap.equals(member.managerCalcMap)
+				&& this.isOneThird == member.isOneThird
+				&& this.isOneSecond == member.isOneSecond
+				&& this.phoneNumber == member.phoneNumber)
+		{
+			result = true;
+		}
+		return result;
+	}
+
+	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}
@@ -93,4 +116,17 @@ public class Member extends Component {
 	public boolean getManager() { return this.isManager; }
 
 	public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
+	public void addManagerCalc(Member manager, int money2Send) {
+		if (this.managerCalcMap.containsKey(manager))
+		{
+			int tempMoney = this.managerCalcMap.get(manager);
+			this.managerCalcMap.remove(manager);
+			this.managerCalcMap.put(manager, tempMoney + money2Send);
+		}
+		else
+		{
+			this.managerCalcMap.put(manager, money2Send);
+		}
+	}
 }
