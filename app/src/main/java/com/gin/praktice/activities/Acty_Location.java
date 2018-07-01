@@ -106,6 +106,7 @@ public class Acty_Location extends Activity {
     }
 
     private void cancelLateButtonAction() {
+        //여기서 뻑남
         if (adapter.getSelectedList().size() > 0)
         {
             ((Member)location.get(adapter.getSelectedList().get(0))).isOneSecond = false;
