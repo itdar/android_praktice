@@ -1,6 +1,7 @@
 package com.gin.praktice.activities;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +23,10 @@ import com.gin.praktice.component.Component;
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Member;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class Acty_DDay extends Activity {
 
@@ -31,6 +36,7 @@ public class Acty_DDay extends Activity {
 
 
     private DDay dDay;
+    private Calendar myCalendar;
 
     private EditText nameEditText;
     private EditText dateEditText;
@@ -76,7 +82,50 @@ public class Acty_DDay extends Activity {
                 }
             }
         });
+
+
+        /**
+         * 아래 데이트피커 만들어진거 정리해야함
+         *
+         * 기본으로 당일 날짜 들어가도록 해야함
+         */
+        myCalendar = Calendar.getInstance();
+
+        EditText edittext= (EditText) findViewById(R.id.dateEditText);
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
+        edittext.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(Acty_DDay.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
     }
+
+    private void updateLabel() {
+        String myFormat = "MMMM/dd/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        dateEditText.setText(sdf.format(myCalendar.getTime()));
+    }
+
 
     private void setRecyclerView() {
         dayMembersView.setHasFixedSize(true);

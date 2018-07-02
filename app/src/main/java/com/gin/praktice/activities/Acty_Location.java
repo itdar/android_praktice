@@ -101,12 +101,18 @@ public class Acty_Location extends Activity {
         }
     }
 
+
+    /**
+     * 매니저이면 매니저 표시 되도록 해야함
+     */
     private void setManagerButtonAction() {
-        location.setManager(location.get(adapter.getSelectedList().get(0)));
+        if (adapter.getSelectedList().size() > 0)
+        {
+            location.setManager(location.get(adapter.getSelectedList().get(0)));
+        }
     }
 
     private void cancelLateButtonAction() {
-        //여기서 뻑남
         if (adapter.getSelectedList().size() > 0)
         {
             ((Member)location.get(adapter.getSelectedList().get(0))).isOneSecond = false;
