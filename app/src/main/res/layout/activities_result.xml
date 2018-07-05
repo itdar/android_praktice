@@ -47,9 +47,15 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:text="이 결과를\n복사합니다" />
+            android:text="결과\n복사" />
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,7 +87,7 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:text="이 결과를\n복사합니다" />
+            android:text="결과\n복사" />
     </LinearLayout>
 
     <LinearLayout

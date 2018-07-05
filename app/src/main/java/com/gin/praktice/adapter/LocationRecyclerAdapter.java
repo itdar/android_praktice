@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.gin.praktice.R;
 import com.gin.praktice.component.Component;
+import com.gin.praktice.component.Location;
 import com.gin.praktice.component.Member;
 
 import java.util.ArrayList;
@@ -16,12 +17,13 @@ import java.util.List;
 
 public class LocationRecyclerAdapter extends RecyclerView.Adapter<LocationRecyclerAdapter.ItemViewHolder> {
 
+    private Location location;
     private List<Component> items;
     private final ArrayList<Integer> selected = new ArrayList<>();
 
-    public LocationRecyclerAdapter(List<Component> items) {
-
-        this.items = items;
+    public LocationRecyclerAdapter(Location location) {
+        this.location = location;
+        this.items = location.getList();
     }
 
 
@@ -47,6 +49,14 @@ public class LocationRecyclerAdapter extends RecyclerView.Adapter<LocationRecycl
         else if (((Member)items.get(index)).isOneThird)
         {
             holder.mNameTv.append("        " + "1/3");
+        }
+
+        if (location.getManager() != null)
+        {
+            if (((Member)items.get(index)).getName().equals(location.getManager().getName()))
+            {
+                holder.mNameTv.append("        " + "총무");
+            }
         }
 
         if (!selected.contains(index)){

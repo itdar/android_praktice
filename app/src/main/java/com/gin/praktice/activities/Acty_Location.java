@@ -76,7 +76,7 @@ public class Acty_Location extends Activity {
     private void setRecyclerView() {
         locationMemberView.setHasFixedSize(true);
 
-        adapter = new LocationRecyclerAdapter(location.getList());
+        adapter = new LocationRecyclerAdapter(location);
         locationMemberView.setAdapter(adapter);
 
         // 지그재그형의 그리드 형식
@@ -109,6 +109,9 @@ public class Acty_Location extends Activity {
         if (adapter.getSelectedList().size() > 0)
         {
             location.setManager(location.get(adapter.getSelectedList().get(0)));
+
+            adapter.getSelectedList().clear();
+            adapter.notifyDataSetChanged();
         }
     }
 

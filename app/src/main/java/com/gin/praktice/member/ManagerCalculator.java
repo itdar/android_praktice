@@ -1,9 +1,9 @@
 package com.gin.praktice.member;
 
-import android.widget.TextView;
+        import android.widget.TextView;
 
-import com.gin.praktice.component.Member;
-import com.gin.praktice.visitor.Visitor;
+        import com.gin.praktice.component.Member;
+        import com.gin.praktice.visitor.Visitor;
 
 public class ManagerCalculator {
     private Member managerMember;

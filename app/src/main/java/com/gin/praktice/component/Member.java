@@ -13,7 +13,7 @@ public class Member extends Component {
 	private String accountNumber;
 	private String phoneNumber;
 
-	public Map<Member, Integer> managerCalcMap = new HashMap<>();
+	public Map<Member, Integer> managerMap = new HashMap<>();
 
 	public boolean isOneThird = false; // 2
 	public boolean isOneSecond = false; // 3 // normal = 6
@@ -77,7 +77,7 @@ public class Member extends Component {
 				&& this.money == member.money
 				&& this.bank == member.bank
 				&& this.accountNumber == member.accountNumber
-				&& this.managerCalcMap.equals(member.managerCalcMap)
+				&& this.managerMap.equals(member.managerMap)
 				&& this.isOneThird == member.isOneThird
 				&& this.isOneSecond == member.isOneSecond
 				&& this.phoneNumber == member.phoneNumber)
@@ -118,15 +118,18 @@ public class Member extends Component {
 	public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
 	public void addManagerCalc(Member manager, int money2Send) {
-		if (this.managerCalcMap.containsKey(manager))
+		if (!this.name.equals(manager.getName()))
 		{
-			int tempMoney = this.managerCalcMap.get(manager);
-			this.managerCalcMap.remove(manager);
-			this.managerCalcMap.put(manager, tempMoney + money2Send);
-		}
-		else
-		{
-			this.managerCalcMap.put(manager, money2Send);
+			if (this.managerMap.containsKey(manager))
+			{
+				int tempMoney = this.managerMap.get(manager);
+				this.managerMap.remove(manager);
+				this.managerMap.put(manager, tempMoney + money2Send);
+			}
+			else
+			{
+				this.managerMap.put(manager, money2Send);
+			}
 		}
 	}
 }
