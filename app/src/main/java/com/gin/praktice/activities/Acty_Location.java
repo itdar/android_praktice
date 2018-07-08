@@ -101,10 +101,6 @@ public class Acty_Location extends Activity {
         }
     }
 
-
-    /**
-     * 매니저이면 매니저 표시 되도록 해야함
-     */
     private void setManagerButtonAction() {
         if (adapter.getSelectedList().size() > 0)
         {
@@ -187,7 +183,7 @@ public class Acty_Location extends Activity {
 
     // TODO Need to make request interface
     private void addMember(Intent intent) {
-        // 중복추가 안되게 막아야함
+        // 중복추가 안되게 막아야함 -> 확인해야함
         Bundle bundle = intent.getExtras();
         ArrayList<String> nameList = bundle.getStringArrayList("nameList");
 
@@ -196,8 +192,10 @@ public class Acty_Location extends Activity {
 //            adapter.add(nameList.get(i));
             for (int j = 0; j < dDay.dayMembers.getLength(); ++j)
             {
-                if (nameList.get(i).equals(dDay.dayMembers.get(j).getName()))
+                if (nameList.get(i).equals(dDay.dayMembers.get(j).getName())
+                        && !location.contains(nameList.get(i)))
                 {
+
                     location.add(dDay.dayMembers.get(j));
                 }
             }

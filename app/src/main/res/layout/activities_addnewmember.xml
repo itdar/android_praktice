@@ -67,6 +67,7 @@
                 android:layout_width="170dp"
                 android:layout_height="72dp"
                 android:layout_weight="1"
+                android:editable="false"
                 android:ems="10"
                 android:inputType="textPersonName" />
         </LinearLayout>
@@ -92,6 +93,7 @@
                 android:layout_width="170dp"
                 android:layout_height="72dp"
                 android:layout_weight="1"
+                android:editable="false"
                 android:ems="10"
                 android:inputType="textPersonName" />
         </LinearLayout>
@@ -117,6 +119,7 @@
                 android:layout_width="170dp"
                 android:layout_height="72dp"
                 android:layout_weight="1"
+                android:editable="false"
                 android:ems="10"
                 android:inputType="textPersonName" />
         </LinearLayout>

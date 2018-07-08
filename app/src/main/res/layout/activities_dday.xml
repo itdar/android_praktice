@@ -46,6 +46,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:ems="10"
+                            android:hint="모인 날 이름을 정해보세요"
                             android:inputType="textPersonName"
                             android:textColorLink="@android:color/black"
                             tools:layout_editor_absoluteX="136dp"
@@ -73,12 +74,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:ems="10"
-                            android:inputType="date"
-                            android:textColorLink="@android:color/black"
                             android:clickable="true"
+                            android:ems="10"
                             android:focusable="false"
-                            android:hint="모인 날짜"/>
+                            android:hint="모인 날짜를 선택하세요"
+                            android:inputType="date"
+                            android:textColorLink="@android:color/black" />
 
                 </LinearLayout>
 

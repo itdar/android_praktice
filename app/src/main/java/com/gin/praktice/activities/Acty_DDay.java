@@ -83,12 +83,6 @@ public class Acty_DDay extends Activity {
             }
         });
 
-
-        /**
-         * 아래 데이트피커 만들어진거 정리해야함
-         *
-         * 기본으로 당일 날짜 들어가도록 해야함
-         */
         myCalendar = Calendar.getInstance();
 
         EditText edittext= (EditText) findViewById(R.id.dateEditText);
@@ -101,16 +95,14 @@ public class Acty_DDay extends Activity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel();
+                updateDate();
             }
 
         };
 
         edittext.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 new DatePickerDialog(Acty_DDay.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -119,7 +111,7 @@ public class Acty_DDay extends Activity {
 
     }
 
-    private void updateLabel() {
+    private void updateDate() {
         String myFormat = "MMMM/dd/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
@@ -192,9 +184,7 @@ public class Acty_DDay extends Activity {
         if (!name.equals("") && !date.equals("") && dayMembersList.size() > 1) {
             dDay.setName(name.toString());
             dDay.setDate(date.toString());
-//            for (int i = 0; i < dayMembersList.size(); i++) {
-//                dDay.dayMembers.add(new Member(dayMembersList.get(i).getName(), dayMembersList.get(i).getPhoneNumber()));
-//            }
+
             startActivity(locationIntent);
         }
     }
