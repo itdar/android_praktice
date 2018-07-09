@@ -14,10 +14,8 @@ public class TodoList {
      *
      * - Location 에서 앞 Location에 있었던 멤버는 자동으로 다음 Location 때 추가되어 있도록 해야함
      *
-     * -** DDay 지워버리고 Location 자체적으로 쭉 진행되도록
      * -** Location에서 dayMember 외에도 멤버 더 추가 할 수 있도록
      *
-     * -** 이름 중복되지 않도록 해야함
      * -** 장소에 추가할 때 멤버 중복으로 안올라가게, 설정하는 창에서 아예 안보이게 해도 될듯
      *
      * -** 디데이 이름/ 장소 이름 -> 기본값 넣는 것 필요
@@ -28,7 +26,7 @@ public class TodoList {
      *
      * Activity 꺼질때 호출되는 메소드 찾아서 override 해서 필요내용 -> e.g. reverse location to dday
      *
-     * 각각 Acty 넘어갈 때 뒤의 Acty 쌓아둘지 지울지 확인해야함 - 마지막에 done 하면 dday에서 location만 싹 날리면 될듯
+     * *************각각 Acty 넘어갈 때 뒤의 Acty 쌓아둘지 지울지 확인해야함 - 마지막에 done 하면 dday에서 location만 싹 날리면 될듯
      *
      * AddNewMember 에서 전달해주는 intent를 member 넣어서 해주면 됨
      *

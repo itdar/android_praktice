@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gin.praktice.R;
 import com.gin.praktice.adapter.LocationRecyclerAdapter;
@@ -203,42 +204,63 @@ public class Acty_Location extends Activity {
         adapter.notifyDataSetChanged();
     }
 
-
-    //아래 두개메소드 중복내용 정리해야함
     private void addMoreLocationButtonAction() {
-        if (location.getLength() >= 1 && !storeNameEditText.getText().toString().equals("") && !moneyEditText.getText().toString().equals(""))
+        if (checkLocationActy())
         {
-            location.setName(storeNameEditText.getText().toString());
-            location.setMoney(Integer.parseInt(moneyEditText.getText().toString()));
-
-            location.distribution();
-            initLate();
-            dDay.add(location);
+            addLocation2DDay();
 
             startActivity(locationIntent);
             finish();
-        } else {
-            //need to show fill in blank toast
         }
     }
 
-    private void nextButtonAction()
-    {
-        if (location.getLength() >= 1 && storeNameEditText.getText() != null && moneyEditText.getText() != null)
+    private void nextButtonAction() {
+        if (checkLocationActy())
         {
-            location.setName(storeNameEditText.getText().toString());
-            location.setMoney(Integer.parseInt(moneyEditText.getText().toString()));
-
-            location.distribution();
-            initLate();
-            dDay.add(location);
+            addLocation2DDay();
 
             startActivity(resultIntent);
             finish();
-        } else {
-            //error toast
         }
+    }
 
+    private boolean checkLocationActy() {
+        boolean result = false;
+        if (location.getLength() >= 1)
+        {
+            if (!storeNameEditText.getText().toString().equals("") && !moneyEditText.getText().toString().equals(""))
+            {
+                if (location.getManager() != null)
+                {
+                    result = true;
+                }
+                else
+                {
+                    //이 가게에서 계산한 사람을 선택해주세요 토스트
+                    Toast.makeText(this, "이 가게에서 계산한 멤버를 선택해주세요.", Toast.LENGTH_LONG).show();
+                }
+            }
+            else
+            {
+                //가게이름이랑 금액 토스트
+                Toast.makeText(this, "들른 곳 이름과 금액을 입력해주세요.", Toast.LENGTH_LONG).show();
+            }
+        }
+        else
+        {
+            //장소에 해당 멤버들 추가해야한다는 토스트
+            Toast.makeText(this, "이 장소에 있었던 멤버들을 전부 추가해주세요.", Toast.LENGTH_LONG).show();
+        }
+        return result;
+    }
+
+    private void addLocation2DDay() {
+        location.setName(storeNameEditText.getText().toString());
+        location.setMoney(Integer.parseInt(moneyEditText.getText().toString()));
+
+        location.distribution();
+        initLate();
+        dDay.add(location);
     }
 
     private void initLate()
