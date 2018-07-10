@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.gin.praktice.R;
 import com.gin.praktice.adapter.ComponentRecyclerAdapter;
@@ -55,6 +54,7 @@ public class Acty_Main extends Activity {
         if (squadCursor.getCount() > 0)
         {
             squadCursor.moveToFirst();
+//            squadList.clear();
             do {
                 String name = squadCursor.getString(squadCursor.getColumnIndex("name"));
                 squadList.add(new Squad(name));
@@ -123,6 +123,8 @@ public class Acty_Main extends Activity {
         }
     }
 
+    // 버튼 누르면 멤버추가 창 띄워서 돌아오면서 sqlite에 저장해주고 squad랑 member 리스트에 넣어줘야함
+    //-> 2018.07.10
     private void addMemberButtonAction() {
 
     }
@@ -135,13 +137,19 @@ public class Acty_Main extends Activity {
             String squadName = ((Squad)squadList.get(squadListAdapter.getSelectedList().get(0).intValue())).getName();
 
             sqLiteHelper.deleteMember(memberName, squadName);
+
+            // 여기서 지워주는거 넣어줘야 DB에서는 지워졌는데 squad에 속한 member로 메모리에 남아있는거 (시작시에 띄워준거)
+            //까지 지워줄 수 있음 -> 2018.07.10
+//            squadListAdapter.getSelectedList()
             memberListAdapter.getItems().remove(memberListAdapter.getSelectedList().get(0).intValue());
             memberListAdapter.notifyDataSetChanged();
+
+
         }
     }
 
     private void newSquadButtonAction() {
-        Toast.makeText(this, "newSquadButtonAction", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "newSquadButtonAction", Toast.LENGTH_LONG).show();
 
         Intent addNewGroupIntent = new Intent(this, Acty_AddNewSquad.class);
 

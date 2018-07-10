@@ -8,7 +8,10 @@ public class TodoList {
      * 전체 EditText를 Acty_AddNewSquad에서 line 1줄로 제한하고, focus 잃으면 keyboard 없어지는 기능 적용되도록 -> 얼추 다 적용함, 폰에서 확인해야함
      * SQLite 저장 및 로드 기능 -> 로드시 squad table 과 member 채워주는 것 최적화 생각해봐야함
      *
+     * ***********************ActyDDay, ActyMain 먼저 sqlite 기능 끝내야함 (2018.07.10)
      * [진행중] -****** MainActy 에서 Squad에 해당되는 Member **추가/ (이름수정) 기능 추가해야함
+     * ** 끝난 다음에 끝내기 누르면 다시 돌아갈 때 DDAy 지운다던가 (Location 은 이미 다 꺼져있음)
+     *
      *
      * -****메인에서 탭기능 추가(탭으로 목록정리)
      *

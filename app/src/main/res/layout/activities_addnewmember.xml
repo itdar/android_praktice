@@ -17,7 +17,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="당일멤버 직접 추가"
+            android:text="멤버 직접 추가"
             android:textAlignment="center"
             android:textSize="36sp" />
 

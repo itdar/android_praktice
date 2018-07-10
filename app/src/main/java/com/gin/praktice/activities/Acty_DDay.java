@@ -112,7 +112,7 @@ public class Acty_DDay extends Activity {
     }
 
     private void updateDate() {
-        String myFormat = "MMMM/dd/yy"; //In which you need put here
+        String myFormat = "yyyy-dd-MM"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         dateEditText.setText(sdf.format(myCalendar.getTime()));
@@ -180,12 +180,24 @@ public class Acty_DDay extends Activity {
     private void nextButtonAction() {
         Editable name = nameEditText.getText();
         Editable date = dateEditText.getText();
-        // TODO 값 비어있는거 확인해서 넘어가야함
-        if (!name.equals("") && !date.equals("") && dayMembersList.size() > 1) {
-            dDay.setName(name.toString());
-            dDay.setDate(date.toString());
 
-            startActivity(locationIntent);
+        if (!name.equals("") && !date.equals(""))
+        {
+            if (dayMembersList.size() > 1)
+            {
+                dDay.setName(name.toString());
+                dDay.setDate(date.toString());
+
+                startActivity(locationIntent);
+            }
+            else
+            {
+                Toast.makeText(this, "모임날의 이름과 날짜를 채워주세요.", Toast.LENGTH_LONG).show();
+            }
+        }
+        else
+        {
+            Toast.makeText(this, "모임날 참석한 모든 멤버를 추가해주세요.", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -220,6 +232,7 @@ public class Acty_DDay extends Activity {
         addData(receiveName, receivePhone);
     }
 
+    // 중복된 이름이면 저장 안되도록 하고 토스트 띄워줘야함 -> 2018.07.10
     private void addMember(Intent intent) {
         Bundle bundle = intent.getExtras();
 
