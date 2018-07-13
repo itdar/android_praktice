@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.gin.praktice.R;
 import com.gin.praktice.adapter.ComponentRecyclerAdapter;
@@ -34,6 +35,7 @@ public class Acty_Main extends Activity {
     private SquadRecyclerAdapter squadListAdapter;
 
     private static final int ADD_NEW_SQUAD = 1;
+    private static final int ADD_NEW_MEMBER= 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,9 +126,18 @@ public class Acty_Main extends Activity {
     }
 
     // 버튼 누르면 멤버추가 창 띄워서 돌아오면서 sqlite에 저장해주고 squad랑 member 리스트에 넣어줘야함
-    //-> 2018.07.10
+    //-> 2018.07.13
     private void addMemberButtonAction() {
+        if (squadListAdapter.getSelectedList().size() > 0)
+        {
+            Intent addNewMemberIntent = new Intent(this, Acty_AddNewMember.class);
 
+            startActivityForResult(addNewMemberIntent, ADD_NEW_MEMBER);
+        }
+        else
+        {
+            Toast.makeText(this, "멤버를 추가할 모임을 먼저 선택하세요.", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void deleteMemberButtonAction() {
@@ -189,7 +200,7 @@ public class Acty_Main extends Activity {
         {
             switch (requestCode) {
                 case ADD_NEW_SQUAD : addNewSquad(intent); break;
-                case 0 : ; break;
+                case ADD_NEW_MEMBER : addNewMember(intent); break;
             }
         }
     }
@@ -204,6 +215,38 @@ public class Acty_Main extends Activity {
         sqLiteHelper.saveSquad(squad);
 
 //        Toast.makeText(this, "squad name >> " + squad.getName(), Toast.LENGTH_LONG).show();
+    }
+
+    //멤버추가창에서 가져온 멤버 정보를 sqlite에 넣고, 바로 조회 아니면, 넣은 것처럼 memberList, squadList 다 추가해줘야함
+    //어디에 저장할지 정해서 저장하면 됨 2018.07.13
+    private void addData(String name, String phoneNumber) {
+
+    }
+
+    private void addNewMember(Intent intent) {
+        Bundle bundle = intent.getExtras();
+
+        String receiveName = bundle.getString("name");
+        String receiveBank = bundle.getString("bank");
+        String receiveAccount = bundle.getString("account");
+
+        if (!isExist(receiveName))
+        {
+            addData(receiveName, "");
+            Toast.makeText(this, "추가된 이름 : " + receiveName +
+                    "\n추가된 은행 : " + receiveBank +
+                    "\n추가된 계좌 : " + receiveAccount, Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            Toast.makeText(this, "이미 중복된 이름이 있습니다.", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    //멤버추가창에서 가져온 멤버 이름이 sqlite | squadList memberList 에서 있는 이름인지 확인해야함
+    private boolean isExist(String receiveName) {
+
+        return false;
     }
 
 }

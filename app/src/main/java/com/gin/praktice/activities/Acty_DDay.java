@@ -232,7 +232,6 @@ public class Acty_DDay extends Activity {
         addData(receiveName, receivePhone);
     }
 
-    // 중복된 이름이면 저장 안되도록 하고 토스트 띄워줘야함 -> 2018.07.10
     private void addMember(Intent intent) {
         Bundle bundle = intent.getExtras();
 
@@ -240,10 +239,28 @@ public class Acty_DDay extends Activity {
         String receiveBank = bundle.getString("bank");
         String receiveAccount = bundle.getString("account");
 
-        addData(receiveName, "");
-        Toast.makeText(this, "추가된 이름 : " + receiveName +
-                                        "\n추가된 은행 : " + receiveBank +
-                                        "\n추가된 계좌 : " + receiveAccount, Toast.LENGTH_LONG).show();
+        if (!isExist(receiveName))
+        {
+            addData(receiveName, "");
+            Toast.makeText(this, "추가된 이름 : " + receiveName +
+                    "\n추가된 은행 : " + receiveBank +
+                    "\n추가된 계좌 : " + receiveAccount, Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            Toast.makeText(this, "이미 중복된 이름이 있습니다.", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private boolean isExist(String receiveName) {
+        for (int i = 0; i < dDay.dayMembers.getLength(); ++i)
+        {
+            if (dDay.dayMembers.get(i).getName().equals(receiveName))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 //    public void addItems(String receiveName) {

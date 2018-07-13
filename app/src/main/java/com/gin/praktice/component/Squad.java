@@ -6,12 +6,6 @@ import com.gin.praktice.visitor.Visitor;
 
 public class Squad extends Composite {
 
-    // TODO 0604
-    // Squad 를 Composite 상속받는걸로 바꿔서
-    // MainActy 에서 새로운 Squad 추가한 후에 받아온 객체를
-    // RecyclerView 에다가 올려줘야함
-    // 코드정리하면서~
-
     public Squad(String name) {
         this.name = name;
     }
