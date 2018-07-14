@@ -217,9 +217,17 @@ public class Acty_Main extends Activity {
 //        Toast.makeText(this, "squad name >> " + squad.getName(), Toast.LENGTH_LONG).show();
     }
 
-    //멤버추가창에서 가져온 멤버 정보를 sqlite에 넣고, 바로 조회 아니면, 넣은 것처럼 memberList, squadList 다 추가해줘야함
+    //멤버추가창에서 가져온 멤버 정보를 sqlite에 넣고, 바로 조회기능으로 하거나 그게 아니면, 넣은 것처럼 memberList, squadList 다 추가해줘야함
     //어디에 저장할지 정해서 저장하면 됨 2018.07.13
     private void addData(String name, String phoneNumber) {
+        Toast.makeText(this, "이미 중복된 이름이 djqtsp.", Toast.LENGTH_LONG).show();
+
+        Member member = new Member.Builder().name(name).phoneNumber(phoneNumber).build();
+        sqLiteHelper.insertMember(((Squad)squadList.get(squadListAdapter.getSelectedList().get(0))).getName(), member);
+
+        //지우는것도 squadList에서 지워야되고, 더해줄때도 squad리스트에 있는 memberList에다가도 더해줘야 화면 나올 듯
+        memberList.add(member);
+        memberListAdapter.notifyDataSetChanged();
 
     }
 
@@ -239,13 +247,20 @@ public class Acty_Main extends Activity {
         }
         else
         {
-            Toast.makeText(this, "이미 중복된 이름이 있습니다.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "모임에 이미 중복된 이름이 있습니다.", Toast.LENGTH_LONG).show();
         }
     }
 
-    //멤버추가창에서 가져온 멤버 이름이 sqlite | squadList memberList 에서 있는 이름인지 확인해야함
+    //멤버추가창에서 가져온 멤버 이름이 select 되어있는 sqlite | squadList memberList 에서 있는 이름인지 확인해야함
     private boolean isExist(String receiveName) {
-
+        List<Component> tempList = ((Squad)squadList.get(squadListAdapter.getSelectedList().get(0))).getList();
+        for (int i = 0; i < tempList.size(); ++i)
+        {
+            if (receiveName.equals(tempList.get(i).getName()))
+            {
+                return true;
+            }
+        }
         return false;
     }
 

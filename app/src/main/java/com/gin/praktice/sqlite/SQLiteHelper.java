@@ -89,6 +89,17 @@ public class SQLiteHelper {
         }
     }
 
+    public void insertMember(String squadName, Member member) {
+        ContentValues memberTableValues = new ContentValues();
+        memberTableValues.put(MEMBER_COLUMN_SQUAD_NAME, squadName);
+        memberTableValues.put(MEMBER_COLUMN_NAME, member.getName());
+        memberTableValues.put(MEMBER_COLUMN_BANK, "");// member.getBank());
+        memberTableValues.put(MEMBER_COLUMN_ACCOUNT, "");// member.getAccount());
+        memberTableValues.put(MEMBER_COLUMN_PHONENUMBER, "");// member.getPhoneNumber());
+
+        database.insert(TABLE_NAME_MEMBER, null, memberTableValues);
+    }
+
     // 삭제할때 member table에서 같은 아이디값들 삭제해야함
     public void deleteSquad(Squad squad)
     {

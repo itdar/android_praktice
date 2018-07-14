@@ -18,14 +18,14 @@ import java.util.List;
 public class SquadRecyclerAdapter extends RecyclerView.Adapter<SquadRecyclerAdapter.ItemViewHolder> {
 
     private List<Component> squadItems;
-    private List<Component> memberItems;
+//    private List<Component> memberItems;
     private ComponentRecyclerAdapter memberListAdapter;
 
     private final ArrayList<Integer> selected = new ArrayList<>();
 
     public SquadRecyclerAdapter(List<Component> squadItems, List<Component> memberItems, ComponentRecyclerAdapter memberListAdapter) {
         this.squadItems = squadItems;
-        this.memberItems = memberItems;
+//        this.memberItems = memberItems;
         this.memberListAdapter = memberListAdapter;
     }
 

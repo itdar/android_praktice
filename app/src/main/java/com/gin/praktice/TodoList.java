@@ -5,12 +5,10 @@ public class TodoList {
     /**
      * ============== 진행 기능들
      *
-     * 전체 EditText를 Acty_AddNewSquad에서 line 1줄로 제한하고, focus 잃으면 keyboard 없어지는 기능 적용되도록 -> 얼추 다 적용함, 폰에서 확인해야함
      * SQLite 저장 및 로드 기능 -> 로드시 squad table 과 member 채워주는 것 최적화 생각해봐야함
      *
      * ***********************ActyDDay, ActyMain 먼저 sqlite 기능 끝내야함 (2018.07.10)
-     * [진행중] -****** MainActy 에서 Squad에 해당되는 Member **추가/ (이름수정) 기능 추가해야함
-     * ** 끝난 다음에 끝내기 누르면 다시 돌아갈 때 DDAy 지운다던가 (Location 은 이미 다 꺼져있음)
+     * [진행중] -****** MainActy 에서 Squad에 해당되는 Member **추가 기능 추가해야함
      *
      *
      * -****메인에서 탭기능 추가(탭으로 목록정리)
@@ -30,6 +28,12 @@ public class TodoList {
      * Activity 꺼질때 호출되는 메소드 찾아서 override 해서 필요내용 -> e.g. reverse location to dday
      *
      * *************각각 Acty 넘어갈 때 뒤의 Acty 쌓아둘지 지울지 확인해야함 - 마지막에 done 하면 dday에서 location만 싹 날리면 될듯
+     *
+     * -** Main -> DDay -> Location -> Result
+     * ->> 항상 -> 킬 -> 킬 -> 킬
+     * ->> Acty는 위에 꺼대로 메인만 살리고 나머지는 그때그때 다 죽임
+     * ->> 어느 Acty에서 뒤로 가던지 -> 메시지(다 날아가는데 ㅇㅋ?) 띄워주고나서
+     * ->> 뒤로 가면 메인으로 되돌아가면서 DDay singleton 객체 싹 지워주고 초기화시키는게 나을 듯
      *
      * AddNewMember 에서 전달해주는 intent를 member 넣어서 해주면 됨
      *
