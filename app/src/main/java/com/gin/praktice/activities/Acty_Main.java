@@ -125,8 +125,6 @@ public class Acty_Main extends Activity {
         }
     }
 
-    // 버튼 누르면 멤버추가 창 띄워서 돌아오면서 sqlite에 저장해주고 squad랑 member 리스트에 넣어줘야함
-    //-> 2018.07.13
     private void addMemberButtonAction() {
         if (squadListAdapter.getSelectedList().size() > 0)
         {
@@ -148,14 +146,13 @@ public class Acty_Main extends Activity {
             String squadName = ((Squad)squadList.get(squadListAdapter.getSelectedList().get(0).intValue())).getName();
 
             sqLiteHelper.deleteMember(memberName, squadName);
-
-            // 여기서 지워주는거 넣어줘야 DB에서는 지워졌는데 squad에 속한 member로 메모리에 남아있는거 (시작시에 띄워준거)
-            //까지 지워줄 수 있음 -> 2018.07.10
 //            squadListAdapter.getSelectedList()
-            memberListAdapter.getItems().remove(memberListAdapter.getSelectedList().get(0).intValue());
+
+            int memberIndex = memberListAdapter.getSelectedList().get(0).intValue();
+            memberListAdapter.getItems().remove(memberIndex);
             memberListAdapter.notifyDataSetChanged();
 
-
+            ((Squad)squadList.get(squadListAdapter.getSelectedList().get(0).intValue())).remove(memberIndex);
         }
     }
 
@@ -227,6 +224,8 @@ public class Acty_Main extends Activity {
 
         //지우는것도 squadList에서 지워야되고, 더해줄때도 squad리스트에 있는 memberList에다가도 더해줘야 화면 나올 듯
         memberList.add(member);
+//        memberList.sort
+        memberListAdapter.setItems(memberList);
         memberListAdapter.notifyDataSetChanged();
 
     }

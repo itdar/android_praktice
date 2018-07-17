@@ -17,15 +17,22 @@ import java.util.List;
 
 public class SquadRecyclerAdapter extends RecyclerView.Adapter<SquadRecyclerAdapter.ItemViewHolder> {
 
+    /**
+     * 지금 -> squad랑 memberList랑 연결이 안되어있고
+     * squad랑 memberAdapter랑 직접 연결되어 있음
+     *
+     * 고칠거 -> squad랑 memberAdapter먼저 연결해주고 -> memberAdapter가 memberList랑 연결되어있도록 해야할 듯?
+     *
+     */
     private List<Component> squadItems;
-//    private List<Component> memberItems;
+    private List<Component> memberItems;
     private ComponentRecyclerAdapter memberListAdapter;
 
     private final ArrayList<Integer> selected = new ArrayList<>();
 
     public SquadRecyclerAdapter(List<Component> squadItems, List<Component> memberItems, ComponentRecyclerAdapter memberListAdapter) {
         this.squadItems = squadItems;
-//        this.memberItems = memberItems;
+        this.memberItems = memberItems;
         this.memberListAdapter = memberListAdapter;
     }
 
@@ -91,8 +98,10 @@ public class SquadRecyclerAdapter extends RecyclerView.Adapter<SquadRecyclerAdap
             if (!selected.contains(getAdapterPosition())) {
                 selected.clear();
 
-                memberListAdapter.clearItems();
-                memberListAdapter.setItems(((Squad)squadItems.get(getAdapterPosition()).clone()).getList());
+                memberItems.clear();
+//                memberListAdapter.setItems(((Squad)squadItems.get(getAdapterPosition()).clone()).getList());
+                memberItems = ((Squad)squadItems.get(getAdapterPosition()).clone()).getList();
+                memberListAdapter.setItems(memberItems);
                 selected.add(getAdapterPosition());
             } else {
                 memberListAdapter.clearItems();
