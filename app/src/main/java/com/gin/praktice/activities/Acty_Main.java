@@ -214,20 +214,15 @@ public class Acty_Main extends Activity {
 //        Toast.makeText(this, "squad name >> " + squad.getName(), Toast.LENGTH_LONG).show();
     }
 
-    //멤버추가창에서 가져온 멤버 정보를 sqlite에 넣고, 바로 조회기능으로 하거나 그게 아니면, 넣은 것처럼 memberList, squadList 다 추가해줘야함
-    //어디에 저장할지 정해서 저장하면 됨 2018.07.13
+    //멤버정보 추가/삭제 하고 아예 다시 조회해서 넣어주는걸로 해도 되는데 확인해야함(성능?) -> 현재는 해당 멤버나 스쿼드만 따로 넣어줌
     private void addData(String name, String phoneNumber) {
-        Toast.makeText(this, "이미 중복된 이름이 djqtsp.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "이미 중복된 이름이 있습니다ㅏㅏㅏㅏㅏ.", Toast.LENGTH_LONG).show();
 
         Member member = new Member.Builder().name(name).phoneNumber(phoneNumber).build();
         sqLiteHelper.insertMember(((Squad)squadList.get(squadListAdapter.getSelectedList().get(0))).getName(), member);
 
-        //지우는것도 squadList에서 지워야되고, 더해줄때도 squad리스트에 있는 memberList에다가도 더해줘야 화면 나올 듯
-        memberList.add(member);
-//        memberList.sort
-        memberListAdapter.setItems(memberList);
+        ((Squad)squadList.get(squadListAdapter.getSelectedList().get(0).intValue())).add(member);
         memberListAdapter.notifyDataSetChanged();
-
     }
 
     private void addNewMember(Intent intent) {

@@ -11,7 +11,7 @@ public class DDay extends Composite {
 	public DayMembers dayMembers;
 	private String date;
 	
-	public DDay() {
+	private DDay() {
 		this.dayMembers = new DayMembers();
 		this.date = null;
 	}
@@ -29,6 +29,10 @@ public class DDay extends Composite {
 			instance = new DDay();
 		}
 		return instance;
+	}
+
+	public void kill() {
+		instance = null;
 	}
 	
 	@Override

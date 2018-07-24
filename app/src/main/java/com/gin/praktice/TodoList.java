@@ -7,15 +7,11 @@ public class TodoList {
      *
      * SQLite 저장 및 로드 기능 -> 로드시 squad table 과 member 채워주는 것 최적화 생각해봐야함
      *
-     * ***********************ActyDDay, ActyMain 먼저 sqlite 기능 끝내야함 (2018.07.10)
-     * [진행중] -****** MainActy 에서 Squad에 해당되는 Member **추가 기능 추가해야함
-     *
-     *
      * -****메인에서 탭기능 추가(탭으로 목록정리)
      *
-     * - Location 에서 앞 Location에 있었던 멤버는 자동으로 다음 Location 때 추가되어 있도록 해야함
+     * -**********************Location 에서 앞 Location에 있었던 멤버는 자동으로 다음 Location 때 추가되어 있도록 해야함
      *
-     * -** Location에서 dayMember 외에도 멤버 더 추가 할 수 있도록
+     * -**********************Location에서 dayMember 외에도 멤버 더 추가 할 수 있도록
      *
      * -** 장소에 추가할 때 멤버 중복으로 안올라가게, 설정하는 창에서 아예 안보이게 해도 될듯
      *
