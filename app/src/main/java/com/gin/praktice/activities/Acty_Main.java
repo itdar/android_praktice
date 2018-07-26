@@ -235,9 +235,9 @@ public class Acty_Main extends Activity {
         if (!isExist(receiveName))
         {
             addData(receiveName, "");
-            Toast.makeText(this, "추가된 이름 : " + receiveName +
-                    "\n추가된 은행 : " + receiveBank +
-                    "\n추가된 계좌 : " + receiveAccount, Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, "추가된 이름 : " + receiveName +
+//                    "\n추가된 은행 : " + receiveBank +
+//                    "\n추가된 계좌 : " + receiveAccount, Toast.LENGTH_LONG).show();
         }
         else
         {

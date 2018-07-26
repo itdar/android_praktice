@@ -167,7 +167,7 @@ public class Acty_DDay extends Activity {
     }
 
     private void deleteButtonAction() {
-        Toast.makeText(this, "Delete Member button clicked. ", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "Delete Member button clicked. ", Toast.LENGTH_LONG).show();
 
         if (adapter.getSelectedList().size() > 0) {
             dDay.dayMembers.remove(adapter.getSelectedList().get(0).intValue());

@@ -30,6 +30,9 @@ public class Acty_AddMember2Location extends Activity {
 
         dDay = DDay.getInstance();
 
+
+        //TODO 멤버추가하는 intent 받을때 location에서 리스트에 이미 있는 이름들 받아서, 없는 이름들만 dayMembersList에 추가하도록
+        //TODO 2018-07-26
         for (int i = 0; i < dDay.dayMembers.getLength(); i++) {
             dayMembersList.add(dDay.dayMembers.get(i).getName());
         }

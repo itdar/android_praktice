@@ -59,7 +59,7 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="은행명?"
+                android:text="은행명(기능 준비중)"
                 android:textAlignment="center" />
 
             <EditText
@@ -67,9 +67,10 @@
                 android:layout_width="170dp"
                 android:layout_height="72dp"
                 android:layout_weight="1"
-                android:editable="false"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:focusable="auto"
+                android:inputType="textPersonName"
+                android:visibility="invisible" />
         </LinearLayout>
 
         <LinearLayout
@@ -85,7 +86,7 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="계좌번호?"
+                android:text="계좌(기능 준비중)"
                 android:textAlignment="center" />
 
             <EditText
@@ -93,9 +94,10 @@
                 android:layout_width="170dp"
                 android:layout_height="72dp"
                 android:layout_weight="1"
-                android:editable="false"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:focusable="auto"
+                android:inputType="textPersonName"
+                android:visibility="invisible" />
         </LinearLayout>
 
         <LinearLayout
@@ -111,7 +113,7 @@
                 android:layout_width="119dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="옵션?"
+                android:text="기타(기능 준비중)"
                 android:textAlignment="center" />
 
             <EditText
@@ -119,9 +121,10 @@
                 android:layout_width="170dp"
                 android:layout_height="72dp"
                 android:layout_weight="1"
-                android:editable="false"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:focusable="auto"
+                android:inputType="textPersonName"
+                android:visibility="invisible" />
         </LinearLayout>
 
         <LinearLayout
