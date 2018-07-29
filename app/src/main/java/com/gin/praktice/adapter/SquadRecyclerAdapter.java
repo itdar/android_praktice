@@ -23,6 +23,14 @@ public class SquadRecyclerAdapter extends RecyclerView.Adapter<SquadRecyclerAdap
      *
      * 고칠거 -> squad랑 memberAdapter먼저 연결해주고 -> memberAdapter가 memberList랑 연결되어있도록 해야할 듯?
      *
+     *
+     * 2018.07.29
+     * ComponentRecyclerAdapter로 쓰고있는 memberListAdapter를 직접 set하면서 값 바꾸고 notify 해줘도 되는데
+     * 안맞는 것 같아서 memberItems(memberList) 를 먼저 수정해주고 그 바뀐 값들을 adapter에 set 해준다
+     *
+     * ActyMain이랑 관련이 많은데 -> Squad(모임) 선택하고 해당 squad에 멤버 추가삭제 할때 adapter를
+     * 직접 건드려줘야함.. 최초에 연결해준 memberList 나 squadList만 바꿔서는 adapter는 갱신이 안됨, 다시 set 해주고 notify 필요
+     *
      */
     private List<Component> squadItems;
     private List<Component> memberItems;

@@ -24,8 +24,6 @@ public class TodoList {
      *
      * -** 디데이 이름/ 장소 이름 -> 기본값 넣는 것 필요
      *
-     * -** 그냥멤버추가 지금 안쓰는 칸들은 막아버리거나 지워놓
-     *
      * -** 각 총무끼리 겹치는 금액 까고 최종 낼 돈만 내도록하는 기능
      *
      * Activity 꺼질때 호출되는 메소드 찾아서 override 해서 필요내용 -> e.g. reverse location to dday

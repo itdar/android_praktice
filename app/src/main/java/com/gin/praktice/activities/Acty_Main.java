@@ -216,12 +216,13 @@ public class Acty_Main extends Activity {
 
     //멤버정보 추가/삭제 하고 아예 다시 조회해서 넣어주는걸로 해도 되는데 확인해야함(성능?) -> 현재는 해당 멤버나 스쿼드만 따로 넣어줌
     private void addData(String name, String phoneNumber) {
-        Toast.makeText(this, "이미 중복된 이름이 있습니다ㅏㅏㅏㅏㅏ.", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "이미 중복된 이름이 있습니다ㅏㅏㅏㅏㅏ.", Toast.LENGTH_LONG).show();
 
         Member member = new Member.Builder().name(name).phoneNumber(phoneNumber).build();
         sqLiteHelper.insertMember(((Squad)squadList.get(squadListAdapter.getSelectedList().get(0))).getName(), member);
 
         ((Squad)squadList.get(squadListAdapter.getSelectedList().get(0).intValue())).add(member);
+        memberListAdapter.setItems(((Squad)squadList.get(squadListAdapter.getSelectedList().get(0).intValue())).getList());
         memberListAdapter.notifyDataSetChanged();
     }
 
