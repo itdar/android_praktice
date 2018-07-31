@@ -6,7 +6,6 @@ public class TodoList {
      *
      * 바로 붙잡을거
      * -> Acty location 하고 Acty Member2Location 에서 중복멤버 안뜨도록하는거
-     * -> MainActy에서 Squad선택해서 멤버추가하면 다 추가되는데 실제 바로 갱신이 안됨
      *
      *
      *

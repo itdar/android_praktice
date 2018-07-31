@@ -54,6 +54,12 @@ public class Acty_Location extends Activity {
         locationMemberView = (RecyclerView) findViewById(R.id.locationMemberView);
         setRecyclerView();
 
+        for (int i = 0; i < dDay.dayMembers.getLength(); ++i)
+        {
+            location.add(dDay.dayMembers.get(i));
+        }
+        adapter.notifyDataSetChanged();
+
         storeNameEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -164,7 +170,9 @@ public class Acty_Location extends Activity {
     }
 
     // 중복추가 안되게 해야함
-    //TODO 추가하는 intent 열때 아예 리스트에 있는 이름들은 같이 보내주고, 가서 중복되면 아예 안뜨도록..
+    //추가하는 intent 열때 아예 리스트에 있는 이름들은 같이 보내주고, 가서 중복되면 아예 안뜨도록..
+    //일단 지금은 창 열려서 선택해서 확인하면 선택된 것들 중에 없는 것들만 추가됨 (addMember 함수)
+    //나중에 바꾸면 될 듯
     private void addMemberButtonAction() {
         Intent intent = new Intent(this, Acty_AddMember2Location.class);
 

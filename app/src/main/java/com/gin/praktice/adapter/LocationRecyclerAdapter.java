@@ -36,7 +36,6 @@ public class LocationRecyclerAdapter extends RecyclerView.Adapter<LocationRecycl
         return new LocationRecyclerAdapter.ItemViewHolder(view);
     }
 
-
     // View 의 내용을 해당 포지션의 데이터
     @Override
     public void onBindViewHolder(LocationRecyclerAdapter.ItemViewHolder holder, int index) {
