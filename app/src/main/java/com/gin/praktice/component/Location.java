@@ -32,7 +32,7 @@ public class Location extends Composite {
 	 *  1/n 한 돈을 AllMember와 연결된 것에 더해준다 (DayMembers(DDay안에) 에 각각 전체 돈)
 	 */
 	public void distribution() {
-		List<Component> tempList = new ArrayList<Component>();
+		List<Component> tempList = new ArrayList<>();
 		Member member;
 		int divider = 0;
 
@@ -62,21 +62,24 @@ public class Location extends Composite {
 			member = ((Member)this.get(i));
 			if (member.isOneSecond)
 			{
-				((Member)tempList.get(i)).setMoney(dividedShare * 3);
-				member.plusMoney(dividedShare * 3);
-				member.addManagerCalc(this.manager, dividedShare * 3);
+			    int oneSecond = (dividedShare * 3 + 5) / 10 * 10;
+				((Member)tempList.get(i)).setMoney(oneSecond);
+				member.plusMoney(oneSecond);
+				member.addManagerCalc(this.manager, oneSecond);
 			}
 			else if (member.isOneThird)
 			{
-				((Member)tempList.get(i)).setMoney(dividedShare * 2);
-				member.plusMoney(dividedShare * 2);
-				member.addManagerCalc(this.manager, dividedShare * 2);
+			    int oneThird = (dividedShare * 2 + 5) / 10 * 10;
+				((Member)tempList.get(i)).setMoney(oneThird);
+				member.plusMoney(oneThird);
+				member.addManagerCalc(this.manager, oneThird);
 			}
 			else
 			{
-				((Member)tempList.get(i)).setMoney(dividedShare * 6);
-				member.plusMoney(dividedShare * 6);
-				member.addManagerCalc(this.manager, dividedShare * 6);
+			    int oneFirst = (dividedShare * 6 + 5) / 10 * 10;
+				((Member)tempList.get(i)).setMoney(oneFirst);
+				member.plusMoney(oneFirst);
+				member.addManagerCalc(this.manager, oneFirst);
 			}
 		}
 		this.setList(tempList);
