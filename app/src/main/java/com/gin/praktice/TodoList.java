@@ -6,8 +6,9 @@ public class TodoList {
      *
      * 바로 붙잡을거
      * -> Acty location 하고 Acty Member2Location 에서 중복멤버 안뜨도록하는거
-     *
-     *
+     * -> 결과 나온 다음에 뒤로 가면 초기화해서 다시 시작하도록 정리
+     * -> Acty 끼로 데이터 교환하는거 없애고, 클래스 만들거나해서 heap으로 할당되도
+     * -> DDayActy 에서 모임 날짜 모임 이름 기본 세팅
      *
      * ============== 진행 기능들
      *

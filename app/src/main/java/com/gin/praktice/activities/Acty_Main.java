@@ -1,6 +1,8 @@
 package com.gin.praktice.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -177,16 +179,31 @@ public class Acty_Main extends Activity {
     }
 
     private void deleteSquadButtonAction() {
-        if (squadListAdapter.getSelectedList().size() > 0)
-        {
-            sqLiteHelper.deleteSquad((Squad)squadList.get(squadListAdapter.getSelectedList().get(0)));
-            squadList.remove(squadListAdapter.getSelectedList().get(0).intValue());
+        if (squadListAdapter.getSelectedList().size() > 0) {
+            new AlertDialog.Builder(this)
+                    .setTitle("확인창")
+                    .setMessage("선택하신 모임을\n삭제하시겠습니까?")
+                    .setIcon(android.R.drawable.ic_delete)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            sqLiteHelper.deleteSquad((Squad)squadList.get(squadListAdapter.getSelectedList().get(0)));
+                            squadList.remove(squadListAdapter.getSelectedList().get(0).intValue());
 
-            memberListAdapter.clearItems();
-            squadListAdapter.getSelectedList().clear();
+                            memberListAdapter.clearItems();
+                            squadListAdapter.getSelectedList().clear();
+
+
+                            memberListAdapter.notifyDataSetChanged();
+                            squadListAdapter.notifyDataSetChanged();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+
+                        }
+                    })
+                    .show();
         }
-        memberListAdapter.notifyDataSetChanged();
-        squadListAdapter.notifyDataSetChanged();
     }
 
     @Override

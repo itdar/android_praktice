@@ -115,7 +115,7 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:text="종료합니다." />
+            android:text="메인화면으로 돌아갑니다" />
     </LinearLayout>
 
 
