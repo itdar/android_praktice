@@ -31,8 +31,10 @@ public class DDay extends Composite {
 		return instance;
 	}
 
-	public void kill() {
-		instance = null;
+	public void initiate() {
+		this.list.clear();
+		this.dayMembers.getList().clear();
+		this.date = null;
 	}
 	
 	@Override

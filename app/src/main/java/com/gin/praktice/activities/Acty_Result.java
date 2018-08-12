@@ -64,12 +64,16 @@ public class Acty_Result extends Activity {
     }
 
     private void doneButtonClicked() {
+        // 메인화면으로 돌아간다는 메시지창 확인/취소
+
         dDay.getList().clear();
+        dDay.dayMembers.getList().clear();
 
         finish();
     }
 
     private void saveButtonClicked() {
+        //준비중
 
     }
 

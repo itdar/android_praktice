@@ -189,6 +189,7 @@ public class Acty_DDay extends Activity {
                 dDay.setDate(date.toString());
 
                 startActivity(locationIntent);
+                finish();
             }
             else
             {
