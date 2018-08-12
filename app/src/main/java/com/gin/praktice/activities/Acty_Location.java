@@ -229,6 +229,8 @@ public class Acty_Location extends Activity {
         {
             addLocation2DDay();
 
+            // 마지막 장소 추가 후 끝내면
+
             startActivity(resultIntent);
             finish();
         }

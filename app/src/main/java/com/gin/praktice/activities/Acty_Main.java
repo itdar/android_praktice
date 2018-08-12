@@ -18,6 +18,7 @@ import com.gin.praktice.component.Component;
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Member;
 import com.gin.praktice.component.Squad;
+import com.gin.praktice.config.Config_Kor;
 import com.gin.praktice.sqlite.SQLiteHelper;
 
 import java.util.ArrayList;
@@ -38,6 +39,13 @@ public class Acty_Main extends Activity {
 
     private static final int ADD_NEW_SQUAD = 1;
     private static final int ADD_NEW_MEMBER= 2;
+
+    private final String deleteSelectedSquad = Config_Kor.CONFIG.deleteSelectedSquad;
+    private final String deleteSelectedMemberInSelectedSquad = Config_Kor.CONFIG.deleteSelectedMemberInSelectedSquad;
+    private final String addMemberToSelectedSquad = Config_Kor.CONFIG.addMemberToSelectedSquad;
+    private final String modifySelectedMemberName = "선택멤버 이름 수정"; // 준비중
+    private final String modifySelectedSquadName = "선택모임 이름 수정"; // 준비중
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,8 +131,40 @@ public class Acty_Main extends Activity {
             case R.id.deleteSquadButton : deleteSquadButtonAction(); break;
             case R.id.addMemberButton : addMemberButtonAction(); break;
             case R.id.deleteMemberButton : deleteMemberButtonAction(); break;
+            case R.id.modifyButton : modifyButtonAction(); break;
             default: break;
         }
+    }
+
+    private void modifyButtonAction() {
+
+        final CharSequence[] items = {addMemberToSelectedSquad,
+                                    deleteSelectedMemberInSelectedSquad,
+                                    deleteSelectedSquad};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
+
+        // 여기서 부터는 알림창의 속성 설정
+        builder.setTitle("Modification")        // 제목 설정
+                .setItems(items, new DialogInterface.OnClickListener() {
+                    // 목록 클릭시 설정
+                    public void onClick(DialogInterface dialog, int index) {
+                        switch (index) {
+                            case 0:
+                                addMemberButtonAction();
+                                break;
+                            case 1:
+                                deleteMemberButtonAction();
+                                break;
+                            case 2:
+                                deleteSquadButtonAction();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
+        AlertDialog dialog = builder.create();    // 알림창 객체 생성
+        dialog.show();    // 알림창 띄우기
     }
 
     private void addMemberButtonAction() {
