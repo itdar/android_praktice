@@ -9,6 +9,12 @@ public enum Config_Kor {
     public static final String modifySelectedMemberName = "선택멤버 이름 수정";
     public static final String modifySelectedSquadName = "선택모임 이름 수정";
 
+    public static final String deleteSelectedMemberFromDDay = "모임날에서 선택멤버 제거";
+    public static final String addContactMemberToDDay = "모임날 멤버 주소록에서 추가";
+    public static final String addRawMemberDirectly = "모임날 멤버 직접입력 추가";
+
+
+    
 
 
 }

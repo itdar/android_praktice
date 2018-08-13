@@ -128,9 +128,7 @@ public class Acty_Main extends Activity {
         switch (view.getId()) {
             case R.id.newDDayButton : newDDayButtonAction(); break;
             case R.id.newSquadButton : newSquadButtonAction(); break;
-            case R.id.deleteSquadButton : deleteSquadButtonAction(); break;
             case R.id.addMemberButton : addMemberButtonAction(); break;
-            case R.id.deleteMemberButton : deleteMemberButtonAction(); break;
             case R.id.modifyButton : modifyButtonAction(); break;
             default: break;
         }

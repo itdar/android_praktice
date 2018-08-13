@@ -1,8 +1,10 @@
 package com.gin.praktice.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -27,6 +29,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+
+import static com.gin.praktice.config.Config_Kor.addContactMemberToDDay;
+import static com.gin.praktice.config.Config_Kor.addRawMemberDirectly;
+import static com.gin.praktice.config.Config_Kor.deleteSelectedMemberFromDDay;
 
 public class Acty_DDay extends Activity {
 
@@ -142,23 +148,71 @@ public class Acty_DDay extends Activity {
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.contactAddButton : contactAddButtonAction(); break;
             case R.id.addMemberButton : addMemberButtonAction(); break;
-            case R.id.deleteButton : deleteButtonAction(); break;
+            case R.id.modifyButton : modifyButtonAction(); break;
             case R.id.nextButton : nextButtonAction(); break;
             default: break;
         }
     }
 
-    private void contactAddButtonAction() {
+    private void addContactMember() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
         startActivityForResult(intent, REQUEST_CONTACT);
     }
 
-    private void addMemberButtonAction() {
+    private void addRawMember() {
         Intent intent = new Intent(this, Acty_AddNewMember.class);
         startActivityForResult(intent, REQUEST_ADD_MEMBER);
+    }
+
+    private void addMemberButtonAction() {
+        final CharSequence[] items = {addRawMemberDirectly,
+                                    addContactMemberToDDay};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
+
+        // 여기서 부터는 알림창의 속성 설정
+        builder.setTitle("Add DDay Members")        // 제목 설정
+                .setItems(items, new DialogInterface.OnClickListener() {
+                    // 목록 클릭시 설정
+                    public void onClick(DialogInterface dialog, int index) {
+                        switch (index) {
+                            case 0:
+                                addRawMember();
+                                break;
+                            case 1:
+                                addContactMember();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
+        AlertDialog dialog = builder.create();    // 알림창 객체 생성
+        dialog.show();    // 알림창 띄우기
+    }
+
+    private void modifyButtonAction() {
+        final CharSequence[] items = { deleteSelectedMemberFromDDay };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
+
+        // 여기서 부터는 알림창의 속성 설정
+        builder.setTitle("DDay Modification")        // 제목 설정
+                .setItems(items, new DialogInterface.OnClickListener() {
+                    // 목록 클릭시 설정
+                    public void onClick(DialogInterface dialog, int index) {
+                        switch (index) {
+                            case 0:
+                                deleteMember();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
+        AlertDialog dialog = builder.create();    // 알림창 객체 생성
+        dialog.show();    // 알림창 띄우기
     }
 
     private void openKakao() {
@@ -166,7 +220,7 @@ public class Acty_DDay extends Activity {
 
     }
 
-    private void deleteButtonAction() {
+    private void deleteMember() {
 //        Toast.makeText(this, "Delete Member button clicked. ", Toast.LENGTH_LONG).show();
 
         if (adapter.getSelectedList().size() > 0) {
