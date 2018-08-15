@@ -25,10 +25,11 @@ import com.gin.praktice.component.Component;
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Member;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import static com.gin.praktice.config.Config_Kor.addContactMemberToDDay;
 import static com.gin.praktice.config.Config_Kor.addRawMemberDirectly;
@@ -92,7 +93,7 @@ public class Acty_DDay extends Activity {
         myCalendar = Calendar.getInstance();
 
         EditText edittext= (EditText) findViewById(R.id.dateEditText);
-        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+        final DatePickerDialog.OnDateSetListener datePicker = new DatePickerDialog.OnDateSetListener() {
 
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -109,17 +110,21 @@ public class Acty_DDay extends Activity {
         edittext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(Acty_DDay.this, date, myCalendar
+                new DatePickerDialog(Acty_DDay.this, datePicker, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        dateEditText.setText(dateFormat.format(date));
+
     }
 
     private void updateDate() {
-        String myFormat = "yyyy-dd-MM"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
 
         dateEditText.setText(sdf.format(myCalendar.getTime()));
     }
@@ -247,12 +252,12 @@ public class Acty_DDay extends Activity {
             }
             else
             {
-                Toast.makeText(this, "모임날의 이름과 날짜를 채워주세요.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "모임날 참석한 모든 멤버를 추가해주세요.", Toast.LENGTH_LONG).show();
             }
         }
         else
         {
-            Toast.makeText(this, "모임날 참석한 모든 멤버를 추가해주세요.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "모임날의 이름이나 날짜를 추가해주세요.", Toast.LENGTH_LONG).show();
         }
     }
 

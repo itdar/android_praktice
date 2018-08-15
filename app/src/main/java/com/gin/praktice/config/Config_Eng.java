@@ -1,6 +1,6 @@
 package com.gin.praktice.config;
 
-public enum Config_Kor {
+public enum Config_Eng {
     CONFIG;
 
     public static final String deleteSelectedSquad = "선택모임 삭제";
@@ -13,9 +13,7 @@ public enum Config_Kor {
     public static final String addContactMemberToDDay = "모임날 멤버 주소록에서 추가";
     public static final String addRawMemberDirectly = "모임날 멤버 직접입력 추가";
 
-    public static final String littleLateMember = "선택멤버 조금 늦게옴";
-    public static final String supperLateMember = "선택멤버 많이 늦게옴";
-    public static final String cancelLateMember = "선택멤버 늦은 것 취소";
+
 
 
 

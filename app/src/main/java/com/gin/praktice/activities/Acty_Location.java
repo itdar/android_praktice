@@ -1,7 +1,9 @@
 package com.gin.praktice.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +22,10 @@ import com.gin.praktice.component.Member;
 import com.gin.praktice.member.DayMembers;
 
 import java.util.ArrayList;
+
+import static com.gin.praktice.config.Config_Kor.cancelLateMember;
+import static com.gin.praktice.config.Config_Kor.littleLateMember;
+import static com.gin.praktice.config.Config_Kor.supperLateMember;
 
 public class Acty_Location extends Activity {
     private static final int ADD_MEMBER = 1;
@@ -99,13 +105,38 @@ public class Acty_Location extends Activity {
             case R.id.nextButton : nextButtonAction(); break;
             case R.id.deleteButton : deleteButtonAction(); break;
             case R.id.addMemberButton : addMemberButtonAction(); break;
-            case R.id.cancelLateButton : cancelLateButtonAction(); break;
-            case R.id.littleLateButton : littleLateButtonAction(); break;
-            case R.id.superLateButton : superLateButtonAction(); break;
+            case R.id.detailOptionButton : detailOptionButtonAction(); break;
             case R.id.setManagerButton : setManagerButtonAction(); break;
             case R.id.addMoreLocationButton : addMoreLocationButtonAction(); break;
             default: break;
         }
+    }
+
+    private void detailOptionButtonAction() {
+        final CharSequence[] items = { littleLateMember,
+                                    supperLateMember,
+                                    cancelLateMember };
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
+
+        // 여기서 부터는 알림창의 속성 설정
+        builder.setTitle("Add DDay Members")        // 제목 설정
+                .setItems(items, new DialogInterface.OnClickListener() {
+                    // 목록 클릭시 설정
+                    public void onClick(DialogInterface dialog, int index) {
+                        switch (index) {
+                            case 0:
+                                littleLateAction(); break;
+                            case 1:
+                                superLateAction(); break;
+                            case 2:
+                                cancelLateAction(); break;
+                            default:
+                                break;
+                        }
+                    }
+                });
+        AlertDialog dialog = builder.create();    // 알림창 객체 생성
+        dialog.show();    // 알림창 띄우기
     }
 
     private void setManagerButtonAction() {
@@ -118,7 +149,7 @@ public class Acty_Location extends Activity {
         }
     }
 
-    private void cancelLateButtonAction() {
+    private void cancelLateAction() {
         if (adapter.getSelectedList().size() > 0)
         {
             ((Member)location.get(adapter.getSelectedList().get(0))).isOneSecond = false;
@@ -131,7 +162,7 @@ public class Acty_Location extends Activity {
         }
     }
 
-    private void littleLateButtonAction() {
+    private void littleLateAction() {
         if (adapter.getSelectedList().size() > 0)
         {
             ((Member)location.get(adapter.getSelectedList().get(0))).isOneThird = false;
@@ -144,7 +175,7 @@ public class Acty_Location extends Activity {
         }
     }
 
-    private void superLateButtonAction() {
+    private void superLateAction() {
         if (adapter.getSelectedList().size() > 0)
         {
             ((Member)location.get(adapter.getSelectedList().get(0))).isOneSecond = false;
