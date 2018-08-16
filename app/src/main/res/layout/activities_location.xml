@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
+            android:background="#cde682"
             android:text="들렀던 장소"
             android:textAlignment="center"
             android:textSize="30sp" />
@@ -71,7 +72,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/locationMemberView"
             android:layout_width="match_parent"
-            android:layout_height="147dp"
+            android:layout_height="150dp"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -91,7 +92,7 @@
             <Button
                 android:id="@+id/deleteButton"
                 android:layout_width="wrap_content"
-                android:layout_height="72dp"
+                android:layout_height="65dp"
                 android:layout_weight="1"
                 android:onClick="onClick"
                 android:text="위에 선택된\n멤버 제거" />
@@ -99,9 +100,9 @@
             <Button
                 android:id="@+id/addMemberButton"
                 android:layout_width="170dp"
-                android:layout_height="72dp"
+                android:layout_height="65dp"
                 android:layout_weight="1"
-                android:background="#1fe76868"
+                android:background="#a5b18c"
                 android:onClick="onClick"
                 android:text="이 장소\n멤버 설정" />
 
@@ -115,7 +116,7 @@
             <Button
                 android:id="@+id/detailOptionButton"
                 android:layout_width="wrap_content"
-                android:layout_height="72dp"
+                android:layout_height="65dp"
                 android:layout_weight="1"
                 android:onClick="onClick"
                 android:text="세부기능 \n추가" />
@@ -123,9 +124,9 @@
             <Button
                 android:id="@+id/setManagerButton"
                 android:layout_width="170dp"
-                android:layout_height="72dp"
+                android:layout_height="65dp"
                 android:layout_weight="1"
-                android:background="#1fe76868"
+                android:background="#a5b18c"
                 android:onClick="onClick"
                 android:text="선택된 멤버가\n이 장소의 총무" />
 
@@ -134,22 +135,22 @@
         <Button
             android:id="@+id/addMoreLocationButton"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="65dp"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="15dp"
-            android:background="#1fe76868"
+            android:background="#c3d199"
             android:onClick="onClick"
             android:text="이 장소를 저장하고\n다음 장소 더 추가하기" />
 
         <Button
             android:id="@+id/nextButton"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="65dp"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="5dp"
-            android:background="#c3a8bb"
+            android:background="#c3d199"
             android:onClick="onClick"
             android:text="이제 그만\n여기가 마지막!!  결과보기" />
 

@@ -10,11 +10,25 @@
         android:orientation="vertical">
 
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="#e2b5f8"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="새 그룹 만들기"
+            android:textAlignment="center"
+            android:textSize="36sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -56,11 +70,11 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/newGroupMembersView"
                 android:layout_width="match_parent"
-                android:layout_height="224dp"
+                android:layout_height="142dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:scrollbars="vertical"
-                android:fadeScrollbars="false">
+                android:fadeScrollbars="false"
+                android:scrollbars="vertical">
 
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
@@ -93,9 +107,11 @@
         <Button
             android:id="@+id/newSquadButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:background="#bf7de1"
             android:onClick="onClick"
             android:text="모임 만들기 !"
             android:textSize="24sp"

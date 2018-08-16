@@ -15,7 +15,10 @@
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
-                    android:layout_height="61dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#ffeac1"
                     android:text="모임날"
                     android:textAlignment="center"
                     android:textColorLink="@android:color/black"
@@ -86,7 +89,7 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/dayMembersView"
                     android:layout_width="match_parent"
-                    android:layout_height="263dp"
+                    android:layout_height="240dp"
                     android:fadeScrollbars="false"
                     android:scrollbars="vertical"
                     tools:layout_editor_absoluteX="10dp"

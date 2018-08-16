@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_attach_money_black_24dp"
+        android:icon="@drawable/ic_gesture_black_24dp"
         android:label="It's On U"
-        android:roundIcon="@drawable/ic_attach_money_black_24dp"
+        android:roundIcon="@drawable/ic_gesture_black_24dp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.Acty_Main">

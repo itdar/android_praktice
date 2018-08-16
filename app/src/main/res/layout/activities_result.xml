@@ -10,9 +10,10 @@
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
+        android:background="#b7deff"
         android:text="모임 정산 결과"
         android:textAlignment="center"
         android:textSize="30sp" />
@@ -46,6 +47,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
+            android:background="#9eacf8"
             android:onClick="onClick"
             android:text="결과\n복사" />
 
@@ -86,6 +88,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
+            android:background="#9eacf8"
             android:onClick="onClick"
             android:text="결과\n복사" />
     </LinearLayout>
@@ -98,18 +101,18 @@
         <Button
             android:id="@+id/saveButton"
             android:layout_width="277dp"
-            android:layout_height="67dp"
+            android:layout_height="65dp"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:text="결과 저장(준비 중)" />
+            android:text="(준비 중)" />
 
         <Button
             android:id="@+id/doneButton"
             android:layout_width="match_parent"
-            android:layout_height="67dp"
+            android:layout_height="65dp"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
