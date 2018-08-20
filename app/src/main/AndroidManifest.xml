@@ -3,15 +3,22 @@
     package="com.gin.praktice">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_gesture_black_24dp"
+        android:icon="@drawable/ic_attach_money_black_24dp"
         android:label="It's On U"
-        android:roundIcon="@drawable/ic_gesture_black_24dp"
+        android:roundIcon="@drawable/ic_attach_money_black_24dp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.Acty_Main">
+
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+
+
+        <activity android:name=".activities.main.Acty_Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,15 +26,20 @@
             </intent-filter>
         </activity>
 
-        <!--<activity android:name=".activities.Acty_Main" />-->
-        <activity android:name=".activities.Acty_AddNewSquad" />
+        <!--<activity android:name=".activities.Acty_MainSplitor" />-->
+        <activity android:name=".activities.splitor.Acty_AddNewSquad" />
 
-        <activity android:name=".activities.Acty_DDay" />
-        <activity android:name=".activities.Acty_Location" />
-        <activity android:name=".activities.Acty_Result" />
+        <activity android:name=".activities.splitor.Acty_MainSplitor" />
+        <activity android:name=".activities.splitor.Acty_DDay" />
+        <activity android:name=".activities.splitor.Acty_Location" />
+        <activity android:name=".activities.splitor.Acty_Result" />
 
-        <activity android:name=".activities.Acty_AddNewMember" />
-        <activity android:name=".activities.Acty_AddMember2Location" />
+        <activity android:name=".activities.splitor.Acty_AddNewMember" />
+        <activity android:name=".activities.splitor.Acty_AddMember2Location" />
+
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
 
 
     </application>

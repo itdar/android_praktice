@@ -1,4 +1,4 @@
-package com.gin.praktice.activities;
+package com.gin.praktice.activities.splitor;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -24,7 +24,7 @@ import com.gin.praktice.sqlite.SQLiteHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Acty_Main extends Activity {
+public class Acty_MainSplitor extends Activity {
     private Intent dDayIntent;
 
     private SQLiteHelper sqLiteHelper;
@@ -50,7 +50,7 @@ public class Acty_Main extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activities_main);
+        setContentView(R.layout.activities_main_splitor);
 
         sqLiteHelper = new SQLiteHelper(this.getApplicationContext());
 

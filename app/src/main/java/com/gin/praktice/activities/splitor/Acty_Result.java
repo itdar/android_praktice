@@ -1,4 +1,4 @@
-package com.gin.praktice.activities;
+package com.gin.praktice.activities.splitor;
 
 import android.app.Activity;
 import android.content.ClipData;
@@ -18,7 +18,7 @@ import java.util.Map;
 public class Acty_Result extends Activity {
     private DDay dDay;
 
-    private TextView resultTextView;
+    private TextView resultTextView1;
     private TextView resultTextView2;
 
     // activity 정리하고 꾸며야함
@@ -28,12 +28,12 @@ public class Acty_Result extends Activity {
         setContentView(R.layout.activities_result);
 
         dDay = DDay.getInstance();
-        resultTextView = (TextView) findViewById(R.id.resultTextView);
+        resultTextView1 = (TextView) findViewById(R.id.resultTextView);
         resultTextView2 = (TextView) findViewById(R.id.resultTextView2);
 
         Visitor editTextVisitor = new Visitor_AppendEditText();
-        dDay.accept(editTextVisitor, resultTextView);
-        dDay.dayMembers.accept(editTextVisitor, resultTextView);
+        dDay.accept(editTextVisitor, resultTextView1);
+        dDay.dayMembers.accept(editTextVisitor, resultTextView1);
 
         //만들때 visitor? 새로 만들어야함
         tempManagerFunction();
@@ -54,11 +54,11 @@ public class Acty_Result extends Activity {
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
         if (currentapiVersion >= android.os.Build.VERSION_CODES.HONEYCOMB){
             android.content.ClipboardManager clipboard =  (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("resultCopy1", resultTextView.getText());
+            ClipData clip = ClipData.newPlainText("resultCopy1", resultTextView1.getText());
             clipboard.setPrimaryClip(clip);
         } else{
             android.text.ClipboardManager clipboard = (android.text.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
-            clipboard.setText(resultTextView.getText());
+            clipboard.setText(resultTextView1.getText());
         }
         Toast.makeText(getApplicationContext(), "정산 세부내역을 복사", Toast.LENGTH_SHORT).show();
     }
@@ -90,15 +90,44 @@ public class Acty_Result extends Activity {
         Toast.makeText(getApplicationContext(), "멤버별 부칠 내역을 복사", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * 2018.08.20 여기부터 시작해야함
+     * naming, function fix
+     *
+     * 1. 전체 멤버 시작부터 끝까지 반복한다.
+     *  1.1. 멤버의 매니저맵의 시작부터 끝까지 반복한다.
+     *   1.1.1. 전체 멤버 시작부터 끝까지 반복한다.
+     *    1.1.1.1. 매니저를 전체 멤버에서 찾는다.
+     *     1.1.1.1.1. 찾은 멤버의 매니저 맵에 처음 (i) 멤버가 있는지 확인해서
+     *      1.1.1.1.1.1. 있으면 -
+     *      1.1.1.1.1.2. 없으면 -
+     * 2. 맞게 출력한다.
+     * 3. 끝낸다.
+     *
+     * Dynamic 프로그래밍 되는지 확인(matrix)
+     */
     private void tempManagerFunction() {
+        Member managerMember;
+        String memberName;
+
         resultTextView2.append("\n");
         for (int i = 0; i < dDay.dayMembers.getLength(); ++i)
         {
             if (!((Member)dDay.dayMembers.get(i)).managerMap.isEmpty())
             {
-                resultTextView2.append("\n" + dDay.dayMembers.get(i).getName() + " 정산결과는 \n");
+                memberName = dDay.dayMembers.get(i).getName();
+                resultTextView2.append("\n" + memberName + "님의 정산결과는 \n");
                 for (Map.Entry<Member, Integer> entry : ((Member)dDay.dayMembers.get(i)).managerMap.entrySet())
                 {
+
+                    managerMember = entry.getKey();
+                    for (int j = 0; j < dDay.dayMembers.getLength(); ++j)
+                    {
+
+                    }
+
+
+
                     resultTextView2.append("\n " + entry.getKey().getName() + " 에게 " + entry.getValue() + "원을 부쳐야합니다");
                 }
                 resultTextView2.append("\n\n");

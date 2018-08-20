@@ -1,4 +1,4 @@
-package com.gin.praktice.activities;
+package com.gin.praktice.activities.splitor;
 
 import android.app.Activity;
 import android.app.AlertDialog;

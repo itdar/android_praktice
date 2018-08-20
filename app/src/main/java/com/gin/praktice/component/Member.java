@@ -115,6 +115,8 @@ public class Member extends Component {
 	public void setManager(boolean isManager) { this.isManager = isManager; }
 	public boolean getManager() { return this.isManager; }
 
+	public void setBank(String bank) { this.bank = bank; }
+	public void setAccountNumber(String accountNumber) { this.accountNumber = accountNumber; }
 	public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
 	public void addManagerCalc(Member manager, int money2Send) {
