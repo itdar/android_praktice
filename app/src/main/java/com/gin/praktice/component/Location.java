@@ -27,16 +27,15 @@ public class Location extends Composite {
 	}
 
 	/**
-	 *  DDay의 DayMembers 와 연결된 멤버를 tempList에 새로 만들어두고
-	 *  해당 Location에서의 Money를 1/n 해서 temp에 넣어주고 (Location에 남을 거)
-	 *  1/n 한 돈을 AllMember와 연결된 것에 더해준다 (DayMembers(DDay안에) 에 각각 전체 돈)
+	 *  DDay의 DayMembers 와 연결된 Member들 tempList에 새로 만들어두고
+	 *  해당 Location에서의 Money를 1/n 해서 tempList member들에 //넣어주고 (Location에 남을 거)
+	 *  1/n 한 돈을 AllMember와 연결된 것에 //더해준다 (DayMembers(DDay안에) 에 각각 전체 돈)
 	 */
 	public void distribution() {
 		List<Component> tempList = new ArrayList<>();
 		Member member;
 		int divider = 0;
 
-		// 늦은사람 있는지 확인해서 없으면 그냥 보통대로 깔끔하게 계산하는 식으로 가야 오차 안생김 **
 		for (int i = 0; i < this.getLength(); ++i)
 		{
 			member = ((Member)this.get(i));
@@ -52,7 +51,8 @@ public class Location extends Composite {
 			{
 				divider += 6;
 			}
-			tempList.add(((Member)this.list.get(i).clone()));
+//			tempList.add(((Member) this.list.get(i).clone()));
+			tempList.add(member.clone());
 		}
 
 		int dividedShare = money / divider;
@@ -65,21 +65,21 @@ public class Location extends Composite {
 			    int oneSecond = (dividedShare * 3 + 5) / 10 * 10;
 				((Member)tempList.get(i)).setMoney(oneSecond);
 				member.plusMoney(oneSecond);
-				member.addManagerCalc(this.manager, oneSecond);
+//				member.addManagerCalc(this.manager, oneSecond);
 			}
 			else if (member.isOneThird)
 			{
 			    int oneThird = (dividedShare * 2 + 5) / 10 * 10;
 				((Member)tempList.get(i)).setMoney(oneThird);
 				member.plusMoney(oneThird);
-				member.addManagerCalc(this.manager, oneThird);
+//				member.addManagerCalc(this.manager, oneThird);
 			}
 			else
 			{
 			    int oneFirst = (dividedShare * 6 + 5) / 10 * 10;
 				((Member)tempList.get(i)).setMoney(oneFirst);
 				member.plusMoney(oneFirst);
-				member.addManagerCalc(this.manager, oneFirst);
+//				member.addManagerCalc(this.manager, oneFirst);
 			}
 		}
 		this.setList(tempList);

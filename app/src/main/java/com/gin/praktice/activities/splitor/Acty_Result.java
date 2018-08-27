@@ -110,29 +110,147 @@ public class Acty_Result extends Activity {
         Member managerMember;
         String memberName;
 
-        resultTextView2.append("\n");
-        for (int i = 0; i < dDay.dayMembers.getLength(); ++i)
+//        int dayMembersLength = dDay.dayMembers.getLength();
+//        int[][] resultMoneyMat = new int[dayMembersLength][dayMembersLength];
+//        for (int i = 0; i < dayMembersLength; ++i)
+//        {
+//            for (int j = 0; j < dayMembersLength; ++j)
+//            {
+//                resultMoneyMat[i][j] = 0;
+//            }
+//        }
+//
+//        resultTextView2.append("\n");
+//        for (int i = 0; i < dayMembersLength; ++i)
+//        {
+//            if (!((Member)dDay.dayMembers.get(i)).managerMap.isEmpty())
+//            {
+//                memberName = dDay.dayMembers.get(i).getName();
+//                resultTextView2.append("\n" + memberName + "님의 정산결과는 \n");
+//                for (Map.Entry<Member, Integer> entry : ((Member)dDay.dayMembers.get(i)).managerMap.entrySet())
+//                {
+//                    resultTextView2.append("\n " + entry.getKey().getName() + " 에게 " + entry.getValue() + "원을 부쳐야합니다");
+//                }
+//                resultTextView2.append("\n\n");
+//            }
+//        }
+
+
+
+        //Dynamic programming
+        // Need to adjust this in every money distribution
+
+        int dayMembersLength = dDay.dayMembers.getLength();
+        int[][] resultMoneyMat = new int[dayMembersLength][dayMembersLength];
+        for (int i = 0; i < dayMembersLength; ++i)
         {
-            if (!((Member)dDay.dayMembers.get(i)).managerMap.isEmpty())
+            for (int j = 0; j < dayMembersLength; ++j)
             {
-                memberName = dDay.dayMembers.get(i).getName();
+                resultMoneyMat[i][j] = 0;
+            }
+        }
+
+//        resultTextView2.append("\n");
+//        for (int i = 0; i < dayMembersLength; ++i)
+//        {
+//            if (!((Member)dDay.dayMembers.get(i)).managerMap.isEmpty())
+//            {
+//                memberName = dDay.dayMembers.get(i).getName();
+//                resultTextView2.append("\n" + memberName + "님의 정산결과는 \n");
+//                for (Map.Entry<Member, Integer> entry : ((Member)dDay.dayMembers.get(i)).managerMap.entrySet())
+//                {
+//
+//                    managerMember = entry.getKey();
+//                    for (int j = 0; j < dayMembersLength; ++j)
+//                    {
+//                        if (managerMember.getName().equals(dDay.dayMembers.get(j).getName()))
+//                        {
+//                            resultMoneyMat[i][j] = managerMember.getMoney();
+//                            int money2Send = resultMoneyMat[i][j];
+//
+//                            if (resultMoneyMat[j][i] > 0)
+//                            {
+//                                int money2Receive = resultMoneyMat[j][i];
+//
+//                                if (money2Send > money2Receive)
+//                                {
+//                                    resultMoneyMat[i][j] = money2Send - money2Receive;
+//                                }
+//                                else if (money2Send == money2Receive)
+//                                {
+//                                    resultMoneyMat[i][j] = 0;
+//                                    resultMoneyMat[j][i] = 0;
+//                                }
+//                                else if (money2Send < money2Receive)
+//                                {
+//                                    resultMoneyMat[j][i] = money2Receive - money2Send;
+//                                }
+//                            }
+//                        }
+//                    }
+//                    resultTextView2.append("\n " + entry.getKey().getName() + " 에게 " + entry.getValue() + "원을 부쳐야합니다");
+//                }
+//                resultTextView2.append("\n\n");
+//            }
+//        }
+
+        resultTextView2.append("\n");
+        for (int i = 0; i < dayMembersLength; ++i)
+        {
+            Member member = ((Member)dDay.dayMembers.get(i));
+            if (!member.managerMap.isEmpty())
+            {
+                memberName = member.getName();
                 resultTextView2.append("\n" + memberName + "님의 정산결과는 \n");
+                for (int j = 0; j < dayMembersLength; ++j)
+                {
+                    if (member.managerMap.containsKey(dDay.dayMembers.get(j)))
+                    {
+                        resultMoneyMat[i][j] = member.managerMap.get(dDay.dayMembers.get(j));
+                        int money2Send = resultMoneyMat[i][j];
+
+                        if (resultMoneyMat[j][i] > 0)
+                        {
+                            int money2Receive = resultMoneyMat[j][i];
+
+                            if (money2Send > money2Receive)
+                            {
+                                resultMoneyMat[i][j] = money2Send - money2Receive;
+                            }
+                            else if (money2Send == money2Receive)
+                            {
+                                resultMoneyMat[i][j] = 0;
+                                resultMoneyMat[j][i] = 0;
+                            }
+                            else if (money2Send < money2Receive)
+                            {
+                                resultMoneyMat[j][i] = money2Receive - money2Send;
+                            }
+                        }
+                    }
+                }
                 for (Map.Entry<Member, Integer> entry : ((Member)dDay.dayMembers.get(i)).managerMap.entrySet())
                 {
-
-                    managerMember = entry.getKey();
-                    for (int j = 0; j < dDay.dayMembers.getLength(); ++j)
-                    {
-
-                    }
-
-
-
                     resultTextView2.append("\n " + entry.getKey().getName() + " 에게 " + entry.getValue() + "원을 부쳐야합니다");
                 }
                 resultTextView2.append("\n\n");
             }
         }
+
+        // 고쳐야함
+        //
+        String tempBuffer = "";
+        for (int i = 0; i < dayMembersLength; ++i)
+        {
+            for (int j = 0; j < dayMembersLength; ++j)
+            {
+                tempBuffer += resultMoneyMat[i][j];
+                tempBuffer += "       ";
+            }
+            tempBuffer += "\n";
+        }
+        resultTextView2.append(tempBuffer);
+
     }
 
     /**
