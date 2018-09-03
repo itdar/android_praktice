@@ -2,6 +2,7 @@ package com.gin.praktice.component;
 
 import android.widget.TextView;
 
+import com.gin.praktice.dynamic.result.MoneyMatrix;
 import com.gin.praktice.visitor.Visitor;
 
 import java.util.ArrayList;
@@ -65,6 +66,7 @@ public class Location extends Composite {
 			    int oneSecond = (dividedShare * 3 + 5) / 10 * 10;
 				((Member)tempList.get(i)).setMoney(oneSecond);
 				member.plusMoney(oneSecond);
+				MoneyMatrix.INSTANCE.setMoneyToMat(oneSecond, member, manager);
 //				member.addManagerCalc(this.manager, oneSecond);
 			}
 			else if (member.isOneThird)
@@ -72,6 +74,7 @@ public class Location extends Composite {
 			    int oneThird = (dividedShare * 2 + 5) / 10 * 10;
 				((Member)tempList.get(i)).setMoney(oneThird);
 				member.plusMoney(oneThird);
+				MoneyMatrix.INSTANCE.setMoneyToMat(oneThird, member, manager);
 //				member.addManagerCalc(this.manager, oneThird);
 			}
 			else
@@ -79,6 +82,7 @@ public class Location extends Composite {
 			    int oneFirst = (dividedShare * 6 + 5) / 10 * 10;
 				((Member)tempList.get(i)).setMoney(oneFirst);
 				member.plusMoney(oneFirst);
+				MoneyMatrix.INSTANCE.setMoneyToMat(oneFirst, member, manager);
 //				member.addManagerCalc(this.manager, oneFirst);
 			}
 		}
