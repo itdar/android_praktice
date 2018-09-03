@@ -102,8 +102,9 @@ public class Acty_Result extends Activity {
      *      1.1.1.1.1.2. 없으면 -
      * 2. 맞게 출력한다.
      * 3. 끝낸다.
-     *
-     * Dynamic 프로그래밍 되는지 확인(matrix)
+     */
+    /**
+     * Dynamic matrix
      */
     private void tempManagerFunction() {
         Member managerMember;
@@ -111,87 +112,115 @@ public class Acty_Result extends Activity {
 
         resultTextView2.append("\n");
 
-        //Dynamic programming
-        // Need to adjust this in every money distribution
-
         int dayMembersLength = dDay.dayMembers.getLength();
         int[][] resultMoneyMat = MoneyMatrix.INSTANCE.resultMoneyMat;
 
-//        resultTextView2.append("\n");
-//        for (int i = 0; i < dayMembersLength; ++i)
-//        {
-//            if (!((Member)dDay.dayMembers.get(i)).managerMap.isEmpty())
-//            {
-//                memberName = dDay.dayMembers.get(i).getName();
-//                resultTextView2.append("\n" + memberName + "님의 정산결과는 \n");
-//                for (Map.Entry<Member, Integer> entry : ((Member)dDay.dayMembers.get(i)).managerMap.entrySet())
-//                {
-//
-//                    managerMember = entry.getKey();
-//                    for (int j = 0; j < dayMembersLength; ++j)
-//                    {
-//                        if (managerMember.getName().equals(dDay.dayMembers.get(j).getName()))
-//                        {
-//                            resultMoneyMat[i][j] = managerMember.getMoney();
-//                            int money2Send = resultMoneyMat[i][j];
-//
-//                            if (resultMoneyMat[j][i] > 0)
-//                            {
-//                                int money2Receive = resultMoneyMat[j][i];
-//
-//                                if (money2Send > money2Receive)
-//                                {
-//                                    resultMoneyMat[i][j] = money2Send - money2Receive;
-//                                }
-//                                else if (money2Send == money2Receive)
-//                                {
-//                                    resultMoneyMat[i][j] = 0;
-//                                    resultMoneyMat[j][i] = 0;
-//                                }
-//                                else if (money2Send < money2Receive)
-//                                {
-//                                    resultMoneyMat[j][i] = money2Receive - money2Send;
-//                                }
-//                            }
-//                        }
-//                    }
-//                    resultTextView2.append("\n " + entry.getKey().getName() + " 에게 " + entry.getValue() + "원을 부쳐야합니다");
-//                }
-//                resultTextView2.append("\n\n");
-//            }
-//        }
-
-//        resultTextView2.append("\n");
-//        for (int i = 0; i < dayMembersLength; ++i)
-//        {
-//            Member member = ((Member)dDay.dayMembers.get(i));
-//            if (!member.managerMap.isEmpty())
-//            {
-//                memberName = member.getName();
-//                resultTextView2.append("\n" + memberName + "님의 정산결과는 \n");
-//                for (Map.Entry<Member, Integer> entry : ((Member)dDay.dayMembers.get(i)).managerMap.entrySet())
-//                {
-//                    resultTextView2.append("\n " + entry.getKey().getName() + " 에게 " + entry.getValue() + "원을 부쳐야합니다");
-//                }
-//                resultTextView2.append("\n\n");
-//            }
-//        }
-
-        // 고쳐야함
-        //
-        String tempBuffer = "";
         for (int i = 0; i < dayMembersLength; ++i)
         {
+            memberName = dDay.dayMembers.get(i).getName();
+            resultTextView2.append("\n" + memberName + "님의 정산결과는 \n");
             for (int j = 0; j < dayMembersLength; ++j)
             {
-                tempBuffer += resultMoneyMat[i][j];
-                tempBuffer += "       ";
+                if (i != j && resultMoneyMat[i][j] > 0)
+                {
+                    resultTextView2.append("\n " + dDay.dayMembers.get(j).getName() + " 에게 "
+                            + resultMoneyMat[i][j] + "원을 부쳐야합니다");
+                }
             }
-            tempBuffer += "\n";
+            resultTextView2.append("\n");
         }
-        resultTextView2.append(tempBuffer);
+
 
     }
+
+    //old ver.
+//    private void tempManagerFunction() {
+//        Member managerMember;
+//        String memberName;
+//
+//        resultTextView2.append("\n");
+//
+//        //Dynamic programming
+//        // Need to adjust this in every money distribution
+//
+//        int dayMembersLength = dDay.dayMembers.getLength();
+//        int[][] resultMoneyMat = MoneyMatrix.INSTANCE.resultMoneyMat;
+//
+////        resultTextView2.append("\n");
+////        for (int i = 0; i < dayMembersLength; ++i)
+////        {
+////            if (!((Member)dDay.dayMembers.get(i)).managerMap.isEmpty())
+////            {
+////                memberName = dDay.dayMembers.get(i).getName();
+////                resultTextView2.append("\n" + memberName + "님의 정산결과는 \n");
+////                for (Map.Entry<Member, Integer> entry : ((Member)dDay.dayMembers.get(i)).managerMap.entrySet())
+////                {
+////
+////                    managerMember = entry.getKey();
+////                    for (int j = 0; j < dayMembersLength; ++j)
+////                    {
+////                        if (managerMember.getName().equals(dDay.dayMembers.get(j).getName()))
+////                        {
+////                            resultMoneyMat[i][j] = managerMember.getMoney();
+////                            int money2Send = resultMoneyMat[i][j];
+////
+////                            if (resultMoneyMat[j][i] > 0)
+////                            {
+////                                int money2Receive = resultMoneyMat[j][i];
+////
+////                                if (money2Send > money2Receive)
+////                                {
+////                                    resultMoneyMat[i][j] = money2Send - money2Receive;
+////                                }
+////                                else if (money2Send == money2Receive)
+////                                {
+////                                    resultMoneyMat[i][j] = 0;
+////                                    resultMoneyMat[j][i] = 0;
+////                                }
+////                                else if (money2Send < money2Receive)
+////                                {
+////                                    resultMoneyMat[j][i] = money2Receive - money2Send;
+////                                }
+////                            }
+////                        }
+////                    }
+////                    resultTextView2.append("\n " + entry.getKey().getName() + " 에게 " + entry.getValue() + "원을 부쳐야합니다");
+////                }
+////                resultTextView2.append("\n\n");
+////            }
+////        }
+//
+////        resultTextView2.append("\n");
+////        for (int i = 0; i < dayMembersLength; ++i)
+////        {
+////            Member member = ((Member)dDay.dayMembers.get(i));
+////            if (!member.managerMap.isEmpty())
+////            {
+////                memberName = member.getName();
+////                resultTextView2.append("\n" + memberName + "님의 정산결과는 \n");
+////                for (Map.Entry<Member, Integer> entry : ((Member)dDay.dayMembers.get(i)).managerMap.entrySet())
+////                {
+////                    resultTextView2.append("\n " + entry.getKey().getName() + " 에게 " + entry.getValue() + "원을 부쳐야합니다");
+////                }
+////                resultTextView2.append("\n\n");
+////            }
+////        }
+//
+//        // 고쳐야함
+//        //
+//        String tempBuffer = "";
+//        for (int i = 0; i < dayMembersLength; ++i)
+//        {
+//            for (int j = 0; j < dayMembersLength; ++j)
+//            {
+//                tempBuffer += resultMoneyMat[i][j];
+//                tempBuffer += "       ";
+//            }
+//            tempBuffer += "\n";
+//        }
+//        resultTextView2.append(tempBuffer);
+//
+//    }
 
     /**
      * 마지막에 DDay->Location 돌면서

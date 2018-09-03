@@ -1,7 +1,5 @@
 package com.gin.praktice.dynamic.result;
 
-import android.util.Log;
-
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Member;
 import com.gin.praktice.member.DayMembers;
@@ -26,20 +24,17 @@ public enum MoneyMatrix {
         int sendMemberIndex = -1;
         int receiveMemberIndex = -1;
 
-        Log.d("Send", sendMember.getName());
-        Log.d("Receive", receiveMember.getName());
-
+//        Log.d("Send", sendMember.getName());
+//        Log.d("Receive", receiveMember.getName());
         for (int i = 0; i < dayMembers.getLength(); ++i)
         {
             Member member = (Member)dayMembers.get(i);
-            Log.d("dayMem", member.getName());
+//            Log.d("dayMem", member.getName());
 
-//            if (member.getName().equals(sendMember.getName()))
             if (member.equals(sendMember))
             {
                 sendMemberIndex = i;
             }
-//            if (member.getName().equals(receiveMember.getName()))
             if (member.equals(receiveMember))
             {
                 receiveMemberIndex = i;
@@ -47,16 +42,15 @@ public enum MoneyMatrix {
         }
         if (sendMemberIndex != receiveMemberIndex)
         {
-            int oldMoney2Send = resultMoneyMat[sendMemberIndex][receiveMemberIndex];
-            money2Send += oldMoney2Send;
-            resultMoneyMat[sendMemberIndex][receiveMemberIndex] = money2Send;
+            resultMoneyMat[sendMemberIndex][receiveMemberIndex] += money2Send;
+            money2Send = resultMoneyMat[sendMemberIndex][receiveMemberIndex];
             int money2Receive = resultMoneyMat[receiveMemberIndex][sendMemberIndex];
-
             if (money2Receive > 0)
             {
                 if (money2Send > money2Receive)
                 {
                     resultMoneyMat[sendMemberIndex][receiveMemberIndex] = money2Send - money2Receive;
+                    resultMoneyMat[receiveMemberIndex][sendMemberIndex] = 0;
                 }
                 else if (money2Send == money2Receive)
                 {
@@ -65,6 +59,7 @@ public enum MoneyMatrix {
                 }
                 else if (money2Send < money2Receive)
                 {
+                    resultMoneyMat[sendMemberIndex][receiveMemberIndex] = 0;
                     resultMoneyMat[receiveMemberIndex][sendMemberIndex] = money2Receive - money2Send;
                 }
             }
