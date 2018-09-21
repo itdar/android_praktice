@@ -147,6 +147,10 @@ public class Acty_Location extends Activity {
             adapter.getSelectedList().clear();
             adapter.notifyDataSetChanged();
         }
+        else
+        {
+            Toast.makeText(this, "Select member first.", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void cancelLateAction() {

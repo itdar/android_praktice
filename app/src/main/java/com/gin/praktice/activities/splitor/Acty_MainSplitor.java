@@ -136,9 +136,9 @@ public class Acty_MainSplitor extends Activity {
 
     private void modifyButtonAction() {
 
-        final CharSequence[] items = {addMemberToSelectedSquad,
-                                    deleteSelectedMemberInSelectedSquad,
-                                    deleteSelectedSquad};
+        final CharSequence[] items = { Config_Kor.addMemberToSelectedSquad,
+                                    Config_Kor.deleteSelectedMemberInSelectedSquad,
+                                    Config_Kor.deleteSelectedSquad};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
 
         // 여기서 부터는 알림창의 속성 설정

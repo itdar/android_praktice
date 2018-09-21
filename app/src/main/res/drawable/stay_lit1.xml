@@ -4,7 +4,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@mipmap/stay_lit1"/>
+            android:src="@mipmap/stay_lit"/>
     </item>
 
 </layer-list>

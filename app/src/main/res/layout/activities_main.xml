@@ -24,14 +24,6 @@
             tools:layout_editor_absoluteX="158dp"
             tools:layout_editor_absoluteY="53dp" />
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ads:adSize="BANNER"
-            ads:adUnitId="AdView1"
-            />
-
         <Button
             android:id="@+id/mainSplitorButton"
             android:layout_width="match_parent"
@@ -44,6 +36,12 @@
             android:textSize="18sp"
             tools:layout_editor_absoluteX="148dp"
             tools:layout_editor_absoluteY="423dp" />
+
+        <Button
+            android:id="@+id/languageButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Language" />
 
     </LinearLayout>
 
