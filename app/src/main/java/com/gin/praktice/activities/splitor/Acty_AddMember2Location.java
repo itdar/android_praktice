@@ -30,14 +30,26 @@ public class Acty_AddMember2Location extends Activity {
 
         dDay = DDay.getInstance();
 
+        ArrayList<String> existNameList = getIntent().getExtras().getStringArrayList("existNameList");
 
         //TODO 멤버추가하는 intent 받을때 location에서 리스트에 이미 있는 이름들 받아서, 없는 이름들만 dayMembersList에 추가하도록
-        //TODO 2018-07-26
-        for (int i = 0; i < dDay.dayMembers.getLength(); i++) {
-            dayMembersList.add(dDay.dayMembers.get(i).getName());
+        //TODO 2018-07-26 // 2018-09-24 //
+        boolean isExist;
+        for (int i = 0; i < dDay.dayMembers.getLength(); ++i)
+        {
+            isExist = false;
+            for (int j = 0; j < existNameList.size(); ++j)
+            {
+                if (dDay.dayMembers.get(i).getName().equals(existNameList.get(j)))
+                {
+                    isExist = true;
+                }
+            }
+            if (!isExist)
+            {
+                dayMembersList.add(dDay.dayMembers.get(i).getName());
+            }
         }
-//        dayMembersList = dDay.dayMembers.clone().getList();
-
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, dayMembersList);
         locationMemberView = (ListView) findViewById(R.id.locationMemberView);
@@ -45,12 +57,7 @@ public class Acty_AddMember2Location extends Activity {
         locationMemberView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         locationMemberView.setItemsCanFocus(false);
 
-//        for (int i = 0; i < dDay.members.getLength(); i++) {
-//            adapter.add(dDay.members.get(i));
-//        }
         adapter.notifyDataSetChanged();
-
-
     }
 
     public void onClick(View view) {
@@ -65,7 +72,7 @@ public class Acty_AddMember2Location extends Activity {
         ArrayList<String> nameList = new ArrayList<String>();
 
         SparseBooleanArray checked = locationMemberView.getCheckedItemPositions();
-        for (int i = 0; i < locationMemberView.getCount(); i++) {
+        for (int i = 0; i < locationMemberView.getCount(); ++i) {
             if (checked.get(i)) {
                 nameList.add(dayMembersList.get(i));
             }

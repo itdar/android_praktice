@@ -19,13 +19,10 @@ import com.gin.praktice.adapter.LocationRecyclerAdapter;
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Location;
 import com.gin.praktice.component.Member;
+import com.gin.praktice.config.lang.Config_Language;
 import com.gin.praktice.member.DayMembers;
 
 import java.util.ArrayList;
-
-import static com.gin.praktice.config.Config_Kor.cancelLateMember;
-import static com.gin.praktice.config.Config_Kor.littleLateMember;
-import static com.gin.praktice.config.Config_Kor.supperLateMember;
 
 public class Acty_Location extends Activity {
     private static final int ADD_MEMBER = 1;
@@ -113,9 +110,10 @@ public class Acty_Location extends Activity {
     }
 
     private void detailOptionButtonAction() {
-        final CharSequence[] items = { littleLateMember,
-                                    supperLateMember,
-                                    cancelLateMember };
+        final CharSequence[] items = {
+                Config_Language.get().littleLateMember,
+                Config_Language.get().superLateMember,
+                Config_Language.get().cancelLateMember };
         AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
 
         // 여기서 부터는 알림창의 속성 설정
@@ -124,14 +122,10 @@ public class Acty_Location extends Activity {
                     // 목록 클릭시 설정
                     public void onClick(DialogInterface dialog, int index) {
                         switch (index) {
-                            case 0:
-                                littleLateAction(); break;
-                            case 1:
-                                superLateAction(); break;
-                            case 2:
-                                cancelLateAction(); break;
-                            default:
-                                break;
+                            case 0:littleLateAction(); break;
+                            case 1:superLateAction(); break;
+                            case 2:cancelLateAction(); break;
+                            default:break;
                         }
                     }
                 });
@@ -211,6 +205,16 @@ public class Acty_Location extends Activity {
     private void addMemberButtonAction() {
         Intent intent = new Intent(this, Acty_AddMember2Location.class);
 
+        ArrayList<String> existNameList = new ArrayList<String>();
+
+        for (int i = 0; i < adapter.getItemCount(); ++i) {
+            existNameList.add(adapter.getItems().get(i).getName());
+        }
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("existNameList", existNameList);
+
+        intent.putExtras(bundle);
+
         startActivityForResult(intent, ADD_MEMBER);
     }
 
@@ -229,19 +233,15 @@ public class Acty_Location extends Activity {
 
     // TODO Need to make request interface
     private void addMember(Intent intent) {
-        // 중복추가 안되게 막아야함 -> 확인해야함
         Bundle bundle = intent.getExtras();
         ArrayList<String> nameList = bundle.getStringArrayList("nameList");
 
         for (int i = 0; i < nameList.size(); ++i)
         {
-//            adapter.add(nameList.get(i));
             for (int j = 0; j < dDay.dayMembers.getLength(); ++j)
             {
-                if (nameList.get(i).equals(dDay.dayMembers.get(j).getName())
-                        && !location.contains(nameList.get(i)))
+                if (nameList.get(i).equals(dDay.dayMembers.get(j).getName()))
                 {
-
                     location.add(dDay.dayMembers.get(j));
                 }
             }

@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gin.praktice.R;
@@ -18,7 +20,7 @@ import com.gin.praktice.component.Component;
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Member;
 import com.gin.praktice.component.Squad;
-import com.gin.praktice.config.Config_Kor;
+import com.gin.praktice.config.lang.Config_Language;
 import com.gin.praktice.sqlite.SQLiteHelper;
 
 import java.util.ArrayList;
@@ -40,11 +42,18 @@ public class Acty_MainSplitor extends Activity {
     private static final int ADD_NEW_SQUAD = 1;
     private static final int ADD_NEW_MEMBER= 2;
 
-    private final String deleteSelectedSquad = Config_Kor.CONFIG.deleteSelectedSquad;
-    private final String deleteSelectedMemberInSelectedSquad = Config_Kor.CONFIG.deleteSelectedMemberInSelectedSquad;
-    private final String addMemberToSelectedSquad = Config_Kor.CONFIG.addMemberToSelectedSquad;
-    private final String modifySelectedMemberName = "선택멤버 이름 수정"; // 준비중
-    private final String modifySelectedSquadName = "선택모임 이름 수정"; // 준비중
+    private TextView splitorMainText;
+    private TextView selectedMemberListText;
+    private TextView wholeGroupListText;
+    private Button splitorMainModifyButton;
+    private Button splitorMainNewSquadButton;
+    private Button splitorMainNewDDayButton;
+
+    private String deleteSelectedSquad = Config_Language.get().deleteSelectedSquad;
+    private String deleteSelectedMemberInSelectedSquad = Config_Language.get().deleteSelectedMemberInSelectedSquad;
+    private String addMemberToSelectedSquad = Config_Language.get().addMemberToSelectedSquad;
+    private String modifySelectedMemberName = "선택멤버 이름 수정";   // 준비중
+    private String modifySelectedSquadName = "선택모임 이름 수정";    // 준비중
 
 
     @Override
@@ -59,6 +68,9 @@ public class Acty_MainSplitor extends Activity {
         setRecyclerView();
 
         loadSQLite();
+
+        getComponentsId();
+        setComponentsNames();
     }
 
     private void loadSQLite() {
@@ -126,19 +138,19 @@ public class Acty_MainSplitor extends Activity {
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.newDDayButton : newDDayButtonAction(); break;
-            case R.id.newSquadButton : newSquadButtonAction(); break;
-            case R.id.addMemberButton : addMemberButtonAction(); break;
-            case R.id.modifyButton : modifyButtonAction(); break;
+            case R.id.splitorMainNewDDayButton : newDDayButtonAction(); break;
+            case R.id.splitorMainNewSquadButton : newSquadButtonAction(); break;
+            case R.id.splitorMainModifyButton : modifyButtonAction(); break;
             default: break;
         }
     }
 
     private void modifyButtonAction() {
 
-        final CharSequence[] items = { Config_Kor.addMemberToSelectedSquad,
-                                    Config_Kor.deleteSelectedMemberInSelectedSquad,
-                                    Config_Kor.deleteSelectedSquad};
+        final CharSequence[] items = {
+                Config_Language.get().addMemberToSelectedSquad,
+                Config_Language.get().deleteSelectedMemberInSelectedSquad,
+                Config_Language.get().deleteSelectedSquad};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
 
         // 여기서 부터는 알림창의 속성 설정
@@ -147,17 +159,10 @@ public class Acty_MainSplitor extends Activity {
                     // 목록 클릭시 설정
                     public void onClick(DialogInterface dialog, int index) {
                         switch (index) {
-                            case 0:
-                                addMemberButtonAction();
-                                break;
-                            case 1:
-                                deleteMemberButtonAction();
-                                break;
-                            case 2:
-                                deleteSquadButtonAction();
-                                break;
-                            default:
-                                break;
+                            case 0:addMemberButtonAction();break;
+                            case 1:deleteMemberButtonAction();break;
+                            case 2:deleteSquadButtonAction();break;
+                            default:break;
                         }
                     }
                 });
@@ -314,4 +319,21 @@ public class Acty_MainSplitor extends Activity {
         return false;
     }
 
+    private void getComponentsId() {
+        splitorMainText = (TextView)findViewById(R.id.splitorMainText);
+        wholeGroupListText = (TextView)findViewById(R.id.wholeGroupListText);
+        selectedMemberListText = (TextView)findViewById(R.id.selectedMemberListText);
+        splitorMainModifyButton = (Button)findViewById(R.id.splitorMainModifyButton);
+        splitorMainNewSquadButton = (Button)findViewById(R.id.splitorMainNewSquadButton);
+        splitorMainNewDDayButton = (Button)findViewById(R.id.splitorMainNewDDayButton);
+    }
+
+    private void setComponentsNames() {
+        splitorMainText.setText(Config_Language.get().splitorMainText);
+        wholeGroupListText.setText(Config_Language.get().wholeGroupListText);
+        selectedMemberListText.setText(Config_Language.get().selectedMemberListText);
+        splitorMainModifyButton.setText(Config_Language.get().splitorMainModifyButton);
+        splitorMainNewSquadButton.setText(Config_Language.get().splitorMainNewSquadButton);
+        splitorMainNewDDayButton.setText(Config_Language.get().splitorMainNewDDayButton);
+    }
 }

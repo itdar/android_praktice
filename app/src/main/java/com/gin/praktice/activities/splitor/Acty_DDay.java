@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,16 +25,13 @@ import com.gin.praktice.adapter.ComponentRecyclerAdapter;
 import com.gin.praktice.component.Component;
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Member;
+import com.gin.praktice.config.lang.Config_Language;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import static com.gin.praktice.config.Config_Kor.addContactMemberToDDay;
-import static com.gin.praktice.config.Config_Kor.addRawMemberDirectly;
-import static com.gin.praktice.config.Config_Kor.deleteSelectedMemberFromDDay;
 
 public class Acty_DDay extends Activity {
 
@@ -45,14 +43,19 @@ public class Acty_DDay extends Activity {
     private DDay dDay;
     private Calendar myCalendar;
 
-    private EditText nameEditText;
-    private EditText dateEditText;
-
     private RecyclerView dayMembersView;
     private List<Component> dayMembersList;
 
     private ComponentRecyclerAdapter adapter;
 
+    private TextView ddayText;
+    private TextView ddayNameText;
+    private EditText ddayNameEditText;
+    private TextView ddayDate;
+    private EditText dateEditText;
+    private Button ddayModifyButton;
+    private Button ddayAddMemberButton;
+    private Button ddayNextButton;
 
     private Intent locationIntent;
 
@@ -63,7 +66,7 @@ public class Acty_DDay extends Activity {
 
         dDay = DDay.getInstance();
         dayMembersList = dDay.dayMembers.getList();
-        nameEditText = (EditText) findViewById(R.id.nameEditText);
+        ddayNameEditText = (EditText) findViewById(R.id.ddayNameEditText);
         dateEditText = (EditText) findViewById(R.id.dateEditText);
 
         dayMembersView = (RecyclerView) findViewById(R.id.dayMembersView);
@@ -71,12 +74,12 @@ public class Acty_DDay extends Activity {
 
         locationIntent = new Intent(this, Acty_Location.class);
 
-        nameEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
+        ddayNameEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    InputMethodManager imm = (InputMethodManager) nameEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(nameEditText.getWindowToken(), 0);
+                    InputMethodManager imm = (InputMethodManager) ddayNameEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(ddayNameEditText.getWindowToken(), 0);
                 }
             }
         });
@@ -120,6 +123,8 @@ public class Acty_DDay extends Activity {
         Date date = new Date();
         dateEditText.setText(dateFormat.format(date));
 
+        getComponentsId();
+        setComponentsNames();
     }
 
     private void updateDate() {
@@ -153,9 +158,9 @@ public class Acty_DDay extends Activity {
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.addMemberButton : addMemberButtonAction(); break;
-            case R.id.modifyButton : modifyButtonAction(); break;
-            case R.id.nextButton : nextButtonAction(); break;
+            case R.id.ddayAddMemberButton : addMemberButtonAction(); break;
+            case R.id.ddayModifyButton : modifyButtonAction(); break;
+            case R.id.ddayNextButton : nextButtonAction(); break;
             default: break;
         }
     }
@@ -172,8 +177,10 @@ public class Acty_DDay extends Activity {
     }
 
     private void addMemberButtonAction() {
-        final CharSequence[] items = {addRawMemberDirectly,
-                                    addContactMemberToDDay};
+        final CharSequence[] items = {
+                Config_Language.get().addRawMemberDirectly,
+                Config_Language.get().addContactMemberToDDay,
+                Config_Language.get().addKakaoFriend };
         AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
 
         // 여기서 부터는 알림창의 속성 설정
@@ -182,14 +189,10 @@ public class Acty_DDay extends Activity {
                     // 목록 클릭시 설정
                     public void onClick(DialogInterface dialog, int index) {
                         switch (index) {
-                            case 0:
-                                addRawMember();
-                                break;
-                            case 1:
-                                addContactMember();
-                                break;
-                            default:
-                                break;
+                            case 0: addRawMember(); break;
+                            case 1: addContactMember(); break;
+                            case 2: addKakaoFriend(); break;
+                            default: break;
                         }
                     }
                 });
@@ -198,7 +201,8 @@ public class Acty_DDay extends Activity {
     }
 
     private void modifyButtonAction() {
-        final CharSequence[] items = { deleteSelectedMemberFromDDay };
+        final CharSequence[] items = {
+                Config_Language.get().deleteSelectedMemberFromDDay };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
 
@@ -220,7 +224,7 @@ public class Acty_DDay extends Activity {
         dialog.show();    // 알림창 띄우기
     }
 
-    private void openKakao() {
+    private void addKakaoFriend() {
         Toast.makeText(this, "Open KakaoTalk friend list.", Toast.LENGTH_LONG).show();
 
     }
@@ -237,7 +241,7 @@ public class Acty_DDay extends Activity {
     }
 
     private void nextButtonAction() {
-        Editable name = nameEditText.getText();
+        Editable name = ddayNameEditText.getText();
         Editable date = dateEditText.getText();
 
         if (!name.equals("") && !date.equals(""))
@@ -323,10 +327,24 @@ public class Acty_DDay extends Activity {
         return false;
     }
 
-//    public void addItems(String receiveName) {
-//        adapter.add(receiveName);
-//        adapter.notifyDataSetChanged();
-//    }
+    private void getComponentsId() {
+        ddayText = (TextView)findViewById(R.id.ddayText);
+        ddayNameText = (TextView)findViewById(R.id.ddayNameText);
+        ddayDate = (TextView)findViewById(R.id.ddayDate);
+        ddayModifyButton = (Button)findViewById(R.id.ddayModifyButton);
+        ddayAddMemberButton = (Button)findViewById(R.id.ddayAddMemberButton);
+        ddayNextButton = (Button)findViewById(R.id.ddayNextButton);
+    }
+
+    private void setComponentsNames() {
+        ddayText.setText(Config_Language.get().ddayText);
+        ddayNameText.setText(Config_Language.get().ddayNameText);
+        ddayNameEditText.setHint(Config_Language.get().ddayNameEditText);
+        ddayDate.setText(Config_Language.get().ddayDate);
+        ddayModifyButton.setText(Config_Language.get().ddayModifyButton);
+        ddayAddMemberButton.setText(Config_Language.get().ddayAddMemberButton);
+        ddayNextButton.setText(Config_Language.get().ddayNextButton);
+    }
 
 
 }
