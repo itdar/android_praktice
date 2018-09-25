@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gin.praktice.R;
 import com.gin.praktice.component.DDay;
 import com.gin.praktice.component.Member;
+import com.gin.praktice.config.lang.Config_Language;
 import com.gin.praktice.dynamic.result.MoneyMatrix;
 import com.gin.praktice.visitor.Visitor;
 import com.gin.praktice.visitor.Visitor_AppendEditText;
@@ -17,8 +19,14 @@ import com.gin.praktice.visitor.Visitor_AppendEditText;
 public class Acty_Result extends Activity {
     private DDay dDay;
 
+    private TextView resultOfCalc;
     private TextView resultTextView1;
     private TextView resultTextView2;
+    private Button copyResultButton1;
+    private Button copyResultButton2;
+    private Button resultSaveButton;
+    private Button resultDoneButton;
+
 
     // activity 정리하고 꾸며야함
     @Override
@@ -27,7 +35,7 @@ public class Acty_Result extends Activity {
         setContentView(R.layout.activities_result);
 
         dDay = DDay.getInstance();
-        resultTextView1 = (TextView) findViewById(R.id.resultTextView);
+        resultTextView1 = (TextView) findViewById(R.id.resultTextView1);
         resultTextView2 = (TextView) findViewById(R.id.resultTextView2);
 
         Visitor editTextVisitor = new Visitor_AppendEditText();
@@ -36,14 +44,18 @@ public class Acty_Result extends Activity {
 
         //만들때 visitor? 새로 만들어야함
         tempManagerFunction();
+
+        getComponentsId();
+        setComponentsNames();
+
     }
 
     public void onClick(View view) {
         switch (view.getId())
         {
-            case R.id.doneButton : doneButtonClicked(); break;
-            case R.id.saveButton : saveButtonClicked(); break;
-            case R.id.copyResultButton : copyResultButtonClicked(); break;
+            case R.id.resultDoneButton : doneButtonClicked(); break;
+            case R.id.resultSaveButton : saveButtonClicked(); break;
+            case R.id.copyResultButton1 : copyResultButtonClicked(); break;
             case R.id.copyResultButton2 : copyResultButton2Clicked(); break;
             default: break;
         }
@@ -90,7 +102,7 @@ public class Acty_Result extends Activity {
     }
 
     /**
-     * 2018.08.20 여기부터 시작해야함
+     * 2018.08.20
      * naming, function fix
      *
      * 1. 전체 멤버 시작부터 끝까지 반복한다.
@@ -118,13 +130,13 @@ public class Acty_Result extends Activity {
         for (int i = 0; i < dayMembersLength; ++i)
         {
             memberName = dDay.dayMembers.get(i).getName();
-            resultTextView2.append("\n" + memberName + "님의 정산결과는 \n");
+            resultTextView2.append("\n" + memberName + Config_Language.get().resultOfThisMember);
             for (int j = 0; j < dayMembersLength; ++j)
             {
                 if (i != j && resultMoneyMat[i][j] > 0)
                 {
-                    resultTextView2.append("\n " + dDay.dayMembers.get(j).getName() + " 에게 "
-                            + resultMoneyMat[i][j] + "원을 부쳐야합니다");
+                    resultTextView2.append("\n " + dDay.dayMembers.get(j).getName() + Config_Language.get().resultTo
+                            + resultMoneyMat[i][j] + Config_Language.get().resultToBeSent);
                 }
             }
             resultTextView2.append("\n");
@@ -221,7 +233,6 @@ public class Acty_Result extends Activity {
 //        resultTextView2.append(tempBuffer);
 //
 //    }
-
     /**
      * 마지막에 DDay->Location 돌면서
      *  각 차마다 Manager따로 빼두고(Member), 나중에 계좌번호 등 필요해서 멤버객체로
@@ -230,4 +241,19 @@ public class Acty_Result extends Activity {
      * 출력한다
      */
 
+    private void getComponentsId() {
+        resultOfCalc = (TextView)findViewById(R.id.resultOfCalc);
+        copyResultButton1 = (Button)findViewById(R.id.copyResultButton1);
+        copyResultButton2 = (Button)findViewById(R.id.copyResultButton2);
+        resultSaveButton = (Button)findViewById(R.id.resultSaveButton);
+        resultDoneButton = (Button)findViewById(R.id.resultDoneButton);
+    }
+
+    private void setComponentsNames() {
+        resultOfCalc.setText(Config_Language.get().resultOfCalc);
+        copyResultButton1.setText(Config_Language.get().copyResultButton1);
+        copyResultButton2.setText(Config_Language.get().copyResultButton2);
+        resultSaveButton.setText(Config_Language.get().resultSaveButton);
+        resultDoneButton.setText(Config_Language.get().resultDoneButton);
+    }
 }

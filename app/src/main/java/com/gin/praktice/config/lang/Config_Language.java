@@ -50,6 +50,33 @@ public class Config_Language {
     public String ddayAddMemberButton;
     public String ddayNextButton;
 
+    //Text -> Splitor Location
+    public String locationVisitedText;
+    public String locationStoreName;
+    public String locationNameEditText;
+    public String locationTotalMoney;
+    public String locationMoneyEditText;
+    public String locationMemberDeleteButton;
+    public String locationAddMemberButton;
+    public String locationDetailOptionButton;
+    public String locationSetManagerButton;
+    public String addMoreLocationButton;
+    public String locationNextButton;
+
+    //Text -> Splitor Result
+    public String resultOfCalc;
+    public String resultTextView1;
+    public String resultTextView2;
+    public String copyResultButton1;
+    public String copyResultButton2;
+    public String resultSaveButton;
+    public String resultDoneButton;
+
+    public String resultOfThisMember;
+    public String resultTo;
+    public String resultToBeSent;
+
+
     //Alert
     public String selectMemberFirst;
 
@@ -123,6 +150,34 @@ public class Config_Language {
         this.ddayModifyButton = lang.ddayModifyButton;
         this.ddayAddMemberButton = lang.ddayAddMemberButton;
         this.ddayNextButton = lang.ddayNextButton;
+
+        //Text -> Splitor Location
+        this.locationVisitedText = lang.locationVisitedText;
+        this.locationStoreName = lang.locationStoreName;
+        this.locationNameEditText = lang.locationNameEditText;
+        this.locationTotalMoney = lang.locationTotalMoney;
+        this.locationMoneyEditText = lang.locationMoneyEditText;
+        this.locationMemberDeleteButton = lang.locationMemberDeleteButton;
+        this.locationAddMemberButton = lang.locationAddMemberButton;
+        this.locationDetailOptionButton = lang.locationDetailOptionButton;
+        this.locationSetManagerButton = lang.locationSetManagerButton;
+        this.addMoreLocationButton = lang.addMoreLocationButton;
+        this.locationNextButton = lang.locationNextButton;
+
+        //Text -> Splitor Result
+        this.resultOfCalc = lang.resultOfCalc;
+        this.resultTextView1 = lang.resultTextView1;
+        this.resultTextView2 = lang.resultTextView2;
+        this.copyResultButton1 = lang.copyResultButton1;
+        this.copyResultButton2 = lang.copyResultButton2;
+        this.resultSaveButton = lang.resultSaveButton;
+        this.resultDoneButton = lang.resultDoneButton;
+
+        //Text -> Splitor Result output
+        this.resultOfThisMember = lang.resultOfThisMember;
+        this.resultTo = lang.resultTo;
+        this.resultToBeSent = lang.resultToBeSent;
+
 
         //Alert
         this.selectMemberFirst = lang.selectMemberFirst;

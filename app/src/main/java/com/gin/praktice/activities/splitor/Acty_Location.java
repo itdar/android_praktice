@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,11 +34,21 @@ public class Acty_Location extends Activity {
     private DDay dDay;
     private Location location;
 
-    private EditText storeNameEditText;
-    private EditText moneyEditText;
 
     private RecyclerView locationMemberView;
     private LocationRecyclerAdapter adapter;
+
+    private TextView locationVisitedText;
+    private TextView locationStoreName;
+    private EditText locationNameEditText;
+    private TextView locationTotalMoney;
+    private EditText locationMoneyEditText;
+    private Button locationMemberDeleteButton;
+    private Button locationAddMemberButton;
+    private Button locationDetailOptionButton;
+    private Button locationSetManagerButton;
+    private Button addMoreLocationButton;
+    private Button locationNextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +62,8 @@ public class Acty_Location extends Activity {
         resultIntent = new Intent(this, Acty_Result.class);
         locationIntent = new Intent(this, Acty_Location.class);
 
-        storeNameEditText = findViewById(R.id.storeNameEditText);
-        moneyEditText = findViewById(R.id.moneyEditText);
+        locationNameEditText = findViewById(R.id.locationNameEditText);
+        locationMoneyEditText = findViewById(R.id.locationMoneyEditText);
 
         locationMemberView = (RecyclerView) findViewById(R.id.locationMemberView);
         setRecyclerView();
@@ -63,24 +74,27 @@ public class Acty_Location extends Activity {
         }
         adapter.notifyDataSetChanged();
 
-        storeNameEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
+        locationNameEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    InputMethodManager imm = (InputMethodManager) storeNameEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(storeNameEditText.getWindowToken(), 0);
+                    InputMethodManager imm = (InputMethodManager) locationNameEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(locationNameEditText.getWindowToken(), 0);
                 }
             }
         });
-        moneyEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
+        locationMoneyEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    InputMethodManager imm = (InputMethodManager) moneyEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(moneyEditText.getWindowToken(), 0);
+                    InputMethodManager imm = (InputMethodManager) locationMoneyEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(locationMoneyEditText.getWindowToken(), 0);
                 }
             }
         });
+
+        getComponentsId();
+        setComponentsNames();
     }
 
     private void setRecyclerView() {
@@ -99,11 +113,11 @@ public class Acty_Location extends Activity {
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.nextButton : nextButtonAction(); break;
-            case R.id.deleteButton : deleteButtonAction(); break;
-            case R.id.addMemberButton : addMemberButtonAction(); break;
-            case R.id.detailOptionButton : detailOptionButtonAction(); break;
-            case R.id.setManagerButton : setManagerButtonAction(); break;
+            case R.id.locationNextButton : nextButtonAction(); break;
+            case R.id.locationMemberDeleteButton : deleteButtonAction(); break;
+            case R.id.locationAddMemberButton : addMemberButtonAction(); break;
+            case R.id.locationDetailOptionButton : detailOptionButtonAction(); break;
+            case R.id.locationSetManagerButton : setManagerButtonAction(); break;
             case R.id.addMoreLocationButton : addMoreLocationButtonAction(); break;
             default: break;
         }
@@ -275,7 +289,7 @@ public class Acty_Location extends Activity {
         boolean result = false;
         if (location.getLength() >= 1)
         {
-            if (!storeNameEditText.getText().toString().equals("") && !moneyEditText.getText().toString().equals(""))
+            if (!locationNameEditText.getText().toString().equals("") && !locationMoneyEditText.getText().toString().equals(""))
             {
                 if (location.getManager() != null)
                 {
@@ -302,8 +316,8 @@ public class Acty_Location extends Activity {
     }
 
     private void addLocation2DDay() {
-        location.setName(storeNameEditText.getText().toString());
-        location.setMoney(Integer.parseInt(moneyEditText.getText().toString()));
+        location.setName(locationNameEditText.getText().toString());
+        location.setMoney(Integer.parseInt(locationMoneyEditText.getText().toString()));
 
         location.distribution();
         initLate();
@@ -319,5 +333,31 @@ public class Acty_Location extends Activity {
             ((Member)dayMembers.get(i)).isOneThird = false;
             ((Member)dayMembers.get(i)).setManager(false);
         }
+    }
+
+    private void getComponentsId() {
+        locationVisitedText = (TextView)findViewById(R.id.locationVisitedText);
+        locationStoreName = (TextView)findViewById(R.id.locationStoreName);
+        locationTotalMoney = (TextView)findViewById(R.id.locationTotalMoney);
+        locationMemberDeleteButton = (Button)findViewById(R.id.locationMemberDeleteButton);
+        locationAddMemberButton = (Button)findViewById(R.id.locationAddMemberButton);
+        locationDetailOptionButton = (Button)findViewById(R.id.locationDetailOptionButton);
+        locationSetManagerButton = (Button)findViewById(R.id.locationSetManagerButton);
+        addMoreLocationButton = (Button)findViewById(R.id.addMoreLocationButton);
+        locationNextButton = (Button)findViewById(R.id.locationNextButton);
+    }
+
+    private void setComponentsNames() {
+        locationVisitedText.setText(Config_Language.get().locationVisitedText);
+        locationStoreName.setText(Config_Language.get().locationStoreName);
+        locationNameEditText.setHint(Config_Language.get().locationNameEditText);
+        locationTotalMoney.setText(Config_Language.get().locationTotalMoney);
+        locationMoneyEditText.setHint(Config_Language.get().locationMoneyEditText);
+        locationMemberDeleteButton.setText(Config_Language.get().locationMemberDeleteButton);
+        locationAddMemberButton.setText(Config_Language.get().locationAddMemberButton);
+        locationDetailOptionButton.setText(Config_Language.get().locationDetailOptionButton);
+        locationSetManagerButton.setText(Config_Language.get().locationSetManagerButton);
+        addMoreLocationButton.setText(Config_Language.get().addMoreLocationButton);
+        locationNextButton.setText(Config_Language.get().locationNextButton);
     }
 }

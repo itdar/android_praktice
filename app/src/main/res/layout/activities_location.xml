@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/locationVisitedText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -27,7 +27,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/locationStoreName"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -36,7 +36,7 @@
                 android:textAlignment="center" />
 
             <EditText
-                android:id="@+id/storeNameEditText"
+                android:id="@+id/locationNameEditText"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -51,7 +51,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/locationTotalMoney"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -60,7 +60,7 @@
                 android:textAlignment="center" />
 
             <EditText
-                android:id="@+id/moneyEditText"
+                android:id="@+id/locationMoneyEditText"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -90,7 +90,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/deleteButton"
+                android:id="@+id/locationMemberDeleteButton"
                 android:layout_width="wrap_content"
                 android:layout_height="65dp"
                 android:layout_weight="1"
@@ -98,7 +98,7 @@
                 android:text="위에 선택된\n멤버 제거" />
 
             <Button
-                android:id="@+id/addMemberButton"
+                android:id="@+id/locationAddMemberButton"
                 android:layout_width="170dp"
                 android:layout_height="65dp"
                 android:layout_weight="1"
@@ -114,7 +114,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/detailOptionButton"
+                android:id="@+id/locationDetailOptionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="65dp"
                 android:layout_weight="1"
@@ -122,7 +122,7 @@
                 android:text="세부기능 \n추가" />
 
             <Button
-                android:id="@+id/setManagerButton"
+                android:id="@+id/locationSetManagerButton"
                 android:layout_width="170dp"
                 android:layout_height="65dp"
                 android:layout_weight="1"
@@ -144,7 +144,7 @@
             android:text="이 장소를 저장하고\n다음 장소 더 추가하기" />
 
         <Button
-            android:id="@+id/nextButton"
+            android:id="@+id/locationNextButton"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_gravity="center"

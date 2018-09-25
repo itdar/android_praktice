@@ -6,6 +6,8 @@ public class TodoList {
      *
      * 바로 붙잡을거
      *
+     * -> Location에서 총무 설정해놨다가 그 멤버 지우면 총무 설정 없어지도록
+     *
      * -> Location에서 dayMember 외에도 멤버 더 추가 할 수 있도록
      *
      * -> 언어팩 ********************

@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/resultOfCalc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -32,7 +32,7 @@
             android:scrollbars="vertical">
 
             <TextView
-                android:id="@+id/resultTextView"
+                android:id="@+id/resultTextView1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="true"
@@ -41,7 +41,7 @@
         </ScrollView>
 
         <Button
-            android:id="@+id/copyResultButton"
+            android:id="@+id/copyResultButton1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
@@ -99,7 +99,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/saveButton"
+            android:id="@+id/resultSaveButton"
             android:layout_width="277dp"
             android:layout_height="65dp"
             android:layout_gravity="center"
@@ -110,7 +110,7 @@
             android:text="(준비 중)" />
 
         <Button
-            android:id="@+id/doneButton"
+            android:id="@+id/resultDoneButton"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_gravity="center"
