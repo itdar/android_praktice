@@ -145,7 +145,9 @@ public class Acty_Result extends Activity {
 
     }
 
-    //old ver.
+    /**
+     * old ver.
+     */
 //    private void tempManagerFunction() {
 //        Member managerMember;
 //        String memberName;
@@ -233,6 +235,7 @@ public class Acty_Result extends Activity {
 //        resultTextView2.append(tempBuffer);
 //
 //    }
+
     /**
      * 마지막에 DDay->Location 돌면서
      *  각 차마다 Manager따로 빼두고(Member), 나중에 계좌번호 등 필요해서 멤버객체로

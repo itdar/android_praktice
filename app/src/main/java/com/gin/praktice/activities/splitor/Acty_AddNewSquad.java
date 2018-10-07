@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,12 +20,12 @@ import com.gin.praktice.adapter.ComponentRecyclerAdapter;
 import com.gin.praktice.component.Component;
 import com.gin.praktice.component.Member;
 import com.gin.praktice.component.Squad;
+import com.gin.praktice.config.lang.Config_Language;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Acty_AddNewSquad extends Activity {
-    private EditText squadNameEditText;
 
     private static final int REQUEST_CONTACT = 1;
     private static final int REQUEST_ADD_MEMBER = 2;
@@ -34,6 +35,15 @@ public class Acty_AddNewSquad extends Activity {
 
     private ComponentRecyclerAdapter adapter;
 
+    private TextView ansAddNewSquadText;
+    private TextView ansSquadNameText;
+    private TextView ansSquadMemberListText;
+    private EditText ansSquadNameEditText;
+    private Button ansContactAddButton;
+    private Button ansAddMemberButton;
+    private Button ansDeleteButton;
+    private Button ansNewSquadButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,18 +51,19 @@ public class Acty_AddNewSquad extends Activity {
 
         newGroupMembersList = new ArrayList<>();
 
-        squadNameEditText = (EditText) findViewById(R.id.squadNameEditText);
+        getComponentsId();
+        setComponentsNames();
 
         newGroupMembersView = (RecyclerView) findViewById(R.id.newGroupMembersView);
         setRecyclerView();
 
 
-        squadNameEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
+        ansSquadNameEditText.setOnFocusChangeListener(new TextView.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
             if (!hasFocus) {
-                InputMethodManager imm = (InputMethodManager) squadNameEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(squadNameEditText.getWindowToken(), 0);
+                InputMethodManager imm = (InputMethodManager) ansSquadNameEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(ansSquadNameEditText.getWindowToken(), 0);
             }
             }
         });
@@ -70,10 +81,10 @@ public class Acty_AddNewSquad extends Activity {
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.contactAddButton : contactAddButtonAction(); break;
-            case R.id.addMemberButton : addMemberButtonAction(); break;
-            case R.id.deleteButton : deleteButtonAction(); break;
-            case R.id.newSquadButton : newSquadButtonAction(); break;
+            case R.id.ansContactAddButton : contactAddButtonAction(); break;
+            case R.id.ansAddMemberButton : addMemberButtonAction(); break;
+            case R.id.ansDeleteButton : deleteButtonAction(); break;
+            case R.id.ansNewSquadButton : newSquadButtonAction(); break;
             default: break;
         }
     }
@@ -102,7 +113,7 @@ public class Acty_AddNewSquad extends Activity {
 
     private void newSquadButtonAction() {
 
-        String squadName = squadNameEditText.getText().toString();
+        String squadName = ansSquadNameEditText.getText().toString();
         if (squadName != null && !squadName.equals("")) {
 
             Intent returnIntent = new Intent();
@@ -168,4 +179,27 @@ public class Acty_AddNewSquad extends Activity {
                 "\n추가된 은행 : " + receiveBank +
                 "\n추가된 계좌 : " + receiveAccount, Toast.LENGTH_LONG).show();
     }
+
+    private void getComponentsId() {
+        ansAddNewSquadText = (TextView) findViewById(R.id.ansAddNewSquadText);
+        ansSquadNameText = (TextView) findViewById(R.id.ansSquadNameText);
+        ansSquadMemberListText = (TextView) findViewById(R.id.ansSquadMemberListText);
+        ansSquadNameEditText = (EditText) findViewById(R.id.ansSquadNameEditText);
+        ansContactAddButton = (Button) findViewById(R.id.ansContactAddButton);
+        ansAddMemberButton = (Button) findViewById(R.id.ansAddMemberButton);
+        ansDeleteButton = (Button) findViewById(R.id.ansDeleteButton);
+        ansNewSquadButton = (Button) findViewById(R.id.ansNewSquadButton);
+    }
+
+    private void setComponentsNames() {
+        ansAddNewSquadText.setText(Config_Language.get().ansAddNewSquadText);
+        ansSquadNameText.setText(Config_Language.get().ansSquadNameText);
+        ansSquadMemberListText.setText(Config_Language.get().ansSquadMemberListText);
+        ansSquadNameEditText.setHint(Config_Language.get().ansSquadNameEditText);
+        ansContactAddButton.setText(Config_Language.get().ansContactAddButton);
+        ansAddMemberButton.setText(Config_Language.get().ansAddMemberButton);
+        ansDeleteButton.setText(Config_Language.get().ansDeleteButton);
+        ansNewSquadButton.setText(Config_Language.get().ansNewSquadButton);
+    }
+
 }

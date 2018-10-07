@@ -11,7 +11,7 @@
 
 
         <TextView
-            android:id="@+id/editText2"
+            android:id="@+id/ansAddNewSquadText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -20,7 +20,7 @@
             android:background="#e2b5f8"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="새 그룹 만들기"
+            android:text="새 모임 만들기"
             android:textAlignment="center"
             android:textSize="36sp" />
 
@@ -32,7 +32,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/ansSquadNameText"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -40,7 +40,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/squadNameEditText"
+                android:id="@+id/ansSquadNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -59,7 +59,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/ansSquadMemberListText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -80,14 +80,14 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/contactAddButton"
+            android:id="@+id/ansContactAddButton"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:onClick="onClick"
             android:text="주소록에서 멤버추가" />
 
         <Button
-            android:id="@+id/addMemberButton"
+            android:id="@+id/ansAddMemberButton"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:onClick="onClick"
@@ -96,7 +96,7 @@
             tools:layout_editor_absoluteY="369dp" />
 
         <Button
-            android:id="@+id/deleteButton"
+            android:id="@+id/ansDeleteButton"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:onClick="onClick"
@@ -105,7 +105,7 @@
             tools:layout_editor_absoluteY="369dp" />
 
         <Button
-            android:id="@+id/newSquadButton"
+            android:id="@+id/ansNewSquadButton"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_gravity="center"

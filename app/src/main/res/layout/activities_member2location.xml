@@ -9,7 +9,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/lmaAddUsingDDayMemText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -33,23 +33,23 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/cancelButton"
+                android:id="@+id/lmaCancelButton"
                 android:layout_width="31dp"
                 android:layout_height="72dp"
                 android:layout_weight="1"
                 android:onClick="onClick"
-                android:text="Cancel"
+                android:text="취소"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="447dp" />
 
             <Button
-                android:id="@+id/addButton"
+                android:id="@+id/lmaAddButton"
                 android:layout_width="wrap_content"
                 android:layout_height="72dp"
                 android:layout_weight="1"
                 android:background="#ffd2d2"
                 android:onClick="onClick"
-                android:text="Add"
+                android:text="추가"
                 tools:layout_editor_absoluteX="264dp"
                 tools:layout_editor_absoluteY="447dp" />
         </LinearLayout>

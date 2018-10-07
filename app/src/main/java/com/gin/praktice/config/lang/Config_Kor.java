@@ -34,6 +34,14 @@ public class Config_Kor extends Config_Language {
         mainText = "정신차려 이 각박한 세상 속에서";
         mainSplitorButton = "엔빵하기";
 
+        //Toast
+        toastSelectSquadFirst = "모임을 먼저 선택하세요";
+        toastSelectMemberFirst = "멤버를 먼저 선택하세요";
+        toastAlreadyExistName = "이미 등록된 이름입니다";
+
+        //Message
+        msgDeleteConfirm = "선택하신 모임을\\n삭제하시겠습니까?";
+
         //Text -> Splitor Main
         splitorMainText = "정산 기능 - N분의 1";
         wholeGroupListText = "전체 모임 리스트";
@@ -41,6 +49,8 @@ public class Config_Kor extends Config_Language {
         splitorMainModifyButton = "수정하기";
         splitorMainNewSquadButton = "새로운 모임을 생성/저장";
         splitorMainNewDDayButton = "새로운 날 시작하기";
+        titleMotification = "수정하기";
+        titleDeleteConfirm = "삭제 확인창";
 
         //Text -> Splitor DDay
         ddayText = "모임날";
@@ -73,9 +83,45 @@ public class Config_Kor extends Config_Language {
         resultSaveButton = "(준비 중)";
         resultDoneButton = "메인화면으로 돌아갑니다";
 
+        //Text -> Splitor Result outputWriting
         resultOfThisMember = "님의 정산결과는 \n";
         resultTo = " 에게 ";
         resultToBeSent = "원을 부쳐야합니다";
+
+        resultDDayName = " 날 이름 >> ";
+        resultDate= " 날  짜    >> ";
+        resultLocationName = "가게 이름 >> ";
+        resultLocationMoney = "금액 >> ";
+        resultHost = "총무 >> ";
+        resultTotalMember = "총 결산 인원";
+
+        //Text -> Splitor Add new squad(ans)
+        ansAddNewSquadText = "새 모임 만들기";
+        ansSquadNameText = "모임 이름";
+        ansSquadMemberListText = "모임 멤버 리스트";
+        ansSquadNameEditText = "만들 모임 이름을 입력하세요";
+        ansContactAddButton = "주소록에서 멤버추가";
+        ansAddMemberButton = "직접 멤버추가";
+        ansDeleteButton = "선택멤버 제거";
+        ansNewSquadButton = "모임 만들기 !";
+
+        //Text -> Splitor Add member directly (amd)
+        amdAddMemberText = "멤버 직접 추가";
+        amdNameText = "이름 (필수입력)";
+        amdBankNameText = "은행명(기능 준비중)";
+        amdBankAccountText = "계좌(기능 준비중)";
+        amdRemarkText = "비고(기능 준비중)";
+        amdNameEditText = "";
+        amdBankNameEditText = "";
+        amdBankAccountEditText = "";
+        amdRemarkEditText = "";
+        amdCancelButton = "취소";
+        amdAddButton = "멤버추가";
+
+        //Text -> Splitor Location member add (lma)
+        lmaAddUsingDDayMemText = "모임날 인원 중 선택";
+        lmaCancelButton = "취소";
+        lmaAddButton = "추가";
 
         //Alert msg
         selectMemberFirst = "멤버를 먼저 선택하세요";

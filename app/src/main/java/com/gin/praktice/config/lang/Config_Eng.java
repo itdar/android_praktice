@@ -5,7 +5,7 @@ public class Config_Eng extends Config_Language {
     public Config_Eng() {
 
         deleteSelectedSquad = "Delete selected group";
-        deleteSelectedMemberInSelectedSquad = "Delete selected member";
+        deleteSelectedMemberInSelectedSquad = "Delete selected member in the group";
         addMemberToSelectedSquad = "Add new member in selected Group";
         modifySelectedMemberName = "Modify member name";
         modifySelectedSquadName = "Modify group name";
@@ -17,7 +17,7 @@ public class Config_Eng extends Config_Language {
 
         littleLateMember = "Little late";
         superLateMember = "Supter late";
-        cancelLateMember = "Cancelation late";
+        cancelLateMember = "Cancel late";
 
         menuModification = "Modification";
         menuAppend = "Append";
@@ -34,6 +34,14 @@ public class Config_Eng extends Config_Language {
         mainText = "Stay lit in this chaotic world";
         mainSplitorButton = "Splitor";
 
+        //Toast
+        toastSelectSquadFirst = "Select Group first";
+        toastSelectMemberFirst = "Select Member first";
+        toastAlreadyExistName = "Already existed name";
+
+        //Message
+        msgDeleteConfirm = "Are you sure \\nyou want to delete?";
+
         //Text -> Splitor Main
         splitorMainText = "Splitor - 1 / N";
         wholeGroupListText = "Whole group list";
@@ -41,6 +49,8 @@ public class Config_Eng extends Config_Language {
         splitorMainModifyButton = "Modify";
         splitorMainNewSquadButton = "New Group";
         splitorMainNewDDayButton = "Start DDay";
+        titleMotification = "Modification";
+        titleDeleteConfirm = "Delete confirm";
 
         //Text -> Splitor DDay
         ddayText = "DDay";
@@ -73,9 +83,45 @@ public class Config_Eng extends Config_Language {
         resultSaveButton = "(Preparing)";
         resultDoneButton = "Back to the main";
 
+        //Text -> Splitor Result outputWriting
         resultOfThisMember = "'s result is \n";
         resultTo = " has to receive ";
         resultToBeSent = " dollar(s) ";
+
+        resultDDayName = " DDay title >> ";
+        resultDate= "  Date       >> ";
+        resultLocationName = "Location >> ";
+        resultLocationMoney = "Money >> ";
+        resultHost = "Host >> ";
+        resultTotalMember = "Total DDay Member";
+
+        //Text -> Splitor Add new squad(ans)
+        ansAddNewSquadText = "Make new group";
+        ansSquadNameText = "Name";
+        ansSquadMemberListText = "List of group member";
+        ansSquadNameEditText = "Fill in the name of new group";
+        ansContactAddButton = "Add member from contact";
+        ansAddMemberButton = "Add member directly";
+        ansDeleteButton = "Remove selected member";
+        ansNewSquadButton = "Make new group !";
+
+        //Text -> Splitor Add member directly (amd)
+        amdAddMemberText = "Add member directly";
+        amdNameText = "Name (Necessary)";
+        amdBankNameText = "Bank (Preparing)";
+        amdBankAccountText = "Account (Preparing)";
+        amdRemarkText = "Remark (Preparing)";
+        amdNameEditText = "";
+        amdBankNameEditText = "";
+        amdBankAccountEditText = "";
+        amdRemarkEditText = "";
+        amdCancelButton = "Cancel";
+        amdAddButton = "Add member";
+
+        //Text -> Splitor Location member add (lma)
+        lmaAddUsingDDayMemText = "Select add in DDay members";
+        lmaCancelButton = "Cancel";
+        lmaAddButton = "Add";
 
         //Alert msg
         selectMemberFirst = "Select member first";

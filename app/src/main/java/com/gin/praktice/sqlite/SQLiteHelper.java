@@ -22,8 +22,11 @@ public class SQLiteHelper {
     public static final int DATABASE_VERSION = 4;
     public static final String DATABASE_NAME = "ms.db";
 
+    public static final String TABLE_NAME_SPLITOR = "TABLE_NAME_SPLITOR";
     public static final String TABLE_NAME_SQUAD = "TABLE_NAME_SQUAD";
     public static final String TABLE_NAME_MEMBER = "TABLE_NAME_MEMBER";
+
+    public static final String SPLITOR_COLUMN_FLAG = "languageFlag";
 
     public static final String SQUAD_COLUMN_ID = "squadID";
     public static final String SQUAD_COLUMN_NAME = "name";
@@ -61,10 +64,19 @@ public class SQLiteHelper {
                               int newVersion) {
             // drops table if exists, and then calls onCreate which implements
             // our new schema
+            database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SPLITOR);
             database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SQUAD);
             database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_MEMBER);
             onCreate(database);
         }
+    }
+
+    //default flag,
+    //Update flag
+    public void saveLanguageFlag(int languageFlagInt) {
+        ContentValues languageFlag = new ContentValues();
+        languageFlag.put(SPLITOR_COLUMN_FLAG, languageFlagInt);
+//        database.update(TABLE_NAME_SPLITOR, languageFlag);
     }
 
     // 2. 마지막 Result 나온 후 저장하는 기능 추후에 (Table 추가하거나 column 추가 해얄듯)
@@ -115,6 +127,11 @@ public class SQLiteHelper {
 
     private void createTables(SQLiteDatabase database)
     {
+        database.execSQL("CREATE TABLE " + TABLE_NAME_SPLITOR
+                + "("
+                + SPLITOR_COLUMN_FLAG + " INTEGER"
+                + ")" );
+
         database.execSQL("CREATE TABLE " + TABLE_NAME_SQUAD
                 + "("
                 + SQUAD_COLUMN_ID + " INTEGER PRIMARY KEY, "

@@ -4,11 +4,27 @@ public class TodoList {
 
     /**
      *
-     * 바로 붙잡을거
+     * 바로 할거
      *
-     * -> Location에서 총무 설정해놨다가 그 멤버 지우면 총무 설정 없어지도록
+     * -> 언어팩 acty 마무리 (Espc each Toast message, error msg)
      *
-     * -> Location에서 dayMember 외에도 멤버 더 추가 할 수 있도록
+     * -> 돈 입력 관련 EditText 에서 숫자만 입력 되도록해야함
+     *
+     * -> 언어팩 db에 flag 저장
+     *
+     * -> 전체 ui 확인 (글꼴, 채색, 위치 등)
+     *
+     * -> 카카오톡 api 확인(친구목록, 카카오뱅킹 등)
+     * -> -> 로그인 후 가져온 정보 어떤게 확인 가능한지 확인
+     * -> -> 서버가 있다면, 다른 uid로 정보를 보낸다? db? 서버?
+     *
+     * -> 앱에서 로컬서버(synology)에 설치된 db 확인
+     *
+     *
+     *
+     * -> Location에서 dayMember 외에도 멤버 더 추가 할 수 있도록????
+     * -> -> Location addMemberButton 눌렀을때 분기해서
+     * -> -> DDayMemberList add 하면 결과 어떻게 나오는지 일단 확인 후 결정
      *
      * -> 언어팩 ********************
      * -> -> 시작할 때 Config_Language 만들면서 최초 저장된 db 의 langNumber 저장/로드 해서 로드
@@ -17,6 +33,8 @@ public class TodoList {
      * -> 전체 ui 수정
      *
      * -> 마지막 결과 ui 에서 서버..
+     *
+     * -> 환율적용?
      *
      *
      *

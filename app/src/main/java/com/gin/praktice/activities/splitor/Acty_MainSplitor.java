@@ -49,11 +49,18 @@ public class Acty_MainSplitor extends Activity {
     private Button splitorMainNewSquadButton;
     private Button splitorMainNewDDayButton;
 
+    private String titleModification;
+    private String titleDeleteConfirm;
+    private String msgDeleteConfirm;
+    private String toastSelectSquadFirst;
+    private String toastSelectMemberFirst;
+    private String toastAlreadyExistName;
+
     private String deleteSelectedSquad = Config_Language.get().deleteSelectedSquad;
     private String deleteSelectedMemberInSelectedSquad = Config_Language.get().deleteSelectedMemberInSelectedSquad;
     private String addMemberToSelectedSquad = Config_Language.get().addMemberToSelectedSquad;
-    private String modifySelectedMemberName = "선택멤버 이름 수정";   // 준비중
-    private String modifySelectedSquadName = "선택모임 이름 수정";    // 준비중
+//    private String modifySelectedMemberName = "선택멤버 이름 수정";   // 준비중
+//    private String modifySelectedSquadName = "선택모임 이름 수정";    // 준비중
 
 
     @Override
@@ -70,7 +77,7 @@ public class Acty_MainSplitor extends Activity {
         loadSQLite();
 
         getComponentsId();
-        setComponentsNames();
+        setComponentsLang();
     }
 
     private void loadSQLite() {
@@ -98,8 +105,7 @@ public class Acty_MainSplitor extends Activity {
         }
     }
 
-    private void insertInSquad(Cursor memberCursor)
-    {
+    private void insertInSquad(Cursor memberCursor) {
         String squadName = memberCursor.getString(memberCursor.getColumnIndex("squadName"));
         for (int i = 0; i < squadList.size(); ++i)
         {
@@ -115,8 +121,7 @@ public class Acty_MainSplitor extends Activity {
         }
     }
 
-    private void setRecyclerView()
-    {
+    private void setRecyclerView() {
         memberListView = findViewById(R.id.memberListView);
         memberList = new ArrayList<>();
 
@@ -145,6 +150,24 @@ public class Acty_MainSplitor extends Activity {
         }
     }
 
+    private void newDDayButtonAction() {
+
+        if (memberListAdapter != null && memberListAdapter.getItemCount() > 0)
+        {
+            DDay dDay = DDay.getInstance();
+            dDay.clear(); // clear all location
+            dDay.dayMembers.setList(memberListAdapter.getItems()); // clear all ddayMember
+        }
+        startActivity(dDayIntent);
+    }
+
+    private void newSquadButtonAction() {
+
+        Intent addNewGroupIntent = new Intent(this, Acty_AddNewSquad.class);
+
+        startActivityForResult(addNewGroupIntent, ADD_NEW_SQUAD);
+    }
+
     private void modifyButtonAction() {
 
         final CharSequence[] items = {
@@ -154,11 +177,12 @@ public class Acty_MainSplitor extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
 
         // 여기서 부터는 알림창의 속성 설정
-        builder.setTitle("Modification")        // 제목 설정
+        builder.setTitle(this.titleModification)        // 제목 설정
                 .setItems(items, new DialogInterface.OnClickListener() {
                     // 목록 클릭시 설정
                     public void onClick(DialogInterface dialog, int index) {
-                        switch (index) {
+                        switch (index)
+                        {
                             case 0:addMemberButtonAction();break;
                             case 1:deleteMemberButtonAction();break;
                             case 2:deleteSquadButtonAction();break;
@@ -179,7 +203,7 @@ public class Acty_MainSplitor extends Activity {
         }
         else
         {
-            Toast.makeText(this, "멤버를 추가할 모임을 먼저 선택하세요.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, this.toastSelectSquadFirst, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -199,33 +223,17 @@ public class Acty_MainSplitor extends Activity {
 
             ((Squad)squadList.get(squadListAdapter.getSelectedList().get(0).intValue())).remove(memberIndex);
         }
-    }
-
-    private void newSquadButtonAction() {
-//        Toast.makeText(this, "newSquadButtonAction", Toast.LENGTH_LONG).show();
-
-        Intent addNewGroupIntent = new Intent(this, Acty_AddNewSquad.class);
-
-        startActivityForResult(addNewGroupIntent, ADD_NEW_SQUAD);
-    }
-
-    private void newDDayButtonAction() {
-
-        if (memberListAdapter != null && memberListAdapter.getItemCount() > 0)
+        else
         {
-//            Toast.makeText(this, "newDDayButtonAction", Toast.LENGTH_LONG).show();
-            DDay dDay = DDay.getInstance();
-            dDay.dayMembers.setList(memberListAdapter.getItems());
+            Toast.makeText(this, this.toastSelectMemberFirst, Toast.LENGTH_LONG).show();
         }
-
-        startActivity(dDayIntent);
     }
 
     private void deleteSquadButtonAction() {
         if (squadListAdapter.getSelectedList().size() > 0) {
             new AlertDialog.Builder(this)
-                    .setTitle("확인창")
-                    .setMessage("선택하신 모임을\n삭제하시겠습니까?")
+                    .setTitle(this.titleDeleteConfirm)
+                    .setMessage(this.msgDeleteConfirm)
                     .setIcon(android.R.drawable.ic_delete)
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
@@ -246,6 +254,10 @@ public class Acty_MainSplitor extends Activity {
                         }
                     })
                     .show();
+        }
+        else
+        {
+            Toast.makeText(this, this.toastSelectSquadFirst, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -271,12 +283,10 @@ public class Acty_MainSplitor extends Activity {
 
         sqLiteHelper.saveSquad(squad);
 
-//        Toast.makeText(this, "squad name >> " + squad.getName(), Toast.LENGTH_LONG).show();
     }
 
     //멤버정보 추가/삭제 하고 아예 다시 조회해서 넣어주는걸로 해도 되는데 확인해야함(성능?) -> 현재는 해당 멤버나 스쿼드만 따로 넣어줌
     private void addData(String name, String phoneNumber) {
-//        Toast.makeText(this, "이미 중복된 이름이 있습니다ㅏㅏㅏㅏㅏ.", Toast.LENGTH_LONG).show();
 
         Member member = new Member.Builder().name(name).phoneNumber(phoneNumber).build();
         sqLiteHelper.insertMember(((Squad)squadList.get(squadListAdapter.getSelectedList().get(0))).getName(), member);
@@ -296,13 +306,10 @@ public class Acty_MainSplitor extends Activity {
         if (!isExist(receiveName))
         {
             addData(receiveName, "");
-//            Toast.makeText(this, "추가된 이름 : " + receiveName +
-//                    "\n추가된 은행 : " + receiveBank +
-//                    "\n추가된 계좌 : " + receiveAccount, Toast.LENGTH_LONG).show();
         }
         else
         {
-            Toast.makeText(this, "모임에 이미 중복된 이름이 있습니다.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, this.toastAlreadyExistName, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -328,12 +335,19 @@ public class Acty_MainSplitor extends Activity {
         splitorMainNewDDayButton = (Button)findViewById(R.id.splitorMainNewDDayButton);
     }
 
-    private void setComponentsNames() {
+    private void setComponentsLang() {
         splitorMainText.setText(Config_Language.get().splitorMainText);
         wholeGroupListText.setText(Config_Language.get().wholeGroupListText);
         selectedMemberListText.setText(Config_Language.get().selectedMemberListText);
         splitorMainModifyButton.setText(Config_Language.get().splitorMainModifyButton);
         splitorMainNewSquadButton.setText(Config_Language.get().splitorMainNewSquadButton);
         splitorMainNewDDayButton.setText(Config_Language.get().splitorMainNewDDayButton);
+        titleModification = Config_Language.get().titleMotification;
+        titleDeleteConfirm = Config_Language.get().titleDeleteConfirm;
+        msgDeleteConfirm = Config_Language.get().msgDeleteConfirm;
+        toastSelectSquadFirst = Config_Language.get().toastSelectSquadFirst;
+        toastSelectMemberFirst = Config_Language.get().toastSelectMemberFirst;
+        toastAlreadyExistName = Config_Language.get().toastAlreadyExistName;
     }
+
 }

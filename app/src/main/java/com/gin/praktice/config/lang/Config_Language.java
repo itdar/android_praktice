@@ -33,6 +33,14 @@ public class Config_Language {
     public String mainText;
     public String mainSplitorButton;
 
+    //Toast
+    public String toastSelectSquadFirst;
+    public String toastSelectMemberFirst;
+    public String toastAlreadyExistName;
+
+    //Message
+    public String msgDeleteConfirm;
+
     //Text -> Splitor Main
     public String splitorMainText;
     public String wholeGroupListText;
@@ -40,6 +48,9 @@ public class Config_Language {
     public String splitorMainModifyButton;
     public String splitorMainNewSquadButton;
     public String splitorMainNewDDayButton;
+    public String titleMotification;
+    public String titleDeleteConfirm;
+
 
     //Text -> Splitor DDay
     public String ddayText;
@@ -72,10 +83,45 @@ public class Config_Language {
     public String resultSaveButton;
     public String resultDoneButton;
 
+    //Text -> Splitor Result outputWriting
     public String resultOfThisMember;
     public String resultTo;
     public String resultToBeSent;
 
+    public String resultDDayName;
+    public String resultDate;
+    public String resultLocationName;
+    public String resultLocationMoney;
+    public String resultHost;
+    public String resultTotalMember;
+
+    //Text -> Splitor Add new squad (ans)
+    public String ansAddNewSquadText;
+    public String ansSquadNameText;
+    public String ansSquadMemberListText;
+    public String ansSquadNameEditText;
+    public String ansContactAddButton;
+    public String ansAddMemberButton;
+    public String ansDeleteButton;
+    public String ansNewSquadButton;
+
+    //Text -> Splitor Add member directly (amd)
+    public String amdAddMemberText;
+    public String amdNameText;
+    public String amdBankNameText;
+    public String amdBankAccountText;
+    public String amdRemarkText;
+    public String amdNameEditText;
+    public String amdBankNameEditText;
+    public String amdBankAccountEditText;
+    public String amdRemarkEditText;
+    public String amdCancelButton;
+    public String amdAddButton;
+
+    //Text -> Splitor Location member add (lma)
+    public String lmaAddUsingDDayMemText;
+    public String lmaCancelButton;
+    public String lmaAddButton;
 
     //Alert
     public String selectMemberFirst;
@@ -104,7 +150,7 @@ public class Config_Language {
     public void setLanguagePack(Config_Language lang) {
 
         this.deleteSelectedSquad = lang.deleteSelectedSquad;
-        this.deleteSelectedMemberInSelectedSquad = lang.deleteSelectedSquad;
+        this.deleteSelectedMemberInSelectedSquad = lang.deleteSelectedMemberInSelectedSquad;
         this.addMemberToSelectedSquad = lang.addMemberToSelectedSquad;
         this.modifySelectedMemberName = lang.modifySelectedMemberName;
         this.modifySelectedSquadName = lang.modifySelectedSquadName;
@@ -134,6 +180,14 @@ public class Config_Language {
         this.mainText = lang.mainText;
         this.mainSplitorButton = lang.mainSplitorButton;
 
+        //Toast
+        this.toastSelectSquadFirst = lang.toastSelectSquadFirst;
+        this.toastSelectMemberFirst = lang.toastSelectMemberFirst;
+        this.toastAlreadyExistName = lang.toastAlreadyExistName;
+
+        //Message
+        this.msgDeleteConfirm = lang.msgDeleteConfirm;
+
         //Text -> Splitor Main
         this.splitorMainText = lang.splitorMainText;
         this.wholeGroupListText = lang.wholeGroupListText;
@@ -141,6 +195,8 @@ public class Config_Language {
         this.splitorMainModifyButton = lang.splitorMainModifyButton;
         this.splitorMainNewSquadButton = lang.splitorMainNewSquadButton;
         this.splitorMainNewDDayButton = lang.splitorMainNewDDayButton;
+        this.titleMotification = lang.titleMotification;
+        this.titleDeleteConfirm = lang.titleDeleteConfirm;
 
         //Text -> Splitor DDay
         this.ddayText = lang.ddayText;
@@ -173,11 +229,45 @@ public class Config_Language {
         this.resultSaveButton = lang.resultSaveButton;
         this.resultDoneButton = lang.resultDoneButton;
 
-        //Text -> Splitor Result output
+        //Text -> Splitor Result outputWriting
         this.resultOfThisMember = lang.resultOfThisMember;
         this.resultTo = lang.resultTo;
         this.resultToBeSent = lang.resultToBeSent;
 
+        this.resultDDayName = lang.resultDDayName;
+        this.resultDate = lang.resultDate;
+        this.resultLocationName = lang.resultLocationName;
+        this.resultLocationMoney = lang.resultLocationMoney;
+        this.resultHost = lang.resultHost;
+        this.resultTotalMember = lang.resultTotalMember;
+
+        //Text -> Splitor Add new squad(ans)
+        this.ansAddNewSquadText = lang.ansAddNewSquadText;
+        this.ansSquadNameText = lang.ansSquadNameText;
+        this.ansSquadMemberListText = lang.ansSquadMemberListText;
+        this.ansSquadNameEditText = lang.ansSquadNameEditText;
+        this.ansContactAddButton = lang.ansContactAddButton;
+        this.ansAddMemberButton = lang.ansAddMemberButton;
+        this.ansDeleteButton = lang.ansDeleteButton;
+        this.ansNewSquadButton = lang.ansNewSquadButton;
+
+        //Text -> Splitor Add member directly (amd)
+        this.amdAddMemberText = lang.amdAddMemberText;
+        this.amdNameText = lang.amdNameText;
+        this.amdBankNameText = lang.amdBankNameText;
+        this.amdBankAccountText = lang.amdBankAccountText;
+        this.amdRemarkText = lang.amdRemarkText;
+        this.amdNameEditText = lang.amdNameEditText;
+        this.amdBankNameEditText = lang.amdBankNameEditText;
+        this.amdBankAccountEditText = lang.amdBankAccountEditText;
+        this.amdRemarkEditText = lang.amdRemarkEditText;
+        this.amdCancelButton = lang.amdCancelButton;
+        this.amdAddButton = lang.amdAddButton;
+
+        //Text -> Splitor Location member add (lma)
+        this.lmaAddUsingDDayMemText = lang.lmaAddUsingDDayMemText;
+        this.lmaCancelButton = lang.lmaCancelButton;
+        this.lmaAddButton = lang.lmaAddButton;
 
         //Alert
         this.selectMemberFirst = lang.selectMemberFirst;
