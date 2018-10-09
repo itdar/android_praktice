@@ -6,11 +6,13 @@ public class TodoList {
      *
      * 바로 할거
      *
-     * -> 언어팩 acty 마무리 (Espc each Toast message, error msg)
-     *
      * -> 돈 입력 관련 EditText 에서 숫자만 입력 되도록해야함
      *
      * -> 언어팩 db에 flag 저장
+     * -> -> SplashMain 에서 최초 sqliteDB 생성
+     * -> -> -> 기본 flag 로 언어 설정
+     * -> -> 옵션에서 언어설정 하면
+     * -> -> -> flag 변경 후 재시작 하도록
      *
      * -> 전체 ui 확인 (글꼴, 채색, 위치 등)
      *

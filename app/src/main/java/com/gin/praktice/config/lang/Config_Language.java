@@ -29,14 +29,28 @@ public class Config_Language {
     public String languageFra;
     public String languageGer;
 
-    //Text -> Main
-    public String mainText;
-    public String mainSplitorButton;
-
     //Toast
+    // -> Main
     public String toastSelectSquadFirst;
     public String toastSelectMemberFirst;
     public String toastAlreadyExistName;
+    // -> DDay
+    public String toastDDaySelectMemberFirst;
+    public String toastDDayAddAllMemberFirst;
+    public String toastDDayFillTitleOrDateFirst;
+    public String toastDDayAlreadyExistName;
+    // -> Location
+    public String toastLocationSelectMemberFirst;
+    public String toastLocationSelectHostMemberFirst;
+    public String toastLocationFillLocationNameMoney;
+    public String toastLocationAddAllLocationMemberFirst;
+    // -> Result
+    public String toastResultDetailCopy;
+    public String toastResultMoneyToSendCopy;
+
+    //Text -> Main
+    public String mainText;
+    public String mainSplitorButton;
 
     //Message
     public String msgDeleteConfirm;
@@ -51,7 +65,6 @@ public class Config_Language {
     public String titleMotification;
     public String titleDeleteConfirm;
 
-
     //Text -> Splitor DDay
     public String ddayText;
     public String ddayNameText;
@@ -60,6 +73,14 @@ public class Config_Language {
     public String ddayModifyButton;
     public String ddayAddMemberButton;
     public String ddayNextButton;
+    public String ddayTitleAddDDayMember;
+    public String ddayTitleDDayModification;
+    public String ddayContactName;
+    public String ddayContactNumber;
+    public String ddayReceivedName;
+    public String ddayReceivedBank;
+    public String ddayReceiveAccount;
+    public String titleLocationMemberOption;
 
     //Text -> Splitor Location
     public String locationVisitedText;
@@ -176,17 +197,31 @@ public class Config_Language {
         this.languageFra = lang.languageFra;
         this.languageGer = lang.languageGer;
 
-        //Text -> Main
-        this.mainText = lang.mainText;
-        this.mainSplitorButton = lang.mainSplitorButton;
-
         //Toast
+        // -> Main
         this.toastSelectSquadFirst = lang.toastSelectSquadFirst;
         this.toastSelectMemberFirst = lang.toastSelectMemberFirst;
         this.toastAlreadyExistName = lang.toastAlreadyExistName;
+        // -> DDay
+        this.toastDDaySelectMemberFirst = lang.toastDDaySelectMemberFirst;
+        this.toastDDayAddAllMemberFirst = lang.toastDDayAddAllMemberFirst;
+        this.toastDDayFillTitleOrDateFirst = lang.toastDDayFillTitleOrDateFirst;
+        this.toastDDayAlreadyExistName = lang.toastDDayAlreadyExistName;
+        // -> Location
+        this.toastLocationSelectMemberFirst = lang.toastLocationSelectMemberFirst;
+        this.toastLocationSelectHostMemberFirst = lang.toastLocationSelectHostMemberFirst;
+        this.toastLocationFillLocationNameMoney = lang.toastLocationFillLocationNameMoney;
+        this.toastLocationAddAllLocationMemberFirst = lang.toastLocationAddAllLocationMemberFirst;
+        // -> Result
+        this.toastResultDetailCopy = lang.toastResultDetailCopy;
+        this.toastResultMoneyToSendCopy = lang.toastResultMoneyToSendCopy;
 
         //Message
         this.msgDeleteConfirm = lang.msgDeleteConfirm;
+
+        //Text -> Main
+        this.mainText = lang.mainText;
+        this.mainSplitorButton = lang.mainSplitorButton;
 
         //Text -> Splitor Main
         this.splitorMainText = lang.splitorMainText;
@@ -206,6 +241,13 @@ public class Config_Language {
         this.ddayModifyButton = lang.ddayModifyButton;
         this.ddayAddMemberButton = lang.ddayAddMemberButton;
         this.ddayNextButton = lang.ddayNextButton;
+        this.ddayTitleAddDDayMember = lang.ddayTitleAddDDayMember;
+        this.ddayTitleDDayModification = lang.ddayTitleDDayModification;
+        this.ddayContactName = lang.ddayContactName;
+        this.ddayContactNumber = lang.ddayContactNumber;
+        this.ddayReceivedName = lang.ddayReceivedName;
+        this.ddayReceivedBank = lang.ddayReceivedBank;
+        this.ddayReceiveAccount = lang.ddayReceiveAccount;
 
         //Text -> Splitor Location
         this.locationVisitedText = lang.locationVisitedText;
@@ -219,6 +261,7 @@ public class Config_Language {
         this.locationSetManagerButton = lang.locationSetManagerButton;
         this.addMoreLocationButton = lang.addMoreLocationButton;
         this.locationNextButton = lang.locationNextButton;
+        this.titleLocationMemberOption = lang.titleLocationMemberOption;
 
         //Text -> Splitor Result
         this.resultOfCalc = lang.resultOfCalc;

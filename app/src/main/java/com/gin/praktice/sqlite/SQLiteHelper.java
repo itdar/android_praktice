@@ -76,7 +76,7 @@ public class SQLiteHelper {
     public void saveLanguageFlag(int languageFlagInt) {
         ContentValues languageFlag = new ContentValues();
         languageFlag.put(SPLITOR_COLUMN_FLAG, languageFlagInt);
-//        database.update(TABLE_NAME_SPLITOR, languageFlag);
+        database.update(TABLE_NAME_SPLITOR, languageFlag, "languageFlag", null);
     }
 
     // 2. 마지막 Result 나온 후 저장하는 기능 추후에 (Table 추가하거나 column 추가 해얄듯)
@@ -105,9 +105,9 @@ public class SQLiteHelper {
         ContentValues memberTableValues = new ContentValues();
         memberTableValues.put(MEMBER_COLUMN_SQUAD_NAME, squadName);
         memberTableValues.put(MEMBER_COLUMN_NAME, member.getName());
-        memberTableValues.put(MEMBER_COLUMN_BANK, "");// member.getBank());
-        memberTableValues.put(MEMBER_COLUMN_ACCOUNT, "");// member.getAccount());
-        memberTableValues.put(MEMBER_COLUMN_PHONENUMBER, "");// member.getPhoneNumber());
+        memberTableValues.put(MEMBER_COLUMN_BANK, "");          // member.getBank());
+        memberTableValues.put(MEMBER_COLUMN_ACCOUNT, "");       // member.getAccount());
+        memberTableValues.put(MEMBER_COLUMN_PHONENUMBER, "");   // member.getPhoneNumber());
 
         database.insert(TABLE_NAME_MEMBER, null, memberTableValues);
     }

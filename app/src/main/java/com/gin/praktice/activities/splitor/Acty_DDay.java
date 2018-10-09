@@ -48,6 +48,18 @@ public class Acty_DDay extends Activity {
 
     private ComponentRecyclerAdapter adapter;
 
+    private String ddayTitleAddDDayMember;
+    private String ddayTitleDDayModification;
+    private String ddaySelectMemberFirst;
+    private String ddayAddAllMemberFirst;
+    private String ddayFillTitleOrDateFirst;
+    private String ddayAlreadyExistName;
+    private String ddayContactName;
+    private String ddayContactNumber;
+    private String ddayReceivedName;
+    private String ddayReceivedBank;
+    private String ddayReceiveAccount;
+
     private TextView ddayText;
     private TextView ddayNameText;
     private EditText ddayNameEditText;
@@ -124,7 +136,7 @@ public class Acty_DDay extends Activity {
         dateEditText.setText(dateFormat.format(date));
 
         getComponentsId();
-        setComponentsNames();
+        setComponentsLang();
     }
 
     private void updateDate() {
@@ -184,11 +196,12 @@ public class Acty_DDay extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
 
         // 여기서 부터는 알림창의 속성 설정
-        builder.setTitle("Add DDay Members")        // 제목 설정
+        builder.setTitle(this.ddayTitleAddDDayMember)        // 제목 설정
                 .setItems(items, new DialogInterface.OnClickListener() {
                     // 목록 클릭시 설정
                     public void onClick(DialogInterface dialog, int index) {
-                        switch (index) {
+                        switch (index)
+                        {
                             case 0: addRawMember(); break;
                             case 1: addContactMember(); break;
                             case 2: addKakaoFriend(); break;
@@ -207,16 +220,13 @@ public class Acty_DDay extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
 
         // 여기서 부터는 알림창의 속성 설정
-        builder.setTitle("DDay Modification")        // 제목 설정
+        builder.setTitle(this.ddayTitleDDayModification)        // 제목 설정
                 .setItems(items, new DialogInterface.OnClickListener() {
                     // 목록 클릭시 설정
                     public void onClick(DialogInterface dialog, int index) {
                         switch (index) {
-                            case 0:
-                                deleteMember();
-                                break;
-                            default:
-                                break;
+                            case 0: deleteMember(); break;
+                            default: break;
                         }
                     }
                 });
@@ -225,18 +235,20 @@ public class Acty_DDay extends Activity {
     }
 
     private void addKakaoFriend() {
-        Toast.makeText(this, "Open KakaoTalk friend list.", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "Open KakaoTalk friend list.", Toast.LENGTH_LONG).show();
 
     }
 
     private void deleteMember() {
-//        Toast.makeText(this, "Delete Member button clicked. ", Toast.LENGTH_LONG).show();
 
         if (adapter.getSelectedList().size() > 0) {
             dDay.dayMembers.remove(adapter.getSelectedList().get(0).intValue());
             adapter.getSelectedList().clear();
         }
-
+        else
+        {
+            Toast.makeText(this, this.ddaySelectMemberFirst, Toast.LENGTH_LONG).show();
+        }
         adapter.notifyDataSetChanged();
     }
 
@@ -256,12 +268,12 @@ public class Acty_DDay extends Activity {
             }
             else
             {
-                Toast.makeText(this, "모임날 참석한 모든 멤버를 추가해주세요.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, this.ddayAddAllMemberFirst, Toast.LENGTH_LONG).show();
             }
         }
         else
         {
-            Toast.makeText(this, "모임날의 이름이나 날짜를 추가해주세요.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, this.ddayFillTitleOrDateFirst, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -289,7 +301,7 @@ public class Acty_DDay extends Activity {
         String receivePhone = cursor.getString(1);
         cursor.close();
 
-        Toast.makeText(this, "연락처 이름 : " + receiveName + "\n연락처 전화번호 : " + receivePhone, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, this.ddayContactName + " : " + receiveName + "\n" + this.ddayContactNumber + " : " + receivePhone, Toast.LENGTH_LONG).show();
 
         // Need to check ramda below function
 
@@ -306,13 +318,13 @@ public class Acty_DDay extends Activity {
         if (!isExist(receiveName))
         {
             addData(receiveName, "");
-            Toast.makeText(this, "추가된 이름 : " + receiveName +
-                    "\n추가된 은행 : " + receiveBank +
-                    "\n추가된 계좌 : " + receiveAccount, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, this.ddayReceivedName+ " : " + receiveName +
+                    "\n" + this.ddayReceivedBank + " : " + receiveBank +
+                    "\n" + this.ddayReceiveAccount + " : " + receiveAccount, Toast.LENGTH_LONG).show();
         }
         else
         {
-            Toast.makeText(this, "이미 중복된 이름이 있습니다.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, this.ddayAlreadyExistName, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -336,7 +348,7 @@ public class Acty_DDay extends Activity {
         ddayNextButton = (Button)findViewById(R.id.ddayNextButton);
     }
 
-    private void setComponentsNames() {
+    private void setComponentsLang() {
         ddayText.setText(Config_Language.get().ddayText);
         ddayNameText.setText(Config_Language.get().ddayNameText);
         ddayNameEditText.setHint(Config_Language.get().ddayNameEditText);
@@ -344,6 +356,18 @@ public class Acty_DDay extends Activity {
         ddayModifyButton.setText(Config_Language.get().ddayModifyButton);
         ddayAddMemberButton.setText(Config_Language.get().ddayAddMemberButton);
         ddayNextButton.setText(Config_Language.get().ddayNextButton);
+        ddayTitleAddDDayMember = Config_Language.get().ddayTitleAddDDayMember;
+        ddayTitleDDayModification = Config_Language.get().ddayTitleDDayModification;
+        ddaySelectMemberFirst = Config_Language.get().toastDDaySelectMemberFirst;
+        ddayAddAllMemberFirst = Config_Language.get().toastDDayAddAllMemberFirst;
+        ddayFillTitleOrDateFirst = Config_Language.get().toastDDayFillTitleOrDateFirst;
+        ddayAlreadyExistName = Config_Language.get().toastDDayAlreadyExistName;
+        ddayContactName = Config_Language.get().ddayContactName;
+        ddayContactNumber = Config_Language.get().ddayContactNumber;
+        ddayReceivedName = Config_Language.get().ddayReceivedName;
+        ddayReceivedBank = Config_Language.get().ddayReceivedBank;
+        ddayReceiveAccount = Config_Language.get().ddayReceiveAccount;
+
     }
 
 

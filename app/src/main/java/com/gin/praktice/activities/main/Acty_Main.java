@@ -57,15 +57,11 @@ public class Acty_Main extends Activity {
                     // 목록 클릭시 설정
                     public void onClick(DialogInterface dialog, int index) {
                         switch (index) {
-                            case 0:
-                                Config_Language.get().setLanguagePack(new Config_Kor()); break;
-                            case 1:
-                                Config_Language.get().setLanguagePack(new Config_Eng()); break;
-//                            case 2:
-////                                deleteSquadButtonAction();
+                            case 0: setLanguage(0); break;
+                            case 1: setLanguage(1); break;
+//                            case 2: deleteSquadButtonAction();
 //                                break;
-                            default:
-                                break;
+                            default: break;
                         }
                         // Change UI components name after setting language pack
                         setComponentsNames();
@@ -73,6 +69,15 @@ public class Acty_Main extends Activity {
                 });
         AlertDialog dialog = builder.create();    // 알림창 객체 생성
         dialog.show();    // 알림창 띄우기
+    }
+
+    private void setLanguage(int langFlag) {
+        switch (langFlag) {
+            case 0: Config_Language.get().setLanguagePack(new Config_Kor()); break;
+            case 1: Config_Language.get().setLanguagePack(new Config_Eng()); break;
+
+            default: break;
+        }
     }
 
     private void setComponentsNames() {

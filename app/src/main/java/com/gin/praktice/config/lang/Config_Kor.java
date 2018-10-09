@@ -13,7 +13,7 @@ public class Config_Kor extends Config_Language {
         deleteSelectedMemberFromDDay = "모임날에서 선택멤버 제거";
         addContactMemberToDDay = "모임날 멤버 주소록에서 추가";
         addRawMemberDirectly = "모임날 멤버 직접입력 추가";
-        addKakaoFriend = "모임날 멤버 카카오톡에서 추가";
+        addKakaoFriend = "카카오톡에서 멤버 추가";
 
         littleLateMember = "선택멤버 조금 늦게옴";
         superLateMember = "선택멤버 많이 늦게옴";
@@ -30,17 +30,31 @@ public class Config_Kor extends Config_Language {
         languageFra = "French";
         languageGer = "German";
 
-        //Text -> Main
-        mainText = "정신차려 이 각박한 세상 속에서";
-        mainSplitorButton = "엔빵하기";
-
         //Toast
+        // -> Main
         toastSelectSquadFirst = "모임을 먼저 선택하세요";
         toastSelectMemberFirst = "멤버를 먼저 선택하세요";
         toastAlreadyExistName = "이미 등록된 이름입니다";
+        // -> DDay
+        toastDDaySelectMemberFirst = "멤버를 먼저 선택하세요";
+        toastDDayAddAllMemberFirst = "모임날 참석한 모든 멤버를 추가해주세요";
+        toastDDayFillTitleOrDateFirst = "모임날의 이름 또는 날짜를 추가해주세요";
+        toastDDayAlreadyExistName = "이미 중복된 멤버가 있습니다";
+        // -> Location
+        toastLocationSelectMemberFirst = "멤버를 먼저 선택해주세요";
+        toastLocationSelectHostMemberFirst = "이 장소 결제자를 먼저 선택해주세요";
+        toastLocationFillLocationNameMoney = "이 장소의 이름과 금액을 입력해주세요";
+        toastLocationAddAllLocationMemberFirst = "이 장소에 있었던 멤버들을 모두 추가해주세요";
+        // -> Result
+        toastResultDetailCopy = "정산 세부내역을 복사";
+        toastResultMoneyToSendCopy = "멤버별 부칠 내역을 복사";
 
         //Message
         msgDeleteConfirm = "선택하신 모임을\\n삭제하시겠습니까?";
+
+        //Text -> Main
+        mainText = "정신차려 이 각박한 세상 속에서";
+        mainSplitorButton = "엔빵하기";
 
         //Text -> Splitor Main
         splitorMainText = "정산 기능 - N분의 1";
@@ -73,6 +87,7 @@ public class Config_Kor extends Config_Language {
         locationSetManagerButton = "선택된 멤버가\n이 장소의 총무";
         addMoreLocationButton = "이 장소를 저장하고\n다음 장소 더 추가하기";
         locationNextButton = "이제 그만\n여기가 마지막!!  결과보기";
+        titleLocationMemberOption = "장소 멤버들 세부옵션";
 
         //Text -> Splitor Result
         resultOfCalc = "모임 정산 결과";

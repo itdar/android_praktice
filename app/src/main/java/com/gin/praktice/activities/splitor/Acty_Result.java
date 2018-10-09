@@ -27,8 +27,9 @@ public class Acty_Result extends Activity {
     private Button resultSaveButton;
     private Button resultDoneButton;
 
+    private String toastResultDetailCopy;
+    private String toastResultMoneyToSendCopy;
 
-    // activity 정리하고 꾸며야함
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,7 @@ public class Acty_Result extends Activity {
         tempManagerFunction();
 
         getComponentsId();
-        setComponentsNames();
+        setComponentsLang();
 
     }
 
@@ -71,7 +72,7 @@ public class Acty_Result extends Activity {
             android.text.ClipboardManager clipboard = (android.text.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
             clipboard.setText(resultTextView1.getText());
         }
-        Toast.makeText(getApplicationContext(), "정산 세부내역을 복사", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), this.toastResultDetailCopy, Toast.LENGTH_SHORT).show();
     }
 
     private void doneButtonClicked() {
@@ -98,7 +99,7 @@ public class Acty_Result extends Activity {
             android.text.ClipboardManager clipboard = (android.text.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
             clipboard.setText(resultTextView2.getText());
         }
-        Toast.makeText(getApplicationContext(), "멤버별 부칠 내역을 복사", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), this.toastResultMoneyToSendCopy, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -252,11 +253,14 @@ public class Acty_Result extends Activity {
         resultDoneButton = (Button)findViewById(R.id.resultDoneButton);
     }
 
-    private void setComponentsNames() {
+    private void setComponentsLang() {
         resultOfCalc.setText(Config_Language.get().resultOfCalc);
         copyResultButton1.setText(Config_Language.get().copyResultButton1);
         copyResultButton2.setText(Config_Language.get().copyResultButton2);
         resultSaveButton.setText(Config_Language.get().resultSaveButton);
         resultDoneButton.setText(Config_Language.get().resultDoneButton);
+
+        toastResultDetailCopy = Config_Language.get().toastResultDetailCopy;
+        toastResultMoneyToSendCopy = Config_Language.get().toastResultMoneyToSendCopy;
     }
 }

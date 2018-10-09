@@ -38,6 +38,13 @@ public class Acty_Location extends Activity {
     private RecyclerView locationMemberView;
     private LocationRecyclerAdapter adapter;
 
+    private String titleLocationMemberOption;
+    private String toastSelectMemberFirst;
+    private String toastSelectHostMemberFirst;
+    private String toastFillLocationNameMoney;
+    private String toastAddAllLocationMemberFirst;
+
+
     private TextView locationVisitedText;
     private TextView locationStoreName;
     private EditText locationNameEditText;
@@ -94,7 +101,7 @@ public class Acty_Location extends Activity {
         });
 
         getComponentsId();
-        setComponentsNames();
+        setComponentsLang();
     }
 
     private void setRecyclerView() {
@@ -131,7 +138,7 @@ public class Acty_Location extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
 
         // 여기서 부터는 알림창의 속성 설정
-        builder.setTitle("Add DDay Members")        // 제목 설정
+        builder.setTitle(this.titleLocationMemberOption)        // 제목 설정
                 .setItems(items, new DialogInterface.OnClickListener() {
                     // 목록 클릭시 설정
                     public void onClick(DialogInterface dialog, int index) {
@@ -157,7 +164,7 @@ public class Acty_Location extends Activity {
         }
         else
         {
-            Toast.makeText(this, "Select member first.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, this.toastSelectMemberFirst, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -172,7 +179,7 @@ public class Acty_Location extends Activity {
         }
         else
         {
-
+            Toast.makeText(this, this.toastSelectMemberFirst, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -187,7 +194,7 @@ public class Acty_Location extends Activity {
         }
         else
         {
-
+            Toast.makeText(this, this.toastSelectMemberFirst, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -202,7 +209,7 @@ public class Acty_Location extends Activity {
         }
         else
         {
-
+            Toast.makeText(this, this.toastSelectMemberFirst, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -218,8 +225,13 @@ public class Acty_Location extends Activity {
             }
             location.remove(adapter.getSelectedList().get(0));
             adapter.getSelectedList().clear();
+
+            adapter.notifyDataSetChanged();
         }
-        adapter.notifyDataSetChanged();
+        else
+        {
+            Toast.makeText(this, this.toastSelectMemberFirst, Toast.LENGTH_LONG).show();
+        }
     }
 
     private void addMemberButtonAction() {
@@ -247,6 +259,7 @@ public class Acty_Location extends Activity {
             switch (requestCode) {
                 case ADD_MEMBER : addMember(intent); break;
 //                case REQUEST_KAKAO : ; break;
+                default : break;
             }
         }
     }
@@ -304,19 +317,19 @@ public class Acty_Location extends Activity {
                 else
                 {
                     //이 가게에서 계산한 사람을 선택해주세요 토스트
-                    Toast.makeText(this, "이 가게에서 계산한 멤버를 선택해주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, this.toastSelectHostMemberFirst, Toast.LENGTH_LONG).show();
                 }
             }
             else
             {
                 //가게이름이랑 금액 토스트
-                Toast.makeText(this, "들른 곳 이름과 금액을 입력해주세요.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, this.toastFillLocationNameMoney, Toast.LENGTH_LONG).show();
             }
         }
         else
         {
             //장소에 해당 멤버들 추가해야한다는 토스트
-            Toast.makeText(this, "이 장소에 있었던 멤버들을 전부 추가해주세요.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, this.toastAddAllLocationMemberFirst, Toast.LENGTH_LONG).show();
         }
         return result;
     }
@@ -353,7 +366,7 @@ public class Acty_Location extends Activity {
         locationNextButton = (Button)findViewById(R.id.locationNextButton);
     }
 
-    private void setComponentsNames() {
+    private void setComponentsLang() {
         locationVisitedText.setText(Config_Language.get().locationVisitedText);
         locationStoreName.setText(Config_Language.get().locationStoreName);
         locationNameEditText.setHint(Config_Language.get().locationNameEditText);
@@ -365,5 +378,11 @@ public class Acty_Location extends Activity {
         locationSetManagerButton.setText(Config_Language.get().locationSetManagerButton);
         addMoreLocationButton.setText(Config_Language.get().addMoreLocationButton);
         locationNextButton.setText(Config_Language.get().locationNextButton);
+
+        titleLocationMemberOption = Config_Language.get().titleLocationMemberOption;
+        toastSelectMemberFirst = Config_Language.get().toastSelectMemberFirst;
+        toastSelectHostMemberFirst = Config_Language.get().toastLocationSelectHostMemberFirst;
+        toastFillLocationNameMoney = Config_Language.get().toastLocationFillLocationNameMoney;
+        toastAddAllLocationMemberFirst = Config_Language.get().toastLocationAddAllLocationMemberFirst;
     }
 }

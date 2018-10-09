@@ -30,17 +30,30 @@ public class Config_Eng extends Config_Language {
         languageFra = "French";
         languageGer = "German";
 
-        //Text -> Main
-        mainText = "Stay lit in this chaotic world";
-        mainSplitorButton = "Splitor";
-
         //Toast
+        // -> Main
         toastSelectSquadFirst = "Select Group first";
         toastSelectMemberFirst = "Select Member first";
         toastAlreadyExistName = "Already existed name";
+        // -> DDay
+        toastDDaySelectMemberFirst = "Select member first";
+        toastDDayAddAllMemberFirst = "Add all DDay member first";
+        toastDDayFillTitleOrDateFirst = "Fill the DDay title or date first";
+        toastDDayAlreadyExistName = "Already exist member";
+        // -> Location
+        toastLocationSelectMemberFirst = "Select member first";
+        toastLocationSelectHostMemberFirst = "Select host member here first";
+        toastLocationFillLocationNameMoney = "Fill in location name nad money spent";
+        toastLocationAddAllLocationMemberFirst = "Add all member who was in this location";
+        // -> Result
+        toastResultDetailCopy = "Copy detail result";
+        toastResultMoneyToSendCopy = "Copy people result";
 
         //Message
         msgDeleteConfirm = "Are you sure \\nyou want to delete?";
+        //Text -> Main
+        mainText = "Stay lit in this chaotic world";
+        mainSplitorButton = "Splitor";
 
         //Text -> Splitor Main
         splitorMainText = "Splitor - 1 / N";
@@ -73,6 +86,7 @@ public class Config_Eng extends Config_Language {
         locationSetManagerButton = "Select the host of this location";
         addMoreLocationButton = "Save & Add more location";
         locationNextButton = "Done\n Show me the result";
+        titleLocationMemberOption = "Location member option";
 
         //Text -> Splitor Result
         resultOfCalc = "Result of calculation";
