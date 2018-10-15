@@ -68,7 +68,7 @@ public class Acty_MainSplitor extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activities_main_splitor);
 
-        sqLiteHelper = new SQLiteHelper(this.getApplicationContext());
+        sqLiteHelper = SQLiteHelper.getInstance(this.getApplicationContext());
 
         dDayIntent = new Intent(this, Acty_DDay.class);
 

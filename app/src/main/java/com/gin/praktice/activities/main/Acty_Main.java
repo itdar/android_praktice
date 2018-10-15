@@ -14,6 +14,7 @@ import com.gin.praktice.activities.splitor.Acty_MainSplitor;
 import com.gin.praktice.config.lang.Config_Eng;
 import com.gin.praktice.config.lang.Config_Kor;
 import com.gin.praktice.config.lang.Config_Language;
+import com.gin.praktice.sqlite.SQLiteHelper;
 
 public class Acty_Main extends Activity {
 
@@ -21,6 +22,8 @@ public class Acty_Main extends Activity {
 
     TextView mainText;
     Button mainSplitorButton;
+
+    SQLiteHelper sqLiteHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,8 @@ public class Acty_Main extends Activity {
         mainText = (TextView)findViewById(R.id.mainText);
         mainSplitorButton = (Button)findViewById(R.id.mainSplitorButton); // R.id.bt  여기는 xml에 지정한 버튼id로해주세용
 
+        sqLiteHelper = SQLiteHelper.getInstance(this.getApplicationContext());
+        setLanguage(sqLiteHelper.loadLanguageFlag());
         setComponentsNames();
     }
 
@@ -57,10 +62,9 @@ public class Acty_Main extends Activity {
                     // 목록 클릭시 설정
                     public void onClick(DialogInterface dialog, int index) {
                         switch (index) {
-                            case 0: setLanguage(0); break;
-                            case 1: setLanguage(1); break;
-//                            case 2: deleteSquadButtonAction();
-//                                break;
+                            case 0: setLanguage(0); sqLiteHelper.saveLanguageFlag(0); break;
+                            case 1: setLanguage(1); sqLiteHelper.saveLanguageFlag(1); break;
+//                            case 2: deleteSquadButtonAction(); break;
                             default: break;
                         }
                         // Change UI components name after setting language pack

@@ -14,33 +14,50 @@ import java.util.List;
 
 public class SQLiteHelper {
 
+    public static SQLiteHelper instance = null;
+
     // stored local variables for the OpenHelper and the database it opens
     public DatabaseOpenHelper openHelper;
     public SQLiteDatabase database;
 
     // list of constants for referencing the db's internal values
-    public static final int DATABASE_VERSION = 4;
-    public static final String DATABASE_NAME = "ms.db";
+    public final int DATABASE_VERSION = 1;
+    public final String DATABASE_NAME = "ms.db";
 
-    public static final String TABLE_NAME_SPLITOR = "TABLE_NAME_SPLITOR";
-    public static final String TABLE_NAME_SQUAD = "TABLE_NAME_SQUAD";
-    public static final String TABLE_NAME_MEMBER = "TABLE_NAME_MEMBER";
+    public final String TABLE_NAME_SETTING = "TABLE_NAME_SETTING";
+    public final String TABLE_NAME_SQUAD = "TABLE_NAME_SQUAD";
+    public final String TABLE_NAME_MEMBER = "TABLE_NAME_MEMBER";
 
-    public static final String SPLITOR_COLUMN_FLAG = "languageFlag";
+    public final String SPLITOR_COLUMN_LANGFLAG = "languageFlag";
 
-    public static final String SQUAD_COLUMN_ID = "squadID";
-    public static final String SQUAD_COLUMN_NAME = "name";
+    public final String SQUAD_COLUMN_ID = "squadID";
+    public final String SQUAD_COLUMN_NAME = "name";
 
-    public static final String MEMBER_COLUMN_ID = "memberID";
-    public static final String MEMBER_COLUMN_SQUAD_NAME = "squadName";
-    public static final String MEMBER_COLUMN_NAME = "name";
-    public static final String MEMBER_COLUMN_BANK = "bank";
-    public static final String MEMBER_COLUMN_ACCOUNT = "accountNumber";
-    public static final String MEMBER_COLUMN_PHONENUMBER = "phoneNumber";
+    public final String MEMBER_COLUMN_ID = "memberID";
+    public final String MEMBER_COLUMN_SQUAD_NAME = "squadName";
+    public final String MEMBER_COLUMN_NAME = "name";
+    public final String MEMBER_COLUMN_BANK = "bank";
+    public final String MEMBER_COLUMN_ACCOUNT = "accountNumber";
+    public final String MEMBER_COLUMN_PHONENUMBER = "phoneNumber";
 
-    public SQLiteHelper(Context context) {
+    private SQLiteHelper() {
+
+    }
+    private SQLiteHelper(Context context) {
         openHelper = new DatabaseOpenHelper(context);
         database = openHelper.getWritableDatabase();
+
+        loadLanguageFlag();
+
+//        context.deleteDatabase("ms.db");
+    }
+
+    public static SQLiteHelper getInstance(Context context) {
+        if (instance == null)
+        {
+            instance = new SQLiteHelper(context);
+        }
+        return instance;
     }
 
     // this is what actually declares the database so that other activites can
@@ -64,19 +81,43 @@ public class SQLiteHelper {
                               int newVersion) {
             // drops table if exists, and then calls onCreate which implements
             // our new schema
-            database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SPLITOR);
+            database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SETTING);
             database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SQUAD);
             database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_MEMBER);
             onCreate(database);
         }
     }
 
-    //default flag,
-    //Update flag
+    //default flag (If langFlag = -1)
+    //Update flag (If set new langFlag)
     public void saveLanguageFlag(int languageFlagInt) {
+
         ContentValues languageFlag = new ContentValues();
-        languageFlag.put(SPLITOR_COLUMN_FLAG, languageFlagInt);
-        database.update(TABLE_NAME_SPLITOR, languageFlag, "languageFlag", null);
+
+        if (languageFlagInt < 0)
+        {
+            languageFlag.put(SPLITOR_COLUMN_LANGFLAG, 0);
+            database.insert(TABLE_NAME_SETTING, null, languageFlag);
+        }
+        else
+        {
+            database.execSQL("delete from "+ TABLE_NAME_SETTING);
+            languageFlag.put(SPLITOR_COLUMN_LANGFLAG, languageFlagInt);
+            database.insert(TABLE_NAME_SETTING, null, languageFlag);
+        }
+    }
+
+    public int loadLanguageFlag() {
+        Cursor langFlagCursor = database.rawQuery("SELECT * FROM " + TABLE_NAME_SETTING, null);
+        langFlagCursor.moveToFirst();
+
+        // Initial execute
+//        if (langFlagCursor.isNull(langFlagCursor.getColumnIndex(SPLITOR_COLUMN_LANGFLAG)))
+//        {
+//            saveLanguageFlag(-1);
+//            return 0;
+//        }
+        return langFlagCursor.getInt(langFlagCursor.getColumnIndex(SPLITOR_COLUMN_LANGFLAG));
     }
 
     // 2. 마지막 Result 나온 후 저장하는 기능 추후에 (Table 추가하거나 column 추가 해얄듯)
@@ -127,9 +168,9 @@ public class SQLiteHelper {
 
     private void createTables(SQLiteDatabase database)
     {
-        database.execSQL("CREATE TABLE " + TABLE_NAME_SPLITOR
+        database.execSQL("CREATE TABLE " + TABLE_NAME_SETTING
                 + "("
-                + SPLITOR_COLUMN_FLAG + " INTEGER"
+                + SPLITOR_COLUMN_LANGFLAG + " INTEGER"
                 + ")" );
 
         database.execSQL("CREATE TABLE " + TABLE_NAME_SQUAD
