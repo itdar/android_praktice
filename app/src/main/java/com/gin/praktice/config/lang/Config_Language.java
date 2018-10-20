@@ -163,7 +163,7 @@ public class Config_Language {
     public static Config_Language get() {
         if (instance == null)
         {
-            instance = new Config_Language(2);
+            instance = new Config_Language(1);
         }
         return instance;
     }

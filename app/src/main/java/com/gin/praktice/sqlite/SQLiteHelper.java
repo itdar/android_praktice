@@ -3,6 +3,7 @@ package com.gin.praktice.sqlite;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -47,7 +48,7 @@ public class SQLiteHelper {
         openHelper = new DatabaseOpenHelper(context);
         database = openHelper.getWritableDatabase();
 
-        loadLanguageFlag();
+        this.saveLanguageFlag(this.loadLanguageFlag());
 
 //        context.deleteDatabase("ms.db");
     }
@@ -111,13 +112,15 @@ public class SQLiteHelper {
         Cursor langFlagCursor = database.rawQuery("SELECT * FROM " + TABLE_NAME_SETTING, null);
         langFlagCursor.moveToFirst();
 
-        // Initial execute
-//        if (langFlagCursor.isNull(langFlagCursor.getColumnIndex(SPLITOR_COLUMN_LANGFLAG)))
-//        {
-//            saveLanguageFlag(-1);
-//            return 0;
-//        }
-        return langFlagCursor.getInt(langFlagCursor.getColumnIndex(SPLITOR_COLUMN_LANGFLAG));
+        int langFlag = -1;
+        try {
+            langFlag = langFlagCursor.getInt(langFlagCursor.getColumnIndex(SPLITOR_COLUMN_LANGFLAG));
+        }
+        catch (CursorIndexOutOfBoundsException e)
+        {
+            langFlag = -1;
+        }
+        return langFlag;
     }
 
     // 2. 마지막 Result 나온 후 저장하는 기능 추후에 (Table 추가하거나 column 추가 해얄듯)
