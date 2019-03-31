@@ -308,6 +308,9 @@ public class Acty_DDay extends Activity {
         addData(receiveName, receivePhone);
     }
 
+    //bundle 로 받는거 말고
+    //parcelable 객체 만들어서 객체 자체를 받아도 됨
+    //serializable 로 array에 객체 넣어서 받아도될듯
     private void addMember(Intent intent) {
         Bundle bundle = intent.getExtras();
 
