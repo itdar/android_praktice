@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+import com.gin.praktice.pagerTest.Acty_ProcessPager;
+
 public class Acty_SplashMain extends AppCompatActivity {
 
     private Handler handler = new Handler();
@@ -18,7 +20,8 @@ public class Acty_SplashMain extends AppCompatActivity {
 
         this.handler.postDelayed(new Runnable() {
             public void run() {
-                Intent intent = new Intent(getApplicationContext(), Acty_Main.class);
+//                Intent intent = new Intent(getApplicationContext(), Acty_Main.class);
+                Intent intent = new Intent(getApplicationContext(), Acty_ProcessPager.class);
                 startActivity(intent);
                 finish();
             }

@@ -12,7 +12,7 @@
         android:label="StaySpLit"
         android:roundIcon="@drawable/ic_attach_money_black_24dp"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/HiddenTitleTheme">
 
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
@@ -29,6 +29,7 @@
 
         <!--<activity android:name=".activities.Acty_MainSplitor" />-->
         <activity android:name=".activities.main.Acty_Main" />
+        <activity android:name=".pagerTest.Acty_ProcessPager" />
         <activity android:name=".activities.splitor.Acty_AddNewSquad" />
 
         <activity android:name=".activities.splitor.Acty_MainSplitor" />

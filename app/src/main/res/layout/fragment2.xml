@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <TextView
+            android:id="@+id/ddayText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#ffeac1"
+            android:text="모임날"
+            android:textAlignment="center"
+            android:textColorLink="@android:color/black"
+            android:textSize="30sp"
+            tools:layout_editor_absoluteX="157dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/ddayNameText"
+                android:layout_width="143dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=" 날 이름"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:hint="모인 날 이름"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="88dp" />
+
+            <EditText
+                android:id="@+id/ddayNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="모인 날 이름을 정해보세요"
+                android:inputType="textPersonName"
+                android:textColorLink="@android:color/black"
+                tools:layout_editor_absoluteX="136dp"
+                tools:layout_editor_absoluteY="92dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/ddayDate"
+                android:layout_width="143dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=" 날짜"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="156dp" />
+
+            <EditText
+                android:id="@+id/dateEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="모인 날짜를 선택하세요"
+                android:inputType="date"
+                android:textColorLink="@android:color/black" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dayMembersView"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:fadeScrollbars="false"
+            android:scrollbars="vertical"
+            tools:layout_editor_absoluteX="10dp"
+            tools:layout_editor_absoluteY="218dp">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/ddayModifyButton"
+                android:layout_width="301dp"
+                android:layout_height="65dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:text="수정"
+                tools:layout_editor_absoluteX="265dp"
+                tools:layout_editor_absoluteY="369dp" />
+
+            <Button
+                android:id="@+id/ddayAddMemberButton"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:text="모임날 멤버추가"
+                tools:layout_editor_absoluteX="149dp"
+                tools:layout_editor_absoluteY="369dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/ddayNextButton"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/holo_orange_light"
+            android:onClick="onClick"
+            android:text="모임날 설정완료\n다음 단계로"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="441dp" />
+
+    </LinearLayout>
+</ScrollView>
